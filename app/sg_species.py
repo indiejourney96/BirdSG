@@ -1,52 +1,42 @@
 """
-singapore_birds.py — Static Singapore species list and filtering logic.
+sg_species.py — Static list of all 445 bird species recorded in Singapore.
 
-SOURCE: Wikipedia "List of birds of Singapore" (Clements Checklist 2023b),
-        cross-referenced with the Singapore Bird Records Committee checklist
-        at records.singaporebirds.com and the iNaturalist guide #1161.
+SOURCE
+------
+Wikipedia "List of birds of Singapore" (Clements Checklist 2023b),
+cross-referenced with the Singapore Bird Records Committee checklist at
+records.singaporebirds.com and the iNaturalist guide #1161.
 
-HOW TO REPLACE THIS WITH LIVE eBIRD DATA (Phase 3 upgrade)
-------------------------------------------------------------
-The eBird API (https://documenter.getbirdpages.com/ebird) provides a
-real-time species list for any region. Replace the static list below with
-a dynamic fetch like this:
+PURPOSE
+-------
+This file is pure data — no logic lives here.
+The filter logic (is this label a Singapore bird?) lives in sg_filter.py.
 
-    import httpx
+HOW TO REPLACE WITH LIVE DATA (Phase 3 upgrade)
+------------------------------------------------
+Replace the static list below with a dynamic eBird fetch. The eBird API
+provides a real-time species list for any region:
 
-    EBIRD_API_KEY = os.getenv("EBIRD_API_KEY")
-    EBIRD_REGION  = "SG"          # ISO country code for Singapore
+    GET https://api.ebird.org/v2/product/spplist/SG
 
-    async def fetch_singapore_species() -> set[str]:
-        url = f"https://api.ebird.org/v2/product/spplist/{EBIRD_REGION}"
-        async with httpx.AsyncClient() as client:
-            resp = await client.get(url, headers={"X-eBirdApiToken": EBIRD_API_KEY})
-            species_codes = resp.json()           # e.g. ["asakoe1", "comkif1", ...]
+Then map the returned species codes → common names via:
 
-        # Map eBird species codes → common names via /v2/ref/taxonomy/ebird
-        taxon_url = "https://api.ebird.org/v2/ref/taxonomy/ebird?fmt=json&locale=en"
-        async with httpx.AsyncClient() as client:
-            taxa = await client.get(taxon_url, headers={"X-eBirdApiToken": EBIRD_API_KEY})
-            taxonomy = {t["speciesCode"]: t["comName"] for t in taxa.json()}
+    GET https://api.ebird.org/v2/ref/taxonomy/ebird?fmt=json&locale=en
 
-        return {taxonomy[code].lower() for code in species_codes if code in taxonomy}
-
-Then call fetch_singapore_species() inside the lifespan() in main.py and
-cache the result (e.g. in a module-level set or a Redis key).
-
-Filtering call in predict.py stays exactly the same — only the source
-of SG_SPECIES_LOWER changes from static → dynamic.
+Call fetch_singapore_species() inside lifespan() in main.py and cache the
+result in a module-level set. The filter logic in sg_filter.py doesn't need
+to change — only the source of the species set changes.
 """
 
-from __future__ import annotations
-
 # ---------------------------------------------------------------------------
-# Full Singapore bird species list — 445 species (resident, migrant, vagrant,
-# introduced). Common names follow IOC / Clements 2023b conventions used by
-# the Singapore Bird Records Committee.
+# Full Singapore bird species list — 445 species.
+# Includes residents, migrants, vagrants, and introduced species.
+# Common names follow IOC / Clements 2023b conventions used by the
+# Singapore Bird Records Committee.
 # ---------------------------------------------------------------------------
 
-SINGAPORE_SPECIES: list[str] = [
-    # Waterfowl (Anatidae)
+ALL_SINGAPORE_SPECIES: list[str] = [
+    # ── Waterfowl (Anatidae) ──────────────────────────────────────────────
     "Wandering Whistling Duck",
     "Lesser Whistling Duck",
     "Cotton Pygmy Goose",
@@ -57,12 +47,12 @@ SINGAPORE_SPECIES: list[str] = [
     "Northern Pintail",
     "Green-winged Teal",
     "Tufted Duck",
-    # Landfowl (Phasianidae)
+    # ── Landfowl (Phasianidae) ────────────────────────────────────────────
     "Blue-breasted Quail",
     "Red Junglefowl",
-    # Grebes (Podicipedidae)
+    # ── Grebes (Podicipedidae) ────────────────────────────────────────────
     "Little Grebe",
-    # Pigeons & Doves (Columbidae)
+    # ── Pigeons & Doves (Columbidae) ──────────────────────────────────────
     "Rock Pigeon",
     "Oriental Turtle Dove",
     "Red Collared Dove",
@@ -78,7 +68,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Green Imperial Pigeon",
     "Mountain Imperial Pigeon",
     "Pied Imperial Pigeon",
-    # Cuckoos (Cuculidae)
+    # ── Cuckoos (Cuculidae) ───────────────────────────────────────────────
     "Greater Coucal",
     "Lesser Coucal",
     "Chestnut-bellied Malkoha",
@@ -98,12 +88,12 @@ SINGAPORE_SPECIES: list[str] = [
     "Malaysian Hawk Cuckoo",
     "Indian Cuckoo",
     "Himalayan Cuckoo",
-    # Nightjars (Caprimulgidae)
+    # ── Nightjars (Caprimulgidae) ─────────────────────────────────────────
     "Malaysian Eared Nightjar",
     "Grey Nightjar",
     "Large-tailed Nightjar",
     "Savanna Nightjar",
-    # Swifts (Apodidae)
+    # ── Swifts (Apodidae) ─────────────────────────────────────────────────
     "Silver-rumped Needletail",
     "White-throated Needletail",
     "Silver-backed Needletail",
@@ -115,10 +105,10 @@ SINGAPORE_SPECIES: list[str] = [
     "Pacific Swift",
     "House Swift",
     "Asian Palm Swift",
-    # Treeswifts (Hemiprocnidae)
+    # ── Treeswifts (Hemiprocnidae) ────────────────────────────────────────
     "Grey-rumped Treeswift",
     "Whiskered Treeswift",
-    # Rails & Crakes (Rallidae)
+    # ── Rails & Crakes (Rallidae) ─────────────────────────────────────────
     "Slaty-breasted Rail",
     "Eurasian Moorhen",
     "Eurasian Coot",
@@ -134,7 +124,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Baillon's Crake",
     "Masked Finfoot",
     "Barred Buttonquail",
-    # Shorebirds — Thick-knees, Stilts, Plovers
+    # ── Shorebirds — Thick-knees, Stilts, Plovers ─────────────────────────
     "Beach Thick Knee",
     "Black-winged Stilt",
     "Pied Stilt",
@@ -156,11 +146,11 @@ SINGAPORE_SPECIES: list[str] = [
     "Pheasant-tailed Jacana",
     "Oriental Pratincole",
     "Small Pratincole",
-    # Skuas & Jaegers (Stercorariidae)
+    # ── Skuas & Jaegers (Stercorariidae) ──────────────────────────────────
     "Pomarine Jaeger",
     "Parasitic Jaeger",
     "Long-tailed Jaeger",
-    # Gulls & Terns (Laridae)
+    # ── Gulls & Terns (Laridae) ───────────────────────────────────────────
     "Black-headed Gull",
     "Brown-headed Gull",
     "Lesser Black-backed Gull",
@@ -176,27 +166,27 @@ SINGAPORE_SPECIES: list[str] = [
     "Common Tern",
     "Great Crested Tern",
     "Lesser Crested Tern",
-    # Tropicbirds (Phaethontidae)
+    # ── Tropicbirds (Phaethontidae) ───────────────────────────────────────
     "Red-billed Tropicbird",
     "White-tailed Tropicbird",
-    # Tubenoses (Procellariidae / Hydrobatidae)
+    # ── Tubenoses (Procellariidae / Hydrobatidae) ──────────────────────────
     "Swinhoe's Storm Petrel",
     "Bulwer's Petrel",
     "Short-tailed Shearwater",
     "Wedge-tailed Shearwater",
-    # Storks (Ciconiidae)
+    # ── Storks (Ciconiidae) ───────────────────────────────────────────────
     "Asian Openbill",
     "Lesser Adjutant",
     "Milky Stork",
     "Painted Stork",
-    # Frigatebirds, Boobies, Cormorants (Suliformes)
+    # ── Frigatebirds, Boobies, Cormorants (Suliformes) ────────────────────
     "Lesser Frigatebird",
     "Christmas Island Frigatebird",
     "Brown Booby",
     "Red-footed Booby",
     "Oriental Darter",
     "Great Cormorant",
-    # Herons & Egrets (Ardeidae)
+    # ── Herons & Egrets (Ardeidae) ────────────────────────────────────────
     "Yellow Bittern",
     "Schrenck's Bittern",
     "Cinnamon Bittern",
@@ -216,12 +206,12 @@ SINGAPORE_SPECIES: list[str] = [
     "Striated Heron",
     "Black-crowned Night Heron",
     "Malayan Night Heron",
-    # Ibises & Spoonbills (Threskiornithidae)
+    # ── Ibises & Spoonbills (Threskiornithidae) ───────────────────────────
     "Glossy Ibis",
     "Black-headed Ibis",
-    # Osprey (Pandionidae)
+    # ── Osprey (Pandionidae) ──────────────────────────────────────────────
     "Osprey",
-    # Hawks, Eagles & Kites (Accipitridae)
+    # ── Hawks, Eagles & Kites (Accipitridae) ──────────────────────────────
     "Black-winged Kite",
     "Oriental Honey Buzzard",
     "Jerdon's Baza",
@@ -255,7 +245,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Himalayan Buzzard",
     "Eastern Buzzard",
     "Long-legged Buzzard",
-    # Owls (Strigidae / Tytonidae)
+    # ── Owls (Strigidae / Tytonidae) ──────────────────────────────────────
     "Eastern Barn Owl",
     "Collared Scops Owl",
     "Oriental Scops Owl",
@@ -267,11 +257,11 @@ SINGAPORE_SPECIES: list[str] = [
     "Short-eared Owl",
     "Brown Boobook",
     "Northern Boobook",
-    # Hornbills (Bucerotidae)
+    # ── Hornbills (Bucerotidae) ───────────────────────────────────────────
     "Rhinoceros Hornbill",
     "Black Hornbill",
     "Oriental Pied Hornbill",
-    # Kingfishers (Alcedinidae)
+    # ── Kingfishers (Alcedinidae) ─────────────────────────────────────────
     "Common Kingfisher",
     "Blue-eared Kingfisher",
     "Black-backed Dwarf Kingfisher",
@@ -281,16 +271,16 @@ SINGAPORE_SPECIES: list[str] = [
     "White-throated Kingfisher",
     "Black-capped Kingfisher",
     "Collared Kingfisher",
-    # Bee-eaters (Meropidae)
+    # ── Bee-eaters (Meropidae) ────────────────────────────────────────────
     "Blue-throated Bee Eater",
     "Blue-tailed Bee Eater",
-    # Rollers (Coraciidae)
+    # ── Rollers (Coraciidae) ──────────────────────────────────────────────
     "Dollarbird",
-    # Barbets (Megalaimidae)
+    # ── Barbets (Megalaimidae) ────────────────────────────────────────────
     "Coppersmith Barbet",
     "Red-crowned Barbet",
     "Lineated Barbet",
-    # Woodpeckers (Picidae)
+    # ── Woodpeckers (Picidae) ─────────────────────────────────────────────
     "Sunda Pygmy Woodpecker",
     "Rufous Woodpecker",
     "Buff-rumped Woodpecker",
@@ -301,14 +291,14 @@ SINGAPORE_SPECIES: list[str] = [
     "Banded Woodpecker",
     "Great Slaty Woodpecker",
     "White-bellied Woodpecker",
-    # Falcons (Falconidae)
+    # ── Falcons (Falconidae) ──────────────────────────────────────────────
     "Black-thighed Falconet",
     "Lesser Kestrel",
     "Eurasian Kestrel",
     "Amur Falcon",
     "Eurasian Hobby",
     "Peregrine Falcon",
-    # Cockatoos & Parrots (Cacatuidae / Psittaculidae)
+    # ── Cockatoos & Parrots (Cacatuidae / Psittaculidae) ──────────────────
     "Tanimbar Corella",
     "Yellow-crested Cockatoo",
     "Sulphur-crested Cockatoo",
@@ -318,14 +308,14 @@ SINGAPORE_SPECIES: list[str] = [
     "Long-tailed Parakeet",
     "Coconut Lorikeet",
     "Blue-crowned Hanging Parrot",
-    # Broadbills & Pittas (Passeriformes)
+    # ── Broadbills & Pittas (Passeriformes) ──────────────────────────────
     "Green Broadbill",
     "Black-and-red Broadbill",
     "Blue-winged Pitta",
     "Fairy Pitta",
     "Western Hooded Pitta",
     "Mangrove Pitta",
-    # Gerygone, Minivets, Trillers, Cuckooshrikes
+    # ── Gerygone, Minivets, Trillers, Cuckooshrikes ───────────────────────
     "Golden-bellied Gerygone",
     "Scarlet Minivet",
     "Ashy Minivet",
@@ -333,44 +323,44 @@ SINGAPORE_SPECIES: list[str] = [
     "Lesser Cuckooshrike",
     "White-bellied Erpornis",
     "Mangrove Whistler",
-    # Orioles, Woodshrikes, Ioras, Fantails
+    # ── Orioles, Woodshrikes, Ioras, Fantails ─────────────────────────────
     "Black-naped Oriole",
     "Large Woodshrike",
     "Black-winged Flycatcher Shrike",
     "Common Iora",
     "Malaysian Pied Fantail",
-    # Drongos (Dicruridae)
+    # ── Drongos (Dicruridae) ──────────────────────────────────────────────
     "Black Drongo",
     "Ashy Drongo",
     "Crow-billed Drongo",
     "Hair-crested Drongo",
     "Greater Racket-tailed Drongo",
-    # Monarch Flycatchers (Monarchidae)
+    # ── Monarch Flycatchers (Monarchidae) ────────────────────────────────
     "Black-naped Monarch",
     "Black Paradise Flycatcher",
     "Amur Paradise Flycatcher",
     "Blyth's Paradise Flycatcher",
     "Indian Paradise Flycatcher",
-    # Shrikes (Laniidae)
+    # ── Shrikes (Laniidae) ────────────────────────────────────────────────
     "Tiger Shrike",
     "Brown Shrike",
     "Burmese Shrike",
     "Long-tailed Shrike",
-    # Crows & Jays (Corvidae)
+    # ── Crows & Jays (Corvidae) ───────────────────────────────────────────
     "Slender-billed Crow",
     "Large-billed Crow",
     "House Crow",
-    # Tits (Paridae)
+    # ── Tits (Paridae) ────────────────────────────────────────────────────
     "Sultan Tit",
-    # Larks (Alaudidae)
+    # ── Larks (Alaudidae) ─────────────────────────────────────────────────
     "Australasian Bushlark",
-    # Swallows & Martins (Hirundinidae)
+    # ── Swallows & Martins (Hirundinidae) ────────────────────────────────
     "Barn Swallow",
     "Pacific Swallow",
     "Red-rumped Swallow",
     "Striated Swallow",
     "Asian House Martin",
-    # Bulbuls (Pycnonotidae)
+    # ── Bulbuls (Pycnonotidae) ────────────────────────────────────────────
     "Straw-headed Bulbul",
     "Black-headed Bulbul",
     "Black-crested Bulbul",
@@ -384,7 +374,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Buff-vented Bulbul",
     "Ashy Bulbul",
     "Puff-backed Bulbul",
-    # Leaf Warblers (Phylloscopidae)
+    # ── Leaf Warblers (Phylloscopidae) ────────────────────────────────────
     "Arctic Warbler",
     "Sakhalin Leaf Warbler",
     "Yellow-browed Warbler",
@@ -393,12 +383,12 @@ SINGAPORE_SPECIES: list[str] = [
     "Dusky Warbler",
     "Radde's Warbler",
     "Buff-throated Warbler",
-    # Reed Warblers (Acrocephalidae)
+    # ── Reed Warblers (Acrocephalidae) ────────────────────────────────────
     "Oriental Reed Warbler",
     "Black-browed Reed Warbler",
     "Clamorous Reed Warbler",
     "Booted Warbler",
-    # Grassbirds & Cisticolas (Locustellidae / Cisticolidae)
+    # ── Grassbirds & Cisticolas (Locustellidae / Cisticolidae) ────────────
     "Lanceolated Warbler",
     "Pallas's Grasshopper Warbler",
     "Striated Grassbird",
@@ -408,10 +398,10 @@ SINGAPORE_SPECIES: list[str] = [
     "Dark-necked Tailorbird",
     "Ashy Tailorbird",
     "Rufous-tailed Tailorbird",
-    # White-eyes (Zosteropidae)
+    # ── White-eyes (Zosteropidae) ─────────────────────────────────────────
     "Swinhoe's White Eye",
     "Everett's White Eye",
-    # Laughingthrushes & Babblers (Leiothrichidae / Timaliidae / Pellorneidae)
+    # ── Laughingthrushes & Babblers ──────────────────────────────────────
     "Pin-striped Tit Babbler",
     "Bold-striped Tit Babbler",
     "Abbott's Babbler",
@@ -425,7 +415,7 @@ SINGAPORE_SPECIES: list[str] = [
     "White-chested Babbler",
     "Ferruginous Babbler",
     "Yellow-bellied Prinia",
-    # Starlings (Sturnidae)
+    # ── Starlings (Sturnidae) ─────────────────────────────────────────────
     "Asian Glossy Starling",
     "Philippine Glossy Starling",
     "Common Hill Myna",
@@ -439,7 +429,7 @@ SINGAPORE_SPECIES: list[str] = [
     "White-faced Starling",
     "Purple-backed Starling",
     "Daurian Starling",
-    # Thrushes (Turdidae)
+    # ── Thrushes (Turdidae) ───────────────────────────────────────────────
     "Blue Rock Thrush",
     "White-throated Rock Thrush",
     "Siberian Thrush",
@@ -448,7 +438,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Eyebrowed Thrush",
     "Dark-sided Thrush",
     "Island Thrush",
-    # Old World Flycatchers (Muscicapidae)
+    # ── Old World Flycatchers (Muscicapidae) ──────────────────────────────
     "Oriental Magpie Robin",
     "White-rumped Shama",
     "Mangrove Blue Flycatcher",
@@ -474,7 +464,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Blue Whistling Thrush",
     "Pied Bushchat",
     "Common Stonechat",
-    # Wagtails & Pipits (Motacillidae)
+    # ── Wagtails & Pipits (Motacillidae) ──────────────────────────────────
     "Eastern Yellow Wagtail",
     "Citrine Wagtail",
     "White Wagtail",
@@ -485,7 +475,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Olive-backed Pipit",
     "Red-throated Pipit",
     "Richard's Pipit",
-    # Sunbirds & Spiderhunters (Nectariniidae)
+    # ── Sunbirds & Spiderhunters (Nectariniidae) ──────────────────────────
     "Crimson Sunbird",
     "Ruby-cheeked Sunbird",
     "Purple-naped Sunbird",
@@ -503,7 +493,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Long-billed Spiderhunter",
     "Spectacled Spiderhunter",
     "Yellow-eared Spiderhunter",
-    # Weavers, Munias & Sparrows (Estrildidae / Ploceidae / Passeridae)
+    # ── Weavers, Munias & Sparrows ────────────────────────────────────────
     "Eurasian Tree Sparrow",
     "Baya Weaver",
     "Streaked Weaver",
@@ -516,7 +506,7 @@ SINGAPORE_SPECIES: list[str] = [
     "Red Avadavat",
     "Java Sparrow",
     "Yellow-fronted Canary",
-    # Buntings (Emberizidae)
+    # ── Buntings (Emberizidae) ────────────────────────────────────────────
     "Yellow-breasted Bunting",
     "Black-headed Bunting",
     "Chestnut Bunting",
@@ -524,37 +514,5 @@ SINGAPORE_SPECIES: list[str] = [
     "Willow Warbler",
 ]
 
-# ---------------------------------------------------------------------------
 # Pre-computed lowercase set for O(1) membership testing at inference time.
-# The filter function normalises both the model label and each SG species name
-# to lowercase before comparing, handling capitalisation differences between
-# ImageNet labels and IOC names.
-# ---------------------------------------------------------------------------
-SG_SPECIES_LOWER: set[str] = {s.lower() for s in SINGAPORE_SPECIES}
-
-
-def is_singapore_bird(label: str) -> bool:
-    """
-    Return True if the ImageNet label matches a Singapore species.
-
-    Matching strategy (in order):
-      1. Exact match after lowercasing  — e.g. "bulbul" ∈ SG_SPECIES_LOWER? No.
-      2. Substring match — does any SG species name contain the label word,
-         or does the label contain a key SG species word?
-
-    This handles the fact that ImageNet uses short generic names like "bulbul"
-    while SG names are specific like "Yellow-vented Bulbul".
-    """
-    label_lower = label.lower().strip()
-
-    # 1. Exact match
-    if label_lower in SG_SPECIES_LOWER:
-        return True
-
-    # 2. Substring: any SG species whose name contains the ImageNet label
-    #    e.g. label="kingfisher" matches "Collared Kingfisher", "Common Kingfisher", etc.
-    for sg_name in SG_SPECIES_LOWER:
-        if label_lower in sg_name or sg_name in label_lower:
-            return True
-
-    return False
+_SG_SPECIES_LOWER: set[str] = {s.lower() for s in ALL_SINGAPORE_SPECIES}

@@ -1,38 +1,48 @@
 """
-label_map.py — ImageNet label → eBird species code mapping.
+imagenet_to_ebird.py — Bridge between ImageNet labels and eBird species codes.
 
-Only ImageNet labels that the model can actually output are mapped here.
-Each maps to the most commonly recorded Singapore species for that label,
-based on eBird frequency data for region SG.
+THE PROBLEM THIS SOLVES
+-----------------------
+EfficientNet-B0 predicts ImageNet labels like "bulbul" or "kite".
+eBird (our source of Singapore sighting data) uses 6-character species codes
+like "yevbul1" (Yellow-vented Bulbul) or "brakit1" (Brahminy Kite).
 
-eBird species codes are 6-char strings from the eBird taxonomy:
-    https://api.ebird.org/v2/ref/taxonomy/ebird
+This file is the translation layer between those two vocabularies.
 
-MAPPING QUALITY
----------------
-Mappings are tagged as one of:
-  [EXACT]   — ImageNet label directly corresponds to a real SG species category.
-              High confidence. e.g. "bulbul" → Yellow-vented Bulbul.
-  [APPROX]  — Label has a plausible visual or ecological similarity to the SG
-              species but is not a direct match. Use with caution.
-              e.g. "hummingbird" → Olive-backed Sunbird (both small nectar feeders).
-  [FORCED]  — No genuine SG equivalent. Mapped to the closest SG bird by
-              general appearance only. Low confidence — treat as a best guess.
-              e.g. "junco" → Eurasian Tree Sparrow (both are small brown passerines).
-  [NONE]    — No reasonable SG mapping exists. Returns 404.
+Only ImageNet labels that map to a plausible Singapore species are included.
+Labels like "bald eagle" or "ostrich" have no meaningful SG equivalent and
+return None — the /birds endpoint will 404 for those.
 
-TODO: Replace [FORCED] and [APPROX] mappings once a Singapore-specific model
-is trained. At that point, model labels will be actual SG species names and
-this entire file can be replaced with a direct name → eBird code lookup.
+MAPPING CONFIDENCE TAGS
+------------------------
+Each mapping is tagged with its reliability:
+
+  [EXACT]   Direct match. The ImageNet label corresponds to a real SG species.
+            e.g. "bulbul" → Yellow-vented Bulbul (the dominant SG bulbul)
+
+  [APPROX]  Plausible but not a direct match. Similar appearance or ecology.
+            e.g. "hummingbird" → Olive-backed Sunbird
+            (no hummingbirds in Asia; sunbirds fill the same nectar-feeding niche)
+
+  [FORCED]  No genuine SG equivalent. Closest match by general appearance only.
+            Low confidence — treat as a best guess.
+            e.g. "junco" → Eurasian Tree Sparrow
+            (juncos are American; tree sparrows are the closest small brown SG bird)
+
+  [NONE]    No reasonable SG mapping. Returns None → /birds gives 404.
+
+TODO: Once a Singapore-specific model is trained (Phase 3), model outputs
+will be actual SG species names and this entire file can be replaced with a
+direct name → eBird code lookup.
 """
 
-# ImageNet label (lowercase) → eBird species code for most common SG species
-LABEL_TO_EBIRD_CODE: dict[str, str | None] = {
+# ImageNet label (lowercase) → eBird species code for the most common SG match
+_LABEL_TO_EBIRD_CODE: dict[str, str | None] = {
 
     # ── Passerines ─────────────────────────────────────────────────────────
     "bulbul":                  "yevbul1",   # [EXACT]   Yellow-vented Bulbul
     "magpie":                  "ormaro1",   # [APPROX]  Oriental Magpie-Robin — similar black-and-white plumage
-    "robin":                   "ormaro1",   # [APPROX]  Oriental Magpie-Robin — ImageNet robin ≠ SG robin
+    "robin":                   "ormaro1",   # [APPROX]  Oriental Magpie-Robin — ImageNet "robin" ≠ SG robin
     "starling":                "commy1",    # [APPROX]  Common Myna — most visible SG "starling-like" bird
     "jay":                     "bknori1",   # [APPROX]  Black-naped Oriole — colourful perching bird
     "wren":                    "comtai1",   # [APPROX]  Common Tailorbird — small, skulking, similar behaviour
@@ -104,9 +114,11 @@ LABEL_TO_EBIRD_CODE: dict[str, str | None] = {
 }
 
 
-def get_ebird_code(label: str) -> str | None:
+def get_ebird_code(imagenet_label: str) -> str | None:
     """
-    Return the eBird species code for a given ImageNet label.
-    Returns None if no reasonable SG mapping exists ([NONE] entries).
+    Translate an ImageNet label to an eBird species code for Singapore.
+
+    Returns None if there is no reasonable SG species mapping ([NONE] entries),
+    which causes the /birds endpoint to return 404.
     """
-    return LABEL_TO_EBIRD_CODE.get(label.lower().strip())
+    return _LABEL_TO_EBIRD_CODE.get(imagenet_label.lower().strip())

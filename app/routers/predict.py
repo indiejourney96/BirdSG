@@ -1,13 +1,15 @@
 """
 predict.py — POST /predict endpoint.
 
-Pipeline:
-    1. Validate file type and size
-    2. Run EfficientNet-B0 inference (top 10)
-    3. Bird gate — reject non-bird images
-    4. Singapore filter — keep local species matches
-    5. Persist to Supabase (failures are logged, never raised)
-    6. Return response
+    ┌─────────────────────────────────────────────────────────┐
+    │  1. VALIDATE      file type + size                      │
+    │  2. INFER         EfficientNet-B0 → top 10 predictions  │
+    │  3. BIRD GATE     reject non-bird images   (bird_gate)  │
+    │  4. SG FILTER     keep Singapore species   (sg_filter)  │
+    │  5. PERSIST       write to Supabase        (database)   │
+    │  6. RESPOND       return top 3 results                  │
+    └─────────────────────────────────────────────────────────┘
+
 """
 
 from __future__ import annotations
@@ -17,10 +19,10 @@ import logging
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from pydantic import BaseModel
 
-from app.bird_labels import BIRD_CONFIDENCE_THRESHOLD, is_bird_image
+from app.bird_gate import BIRD_CONFIDENCE_THRESHOLD, passes_bird_gate
 from app.database import save_sighting
 from app.model import predict_top_k
-from app.singapore_birds import is_singapore_bird
+from app.sg_filter import is_singapore_species
 
 logger = logging.getLogger(__name__)
 
@@ -67,7 +69,7 @@ async def predict(file: UploadFile = File(...)):
 
     # 3. Bird gate
     top = raw_results[0]
-    if not is_bird_image(top.label, top.confidence):
+    if not passes_bird_gate(top.label, top.confidence):
         raise HTTPException(
             status_code=422,
             detail={
@@ -80,7 +82,7 @@ async def predict(file: UploadFile = File(...)):
         )
 
     # 4. Singapore filter
-    sg_matches = [r for r in raw_results if is_singapore_bird(r.label)]
+    sg_matches = [r for r in raw_results if is_singapore_species(r.label)]
     final    = sg_matches[:TOP_K_RETURN] if sg_matches else raw_results[:1]
     filtered = bool(sg_matches)
 
@@ -88,7 +90,7 @@ async def predict(file: UploadFile = File(...)):
         PredictionItem(
             label=r.label,
             confidence=r.confidence,
-            singapore_match=is_singapore_bird(r.label),
+            singapore_match=is_singapore_species(r.label),
         )
         for r in final
     ]

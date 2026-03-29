@@ -13,7 +13,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from app.ebird import get_recent_sightings, get_species_info
-from app.label_map import get_ebird_code
+from app.imagenet_to_ebird import get_ebird_code
 
 router = APIRouter(prefix="/birds", tags=["birds"])
 
