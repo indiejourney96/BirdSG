@@ -15,7 +15,7 @@ except ImportError:
 
 from app.database import supabase
 from app.model import load_model
-from app.routers import predict, sightings
+from app.routers import predict, sightings, birds
 
 
 @asynccontextmanager
@@ -40,6 +40,7 @@ app.add_middleware(
 
 app.include_router(predict.router)
 app.include_router(sightings.router)
+app.include_router(birds.router)
 
 
 @app.get("/health")
