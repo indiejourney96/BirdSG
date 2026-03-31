@@ -1,28 +1,30 @@
 """
 predict.py — POST /predict endpoint.
 
-    ┌─────────────────────────────────────────────────────────┐
-    │  1. VALIDATE      file type + size                      │
-    │  2. INFER         EfficientNet-B0 → top 10 predictions  │
-    │  3. BIRD GATE     reject non-bird images   (bird_gate)  │
-    │  4. SG FILTER     keep Singapore species   (sg_filter)  │
-    │  5. PERSIST       write to Supabase        (database)   │
-    │  6. RESPOND       return top 3 results                  │
-    └─────────────────────────────────────────────────────────┘
-
+Pipeline:
+    1. Validate file type and size
+    2. Run EfficientNet-B0 inference (top 10)
+    3. Bird gate — reject non-bird images
+    4. Singapore filter — keep local species matches
+    5. Fetch Xeno-canto reference recording for top match
+    6. Persist to Supabase (failures are logged, never raised)
+    7. Return response
 """
 
 from __future__ import annotations
 
 import logging
 
-from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
 
 from app.bird_gate import BIRD_CONFIDENCE_THRESHOLD, passes_bird_gate
 from app.database import save_sighting
+from app.ebird import get_species_info
+from app.imagenet_to_ebird import get_ebird_code
 from app.model import predict_top_k
 from app.sg_filter import is_singapore_species
+from app.xeno_canto import get_reference_audio
 
 logger = logging.getLogger(__name__)
 
@@ -40,16 +42,27 @@ class PredictionItem(BaseModel):
     singapore_match: bool
 
 
+class RecordingInfo(BaseModel):
+    audio_url: str | None
+    recording_id: str | None
+    recordist: str | None
+    location: str | None
+
+
 class PredictResponse(BaseModel):
     filename: str
     predictions: list[PredictionItem]
     singapore_filtered: bool
     sighting_id: str | None = None
+    recording: RecordingInfo | None = None   # Xeno-canto reference audio for top match
 
 
 @router.post("/predict", response_model=PredictResponse)
-async def predict(file: UploadFile = File(...)):
-
+async def predict(
+    file: UploadFile = File(...),
+    lat: float | None = Form(default=None),
+    lng: float | None = Form(default=None),
+):
     # 1. Validate
     if file.content_type not in ALLOWED_TYPES:
         raise HTTPException(
@@ -95,22 +108,38 @@ async def predict(file: UploadFile = File(...)):
         for r in final
     ]
 
-    # 5. Persist to Supabase
+    # 5. Fetch Xeno-canto reference recording for the top prediction
+    recording: RecordingInfo | None = None
+    try:
+        top_label     = predictions_out[0].label
+        ebird_code    = get_ebird_code(top_label)
+        species_info  = get_species_info(ebird_code) if ebird_code else None
+        species_name  = species_info.get("common_name") if species_info else top_label
+        xc            = get_reference_audio(species_name)
+        if xc:
+            recording = RecordingInfo(**xc)
+    except Exception as exc:
+        logger.error("Xeno-canto fetch failed: %s", exc)
+
+    # 6. Persist to Supabase
     sighting_id: str | None = None
     try:
         record = save_sighting(
             filename=file.filename,
             predictions=[p.model_dump() for p in predictions_out],
             singapore_filtered=filtered,
+            lat=lat,
+            lng=lng,
         )
         sighting_id = record.get("id")
     except Exception as exc:
         logger.error("Supabase write failed: %s", exc)
 
-    # 6. Return
+    # 7. Return
     return PredictResponse(
         filename=file.filename,
         predictions=predictions_out,
         singapore_filtered=filtered,
         sighting_id=sighting_id,
+        recording=recording,
     )

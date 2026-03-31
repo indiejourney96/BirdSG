@@ -1,6 +1,7 @@
 """
 main.py — FastAPI application entry point.
 """
+import logging
 
 from contextlib import asynccontextmanager
 
@@ -15,7 +16,7 @@ except ImportError:
 
 from app.database import supabase
 from app.model import load_model
-from app.routers import predict, sightings, birds
+from app.routers import birds, predict, sightings
 
 
 @asynccontextmanager
@@ -27,7 +28,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Bird ID API",
     description="EfficientNet-B0 bird classification for Singapore, with Supabase logging",
-    version="0.4.0",
+    version="0.6.0",
     lifespan=lifespan,
 )
 
@@ -46,3 +47,10 @@ app.include_router(birds.router)
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
+
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)

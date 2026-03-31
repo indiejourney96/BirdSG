@@ -24,6 +24,8 @@ class SightingResponse(BaseModel):
     predictions: list[dict]
     singapore_filtered: bool
     created_at: str
+    lat: float | None
+    lng: float | None
 
 
 @router.get("/{sighting_id}", response_model=SightingResponse)
@@ -31,7 +33,7 @@ def get_sighting(sighting_id: UUID):
     """Retrieve a single sighting by its UUID."""
     response = (
         supabase.table(TABLE)
-        .select("id, filename, image_url, predictions, singapore_filtered, created_at")
+        .select("id, filename, image_url, predictions, singapore_filtered, created_at, lat, lng")
         .eq("id", str(sighting_id))
         .single()
         .execute()

@@ -4,7 +4,7 @@ birds.py — GET /birds/{label} endpoint.
 Accepts an ImageNet label (e.g. "bulbul") and returns:
   - The mapped Singapore species info from eBird taxonomy
   - Recent sightings in Singapore from eBird observations
-  - The label → species mapping used, for transparency
+  - A Xeno-canto reference recording for the species
 """
 
 from __future__ import annotations
@@ -14,6 +14,7 @@ from pydantic import BaseModel
 
 from app.ebird import get_recent_sightings, get_species_info
 from app.imagenet_to_ebird import get_ebird_code
+from app.xeno_canto import get_reference_audio
 
 router = APIRouter(prefix="/birds", tags=["birds"])
 
@@ -31,29 +32,35 @@ class RecentSighting(BaseModel):
     count: int | None
 
 
+class RecordingInfo(BaseModel):
+    audio_url: str | None
+    recording_id: str | None
+    recordist: str | None
+    location: str | None
+
+
 class BirdInfoResponse(BaseModel):
     label: str
     ebird_code: str
     species: SpeciesInfo
     recent_sightings_sg: list[RecentSighting]
+    recording: RecordingInfo | None = None
 
 
 @router.get("/{label}", response_model=BirdInfoResponse)
 def get_bird_info(label: str):
     """
-    Look up species info and recent Singapore sightings for an ImageNet label.
+    Look up species info, recent Singapore sightings, and a reference
+    recording for an ImageNet label.
     """
-    # Map label → eBird code
     ebird_code = get_ebird_code(label)
-
     if ebird_code is None:
         raise HTTPException(
             status_code=404,
             detail=f"No Singapore species mapping found for label '{label}'.",
         )
 
-    # Fetch from eBird (both calls use in-memory cache after first hit)
-    species  = get_species_info(ebird_code)
+    species   = get_species_info(ebird_code)
     sightings = get_recent_sightings(ebird_code)
 
     if species is None:
@@ -62,9 +69,16 @@ def get_bird_info(label: str):
             detail=f"Could not retrieve species info from eBird for '{label}'.",
         )
 
+    # Fetch Xeno-canto recording using the resolved common name
+    recording: RecordingInfo | None = None
+    xc = get_reference_audio(species["common_name"])
+    if xc:
+        recording = RecordingInfo(**xc)
+
     return BirdInfoResponse(
         label=label,
         ebird_code=ebird_code,
         species=SpeciesInfo(**species),
         recent_sightings_sg=[RecentSighting(**s) for s in sightings],
+        recording=recording,
     )

@@ -31,7 +31,7 @@ def _init_client() -> Client:
     if not url or not key:
         raise RuntimeError(
             "Missing Supabase credentials. "
-            "Check SUPABASE_URL and SUPABASE_KEY."
+            "Copy .env.example → .env and fill in SUPABASE_URL and SUPABASE_KEY."
         )
 
     return create_client(url, key)
@@ -45,6 +45,8 @@ def save_sighting(
     predictions: list[dict],
     singapore_filtered: bool,
     image_url: str | None = None,
+    lat: float | None = None,
+    lng: float | None = None,
 ) -> dict:
     """Insert a sighting and return the created row (includes id and created_at)."""
     row = {
@@ -52,6 +54,8 @@ def save_sighting(
         "image_url":          image_url,
         "predictions":        predictions,
         "singapore_filtered": singapore_filtered,
+        "lat":                lat,
+        "lng":                lng,
     }
     response = supabase.table(TABLE).insert(row).execute()
     return response.data[0]
