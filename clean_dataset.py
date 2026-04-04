@@ -10,6 +10,8 @@ from pathlib import Path
 import cv2
 import time
 
+# ---------------- FUNCTIONS ----------------
+
 def detect_blur(image_path, threshold=100):
     """
     Detects blur using the variance of Laplacian method.
@@ -40,6 +42,8 @@ def detect_blur(image_path, threshold=100):
     except Exception as e:
         print(f"[Error] Processing {image_path}: {e}")
         return False, 0
+
+# ---------------- MAIN ----------------
 
 def main():
     print("🚀 BirdSG Data Cleaner v1.0")
@@ -102,7 +106,7 @@ def main():
                     elif response == 'q':
                         print(f"\n⏸️  Quitting without deleting.")
                         print(f"📊 Stats: Processed {total_images} images. Found {flagged_images} blurry images.")
-                        break
+                        sys.exit(0)
                     elif response == 'n':
                         print(f"✅ Kept: {file_path}")
                     
