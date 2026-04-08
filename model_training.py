@@ -25,7 +25,7 @@ def get_transforms(train=True):
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                  std=[0.229, 0.224, 0.225]),
-            transforms.RandomErasing(p=0.5)
+            transforms.RandomErasing(p=0.2)
         ])
     else:
         return transforms.Compose([
@@ -171,28 +171,74 @@ def main():
     # Loss
     criterion = nn.CrossEntropyLoss()
 
-    # Optimizer (ONLY trainable params)
+    # Optimizer
     optimizer = optim.Adam(
         filter(lambda p: p.requires_grad, model.parameters()),
         lr=0.001
     )
 
+    # Learning rate scheduler
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer,
+        mode='max',      # maximize validation accuracy
+        patience=3,
+        factor=0.5,
+        verbose=True
+    )
+
+    # Early stopping + best model tracking
+    best_val_acc = 0
+    best_model_path = "best_bird_model.pth"
+    no_improve_epochs = 0
+    early_stop_patience = 5
+
     print("\n🚀 Starting training...\n")
 
-    # Training loop
     for epoch in range(EPOCHS):
+        print(f"\n========== Epoch {epoch+1}/{EPOCHS} ==========")
+
+        # ---- Train ----
         train_loss, train_acc = train_one_epoch(
             model, train_loader, optimizer, criterion, device
         )
 
+        # ---- Validate ----
         val_loss, val_acc = validate(
             model, val_loader, criterion, device
         )
 
-        print(f"Epoch {epoch+1}/{EPOCHS}")
+        # ---- Scheduler step ----
+        scheduler.step(val_acc)
+
+        # ---- Print learning rate ----
+        current_lr = optimizer.param_groups[0]['lr']
+        print(f"📉 Current Learning Rate: {current_lr:.6f}")
+
+        # ---- Best model saving ----
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            no_improve_epochs = 0
+            torch.save(model.state_dict(), best_model_path)
+            print(f"💾 New best model saved! Val Acc: {val_acc:.2f}%")
+        else:
+            no_improve_epochs += 1
+            print(f"⚠️ No improvement for {no_improve_epochs} epoch(s)")
+
+        # ---- Epoch summary ----
+        print("\nEpoch Summary")
         print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.2f}%")
         print(f"Val   Loss: {val_loss:.4f} | Val   Acc: {val_acc:.2f}%")
+        print(f"Best  Val Acc so far: {best_val_acc:.2f}%")
         print("-" * 40)
+
+        # ---- Early stopping ----
+        if no_improve_epochs >= early_stop_patience:
+            print("⏹ Early stopping triggered")
+            break
+
+    print("\n🏁 Training finished")
+    print(f"Best model saved at: {best_model_path}")
+    print(f"Best validation accuracy: {best_val_acc:.2f}%")
 
 
 if __name__ == "__main__":
