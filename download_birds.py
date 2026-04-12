@@ -5,7 +5,7 @@ import time
 
 # ---------------- CONFIG ----------------
 OUTPUT_DIR = "dataset"
-IMAGES_PER_SPECIES = 50  # max images per species per run
+IMAGES_PER_SPECIES = 100  # max images per species per run
 PER_PAGE = 100  # max per API request
 # Allowed licenses
 ALLOWED_LICENSES = ["cc0", "cc-by", "cc-by-sa"]
