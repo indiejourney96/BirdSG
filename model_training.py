@@ -8,6 +8,9 @@ from torch.utils.data import DataLoader
 from torchvision.datasets import ImageFolder
 from torchvision import transforms, models
 
+from sklearn.metrics import confusion_matrix
+import numpy as np
+
 # Configuration
 DATA_PATH = r"C:\Users\Admin\Daryl\SD Projects\BirdSG\data\images"
 BATCH_SIZE = 32
@@ -113,12 +116,15 @@ def train_one_epoch(model, loader, optimizer, criterion, device):
     return epoch_loss, epoch_acc
 
 
-def validate(model, loader, criterion, device):
+def validate(model, loader, criterion, device, return_preds=False):
     model.eval()
 
     running_loss = 0
     correct = 0
     total = 0
+
+    all_preds = []
+    all_labels = []
 
     with torch.no_grad():
         for images, labels in loader:
@@ -131,10 +137,19 @@ def validate(model, loader, criterion, device):
             running_loss += loss.item()
 
             _, predicted = torch.max(outputs, 1)
+
             correct += (predicted == labels).sum().item()
             total += labels.size(0)
 
+            if return_preds:
+                all_preds.extend(predicted.cpu().numpy())
+                all_labels.extend(labels.cpu().numpy())
+
     accuracy = 100 * correct / total
+
+    if return_preds:
+        return running_loss / len(loader), accuracy, all_labels, all_preds
+
     return running_loss / len(loader), accuracy
 
 
@@ -203,9 +218,11 @@ def main():
         )
 
         # ---- Validate ----
-        val_loss, val_acc = validate(
-            model, val_loader, criterion, device
-        )
+        val_loss, val_acc, labels, preds = validate(model, val_loader, criterion, device, return_preds=True)
+
+        cm = confusion_matrix(labels, preds)
+        print("\n========== confusion matrix ==========")
+        print(cm)
 
         # ---- Scheduler step ----
         scheduler.step(val_acc)
