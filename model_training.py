@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 from torchvision.datasets import ImageFolder
 from torchvision import transforms, models
 
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, classification_report
 import numpy as np
 
 # Configuration
@@ -223,9 +223,25 @@ def main():
         # ---- Validate ----
         val_loss, val_acc, labels, preds = validate(model, val_loader, criterion, device, return_preds=True)
 
+        # ---- Confusion Matrix ----
         cm = confusion_matrix(labels, preds)
-        print("\n========== confusion matrix ==========")
+        print("\n========== Confusion Matrix ==========")
         print(cm)
+
+        # ---- Precision / Recall / F1 ----
+        print("\n========== Classification Report ==========")
+
+        class_names = train_dataset.classes
+
+        report = classification_report(
+            labels,
+            preds,
+            target_names=class_names,
+            digits=4,
+            zero_division=0
+        )
+
+        print(report)
 
         # ---- Scheduler step ----
         scheduler.step(val_acc)
