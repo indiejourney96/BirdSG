@@ -44,9 +44,12 @@ def get_model(num_classes, device):
 
     model = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V2)
 
-    # Freeze backbone
     for param in model.parameters():
         param.requires_grad = False
+
+    # Unfreeze layer4
+    for param in model.layer4.parameters():
+        param.requires_grad = True
 
     # Replace classifier
     in_features = model.fc.in_features
