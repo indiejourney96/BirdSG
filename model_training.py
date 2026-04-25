@@ -254,7 +254,10 @@ def main():
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             no_improve_epochs = 0
-            torch.save(model.state_dict(), best_model_path)
+            torch.save({
+                "model_state_dict": model.state_dict(),
+                "classes": train_dataset.classes
+            }, "best_bird_model.pth")
             print(f"💾 New best model saved! Val Acc: {val_acc:.2f}%")
         else:
             no_improve_epochs += 1
