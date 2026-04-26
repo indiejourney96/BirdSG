@@ -43,11 +43,32 @@ MODE = "global"  # "global" or "regional"
 #     ("Jambu Fruit Dove", 1650573),
 #     ("Mountain Imperial Pigeon", 3246),
 #     ("Pied Imperial Pigeon", 3255),
+#     ("Blue-breasted Quail", 505884),
 #     # Add more species as needed
 # ]
 SPECIES = [
-    ("Blue-breasted Quail", 505884),
-
+    ("Greater Coucal", 1677),
+    ("Lesser Coucal", 1644),
+    ("Chestnut-bellied Malkoha", 73190),
+    ("Chestnut-bellied Cuckoo", 72744),
+    ("Pied Cuckoo", 1789),
+    ("Asian Emerald Cuckoo", 1728),
+    ("Violet Cuckoo", 1720),
+    ("Horsfield's Bronze Cuckoo", 1578710),
+    ("Little Bronze Cuckoo", 369157),
+    ("Banded Bay Cuckoo", 1827),
+    ("Violet Cuckoo", 1827),
+    ("Plaintive Cuckoo", 1856),
+    ("Sunda Brush Cuckoo", 96387),
+    ("Square-tailed Drongo-Cuckoo", 1930),
+    ("Large Hawk-Cuckoo", 567164),
+    ("Hodgson's Hawk-Cuckoo", 144577),
+    ("Malaysian Hawk-Cuckoo", 144579),
+    ("Indian Cuckoo", 1904),
+    ("Himalayan Cuckoo", 1899),
+    ("Malaysian Eared Nightjar", 201063),
+    ("Gray Nightjar", 367509),
+    ("Savanna Nightjar", 19466),
     # Add more species as needed
 ]
 
