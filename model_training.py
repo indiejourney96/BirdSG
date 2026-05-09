@@ -158,7 +158,16 @@ def validate(model, loader, criterion, device, return_preds=False):
 
 def main():
     # Device
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    try:
+        import torch_directml
+
+        device = torch_directml.device()
+        print("🚀 Using AMD GPU via DirectML")
+
+    except ImportError:
+        device = torch.device("cpu")
+        print("⚠️ torch-directml not installed, falling back to CPU")
+
     print(f"Using device: {device}")
 
     # Transforms
