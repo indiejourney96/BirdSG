@@ -51,6 +51,7 @@ def get_model(num_classes, device):
         param.requires_grad = False
 
     # Unfreeze layer4
+
     for param in model.layer4.parameters():
         param.requires_grad = True
 
@@ -214,7 +215,7 @@ def main():
     # Optimizer
     optimizer = optim.Adam(
         filter(lambda p: p.requires_grad, model.parameters()),
-        lr=0.001
+        lr=0.0001
     )
 
     # Learning rate scheduler
@@ -222,8 +223,7 @@ def main():
         optimizer,
         mode='max',      # maximize validation accuracy
         patience=3,
-        factor=0.5,
-        verbose=True
+        factor=0.5
     )
 
     # Early stopping + best model tracking
