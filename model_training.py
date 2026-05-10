@@ -11,6 +11,9 @@ from torchvision import transforms, models
 from sklearn.metrics import confusion_matrix, classification_report
 import numpy as np
 
+import sys
+from datetime import datetime
+
 # Configuration
 DATA_PATH = r"C:\Users\Admin\Daryl\SD Projects\BirdSG\data\images"
 BATCH_SIZE = 32
@@ -288,6 +291,33 @@ def main():
     print(f"Best model saved at: {best_model_path}")
     print(f"Best validation accuracy: {best_val_acc:.2f}%")
 
+
+# =========================
+# Logging Setup
+# =========================
+
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+log_filename = f"training_log_{timestamp}.txt"
+
+class Tee:
+    def __init__(self, *files):
+        self.files = files
+
+    def write(self, obj):
+        for f in self.files:
+            f.write(obj)
+            f.flush()
+
+    def flush(self):
+        for f in self.files:
+            f.flush()
+
+log_file = open(log_filename, "w", encoding="utf-8")
+
+sys.stdout = Tee(sys.stdout, log_file)
+sys.stderr = Tee(sys.stderr, log_file)
+
+print(f"📝 Logging to file: {log_filename}")
 
 if __name__ == "__main__":
     main()
