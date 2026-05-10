@@ -1,0 +1,2997 @@
+📝 Logging to file: training_log_20260510_122029.txt
+🚀 Using AMD GPU via DirectML
+Using device: privateuseone:0
+
+📂 Detected classes:
+   0: abbott's_babbler
+   1: aleutian_tern
+   2: amur_falcon
+   3: amur_paradise_flycatcher
+   4: arctic_warbler
+   5: ashy_bulbul
+   6: ashy_drongo
+   7: ashy_minivet
+   8: ashy_tailorbird
+   9: asian_brown_flycatcher
+   10: asian_emerald_cuckoo
+   11: asian_emerald_dove
+   12: asian_glossy_starling
+   13: asian_house_martin
+   14: asian_koel
+   15: asian_openbill
+   16: asian_palm_swift
+   17: australasian_bushlark
+   18: baillon's_crake
+   19: band-bellied_crake
+   20: banded_bay_cuckoo
+   21: banded_woodpecker
+   22: barn_swallow
+   23: barred_buttonquail
+   24: barred_eagle_owl
+   25: bat_hawk
+   26: baya_weaver
+   27: beach_thick_knee
+   28: besra
+   29: black-and-red_broadbill
+   30: black-backed_dwarf_kingfisher
+   31: black-backed_swamphen
+   32: black-bellied_plover
+   33: black-browed_reed_warbler
+   34: black-capped_kingfisher
+   35: black-crested_bulbul
+   36: black-crowned_night_heron
+   37: black-headed_bulbul
+   38: black-headed_bunting
+   39: black-headed_gull
+   40: black-headed_ibis
+   41: black-naped_monarch
+   42: black-naped_oriole
+   43: black-naped_tern
+   44: black-nest_swiftlet
+   45: black-thighed_falconet
+   46: black-throated_babbler
+   47: black-winged_flycatcher_shrike
+   48: black-winged_kite
+   49: black-winged_starling
+   50: black-winged_stilt
+   51: black_baza
+   52: black_bittern
+   53: black_drongo
+   54: black_hornbill
+   55: black_kite
+   56: black_paradise_flycatcher
+   57: blue-and-white_flycatcher
+   58: blue-breasted_quail
+   59: blue-crowned_hanging_parrot
+   60: blue-eared_kingfisher
+   61: blue-tailed_bee_eater
+   62: blue-throated_bee_eater
+   63: blue-winged_pitta
+   64: blue_rock_thrush
+   65: blue_whistling_thrush
+   66: blyth's_paradise_flycatcher
+   67: bold-striped_tit_babbler
+   68: booted_eagle
+   69: booted_warbler
+   70: brahminy_kite
+   71: bridled_tern
+   72: brown-backed_needletail
+   73: brown-breasted_flycatcher
+   74: brown-chested_jungle_flycatcher
+   75: brown-headed_gull
+   76: brown-streaked_flycatcher
+   77: brown-throated_sunbird
+   78: brown_boobook
+   79: brown_booby
+   80: brown_shrike
+   81: brown_wood_owl
+   82: buff-breasted_babbler
+   83: buff-rumped_woodpecker
+   84: buff-throated_warbler
+   85: buff-vented_bulbul
+   86: buffy_fish_owl
+   87: bulwer's_petrel
+   88: burmese_shrike
+   89: caspian_tern
+   90: changeable_hawk_eagle
+   91: chestnut-bellied_malkoha
+   92: chestnut-cheeked_starling
+   93: chestnut-winged_babbler
+   94: chestnut_bunting
+   95: chestnut_munia
+   96: chinese_blue_flycatcher
+   97: chinese_egret
+   98: chinese_pond_heron
+   99: chinese_sparrowhawk
+   100: christmas_island_frigatebird
+   101: cinereous_vulture
+   102: cinnamon-headed_green-pigeon
+   103: cinnamon_bittern
+   104: citrine_wagtail
+   105: clamorous_reed_warbler
+   106: coconut_lorikeet
+   107: collared_kingfisher
+   108: collared_scops_owl
+   109: common_buzzard
+   110: common_flameback
+   111: common_hill_myna
+   112: common_iora
+   113: common_kingfisher
+   114: common_myna
+   115: common_ringed_plover
+   116: common_swift
+   117: common_tern
+   118: copper-throated_sunbird
+   119: coppersmith_barbet
+   120: cotton_pygmy-goose
+   121: cream-vented_bulbul
+   122: crested_goshawk
+   123: crested_serpent_eagle
+   124: crimson-winged_woodpecker
+   125: crimson_sunbird
+   126: crow-billed_drongo
+   127: dark-necked_tailorbird
+   128: dark-sided_thrush
+   129: daurian_starling
+   130: dollarbird
+   131: dusky_warbler
+   132: eastern_barn_owl
+   133: eastern_buzzard
+   134: eastern_cattle_egret
+   135: eastern_imperial_eagle
+   136: eastern_marsh_harrier
+   137: eastern_yellow_wagtail
+   138: eurasian_coot
+   139: eurasian_hobby
+   140: eurasian_kestrel
+   141: eurasian_moorhen
+   142: eurasian_sparrowhawk
+   143: eurasian_tree_sparrow
+   144: eurasian_wigeon
+   145: everett's_white_eye
+   146: eyebrowed_thrush
+   147: fairy_pitta
+   148: ferruginous_babbler
+   149: forest_wagtail
+   150: gadwall
+   151: garganey
+   152: glossy_ibis
+   153: golden-bellied_gerygone
+   154: golden-headed_cisticola
+   155: gray_nightjar
+   156: great-billed_heron
+   157: great_cormorant
+   158: great_crested_tern
+   159: great_egret
+   160: great_slaty_woodpecker
+   161: greater_coucal
+   162: greater_flameback
+   163: greater_painted_snipe
+   164: greater_racket-tailed_drongo
+   165: greater_sand_plover
+   166: greater_spotted_eagle
+   167: green-winged_teal
+   168: green_broadbill
+   169: green_imperial_pigeon
+   170: grey-faced_buzzard
+   171: grey-headed_fish_eagle
+   172: grey-headed_lapwing
+   173: grey-headed_swamphen
+   174: grey-rumped_treeswift
+   175: grey-streaked_flycatcher
+   176: grey_heron
+   177: grey_wagtail
+   178: gull-billed_tern
+   179: hair-crested_drongo
+   180: hen_harrier
+   181: himalayan_buzzard
+   182: himalayan_cuckoo
+   183: himalayan_griffon
+   184: hodgson's_hawk-cuckoo
+   185: horsfield's_bronze_cuckoo
+   186: house_crow
+   187: house_swift
+   188: indian_cuckoo
+   189: indian_paradise_flycatcher
+   190: indian_pond_heron
+   191: indigo_flycatcher
+   192: island_thrush
+   193: jambu_fruit_dove
+   194: japanese_sparrowhawk
+   195: java_sparrow
+   196: javan_myna
+   197: javan_plover
+   198: javan_pond_heron
+   199: jerdon's_baza
+   200: kentish_plover
+   201: laced_woodpecker
+   202: lanceolated_warbler
+   203: large-billed_crow
+   204: large_hawk-cuckoo
+   205: large_niltava
+   206: large_woodshrike
+   207: lesser_adjutant
+   208: lesser_black-backed_gull
+   209: lesser_coucal
+   210: lesser_crested_tern
+   211: lesser_cuckooshrike
+   212: lesser_frigatebird
+   213: lesser_kestrel
+   214: lesser_whistling-duck
+   215: lineated_barbet
+   216: little_bronze_cuckoo
+   217: little_egret
+   218: little_grebe
+   219: little_green-pigeon
+   220: little_pied_flycatcher
+   221: little_ringed_plover
+   222: little_spiderhunter
+   223: little_tern
+   224: long-billed_spiderhunter
+   225: long-eared_owl
+   226: long-legged_buzzard
+   227: long-tailed_jaeger
+   228: long-tailed_parakeet
+   229: long-tailed_shrike
+   230: malayan_night_heron
+   231: malaysian_eared_nightjar
+   232: malaysian_hawk-cuckoo
+   233: malaysian_pied_fantail
+   234: malaysian_plover
+   235: mangrove_blue_flycatcher
+   236: mangrove_pitta
+   237: mangrove_whistler
+   238: masked_lapwing
+   239: medium_egret
+   240: milky_stork
+   241: mountain_imperial_pigeon
+   242: moustached_babbler
+   243: mugimaki_flycatcher
+   244: narcissus_flycatcher
+   245: northern_boobook
+   246: northern_pintail
+   247: northern_shoveler
+   248: olive-backed_pipit
+   249: olive-backed_sunbird
+   250: olive-winged_bulbul
+   251: orange-bellied_flowerpecker
+   252: orange-breasted_green-pigeon
+   253: orange-flanked_bush_robin
+   254: orange-headed_thrush
+   255: oriental_darter
+   256: oriental_honey_buzzard
+   257: oriental_magpie_robin
+   258: oriental_pied_hornbill
+   259: oriental_plover
+   260: oriental_pratincole
+   261: oriental_reed_warbler
+   262: oriental_scops_owl
+   263: oriental_turtle-dove
+   264: osprey
+   265: pacific_golden_plover
+   266: pacific_reef_heron
+   267: pacific_swallow
+   268: pacific_swift
+   269: paddyfield_pipit
+   270: painted_stork
+   271: pale-legged_leaf_warbler
+   272: pallas's_grasshopper_warbler
+   273: parasitic_jaeger
+   274: peregrine_falcon
+   275: pheasant-tailed_jacana
+   276: pied_bushchat
+   277: pied_cuckoo
+   278: pied_harrier
+   279: pied_imperial_pigeon
+   280: pied_stilt
+   281: pied_triller
+   282: pin-striped_tit_babbler
+   283: pin-tailed_parrotfinch
+   284: pink-necked_green-pigeon
+   285: plain_flowerpecker
+   286: plaintive_cuckoo
+   287: plume-toed_swiftlet
+   288: pomarine_jaeger
+   289: puff-backed_bulbul
+   290: purple-backed_starling
+   291: purple-naped_sunbird
+   292: purple_heron
+   293: purple_sunbird
+   294: radde's_warbler
+   295: red-billed_tropicbird
+   296: red-breasted_parakeet
+   297: red-crowned_barbet
+   298: red-eyed_bulbul
+   299: red-footed_booby
+   300: red-legged_crake
+   301: red-rumped_swallow
+   302: red-throated_pipit
+   303: red-wattled_lapwing
+   304: red_avadavat
+   305: red_junglefowl
+   306: rhinoceros_hornbill
+   307: richard's_pipit
+   308: rock_pigeon
+   309: rose-ringed_parakeet
+   310: roseate_tern
+   311: rosy_starling
+   312: ruby-cheeked_sunbird
+   313: ruddy-breasted_crake
+   314: ruddy_kingfisher
+   315: rufous-backed_dwarf_kingfisher
+   316: rufous-bellied_eagle
+   317: rufous-chested_flycatcher
+   318: rufous-crowned_babbler
+   319: rufous-tailed_tailorbird
+   320: rufous_woodpecker
+   321: rustic_bunting
+   322: sakhalin_leaf_warbler
+   323: savanna_nightjar
+   324: scaly-breasted_bulbul
+   325: scaly-breasted_munia
+   326: scaly_thrush
+   327: scarlet-backed_flowerpecker
+   328: scarlet_minivet
+   329: schrenck's_bittern
+   330: shikra
+   331: short-eared_owl
+   332: short-tailed_babbler
+   333: short-tailed_shearwater
+   334: short-toed_snake_eagle
+   335: siberian_blue_robin
+   336: siberian_thrush
+   337: silver-backed_needletail
+   338: silver-rumped_needletail
+   339: slaty-breasted_rail
+   340: slaty-legged_crake
+   341: slender-billed_crow
+   342: small_pratincole
+   343: sooty-capped_babbler
+   344: spectacled_bulbul
+   345: spectacled_spiderhunter
+   346: spotted_dove
+   347: spotted_flycatcher
+   348: spotted_wood_owl
+   349: square-tailed_drongo-cuckoo
+   350: steppe_eagle
+   351: stork-billed_kingfisher
+   352: straw-headed_bulbul
+   353: streaked_weaver
+   354: striated_grassbird
+   355: striated_heron
+   356: striated_swallow
+   357: stripe-throated_bulbul
+   358: sulphur-crested_cockatoo
+   359: sultan_tit
+   360: sunda_brush_cuckoo
+   361: sunda_pygmy_woodpecker
+   362: swinhoe's_storm_petrel
+   363: swinhoe's_white_eye
+   364: taiga_flycatcher
+   365: tanimbar_corella
+   366: thick-billed_flowerpecker
+   367: thick-billed_green-pigeon
+   368: tibetan_sand_plover
+   369: tiger_shrike
+   370: tree_pipit
+   371: tricolored_munia
+   372: tufted_duck
+   373: two-barred_warbler
+   374: verditer_flycatcher
+   375: vinous-breasted_starling
+   376: violet_cuckoo
+   377: wandering_whistling-duck
+   378: watercock
+   379: wedge-tailed_shearwater
+   380: western_hooded_pitta
+   381: whiskered_tern
+   382: whiskered_treeswift
+   383: white-bellied_erpornis
+   384: white-bellied_munia
+   385: white-bellied_sea_eagle
+   386: white-bellied_woodpecker
+   387: white-breasted_waterhen
+   388: white-browed_crake
+   389: white-chested_babbler
+   390: white-faced_plover
+   391: white-faced_starling
+   392: white-headed_munia
+   393: white-rumped_shama
+   394: white-shouldered_starling
+   395: white-tailed_robin
+   396: white-tailed_tropicbird
+   397: white-throated_kingfisher
+   398: white-throated_needletail
+   399: white-throated_rock_thrush
+   400: white-winged_tern
+   401: white_wagtail
+   402: willow_warbler
+   403: yellow-bellied_flowerpecker
+   404: yellow-bellied_prinia
+   405: yellow-breasted_bunting
+   406: yellow-browed_warbler
+   407: yellow-crested_cockatoo
+   408: yellow-eared_spiderhunter
+   409: yellow-fronted_canary
+   410: yellow-vented_bulbul
+   411: yellow-vented_flowerpecker
+   412: yellow_bittern
+   413: zebra_dove
+   414: zitting_cisticola
+
+🎯 Number of classes: 415
+✅ Training loader: 1046 batches
+✅ Validation loader: 453 batches
+
+🔧 Loading pretrained ResNet50...
+Total parameters: 24,358,367
+Trainable parameters: 15,815,071
+
+🚀 Starting training...
+
+
+========== Epoch 1/10 ==========
+C:\Users\Admin\Daryl\SD Projects\BirdSG\.venv\Lib\site-packages\torch\optim\adam.py:534: UserWarning: The operator 'aten::lerp.Scalar_out' is not currently supported on the DML backend and will fall back to run on the CPU. This may have performance implications. (Triggered internally at C:\__w\1\s\pytorch-directml-plugin\torch_directml\csrc\dml\dml_cpu_fallback.cpp:17.)
+  torch._foreach_lerp_(device_exp_avgs, device_grads, 1 - beta1)
+Epoch Progress | Batch 50/1046 | Loss: 5.8977
+Epoch Progress | Batch 100/1046 | Loss: 5.7727
+Epoch Progress | Batch 150/1046 | Loss: 5.5258
+Epoch Progress | Batch 200/1046 | Loss: 4.8932
+Epoch Progress | Batch 250/1046 | Loss: 4.8941
+Epoch Progress | Batch 300/1046 | Loss: 4.7052
+Epoch Progress | Batch 350/1046 | Loss: 4.3546
+Epoch Progress | Batch 400/1046 | Loss: 4.4008
+Epoch Progress | Batch 450/1046 | Loss: 4.3919
+Epoch Progress | Batch 500/1046 | Loss: 3.6410
+Epoch Progress | Batch 550/1046 | Loss: 4.0489
+Epoch Progress | Batch 600/1046 | Loss: 4.4244
+Epoch Progress | Batch 650/1046 | Loss: 3.3513
+Epoch Progress | Batch 700/1046 | Loss: 3.5274
+Epoch Progress | Batch 750/1046 | Loss: 3.5890
+Epoch Progress | Batch 800/1046 | Loss: 3.2554
+Epoch Progress | Batch 850/1046 | Loss: 3.1760
+Epoch Progress | Batch 900/1046 | Loss: 3.6112
+Epoch Progress | Batch 950/1046 | Loss: 3.3008
+Epoch Progress | Batch 1000/1046 | Loss: 3.4029
+
+=== Epoch Summary ===
+Train Loss: 4.2871 | Train Acc: 15.13%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[35  0  0 ...  0  0  0]
+ [ 0  0  0 ...  0  0  0]
+ [ 0  0 21 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  0  0  0]
+ [ 0  0  0 ...  0 20  0]
+ [ 0  0  0 ...  0  0 14]]
+
+========== Classification Report ==========
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 31.19%
+
+Epoch Summary
+Train Loss: 4.2871 | Train Acc: 15.13%
+Val   Loss: 2.9476 | Val   Acc: 31.19%
+Best  Val Acc so far: 31.19%
+----------------------------------------
+
+========== Epoch 2/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 3.4898
+Epoch Progress | Batch 100/1046 | Loss: 2.5951
+Epoch Progress | Batch 150/1046 | Loss: 2.9570
+Epoch Progress | Batch 200/1046 | Loss: 2.8490
+Epoch Progress | Batch 250/1046 | Loss: 2.9736
+Epoch Progress | Batch 300/1046 | Loss: 2.7544
+Epoch Progress | Batch 350/1046 | Loss: 2.8552
+Epoch Progress | Batch 400/1046 | Loss: 2.7241
+Epoch Progress | Batch 450/1046 | Loss: 3.4581
+Epoch Progress | Batch 500/1046 | Loss: 2.9809
+Epoch Progress | Batch 550/1046 | Loss: 2.9232
+Epoch Progress | Batch 600/1046 | Loss: 2.8522
+Epoch Progress | Batch 650/1046 | Loss: 2.4946
+Epoch Progress | Batch 700/1046 | Loss: 2.9454
+Epoch Progress | Batch 750/1046 | Loss: 2.6376
+Epoch Progress | Batch 800/1046 | Loss: 2.8711
+Epoch Progress | Batch 850/1046 | Loss: 2.5225
+Epoch Progress | Batch 900/1046 | Loss: 2.7024
+Epoch Progress | Batch 950/1046 | Loss: 2.5400
+Epoch Progress | Batch 1000/1046 | Loss: 2.8304
+
+=== Epoch Summary ===
+Train Loss: 2.8080 | Train Acc: 35.32%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[33  0  0 ...  0  0  0]
+ [ 0  6  0 ...  0  0  0]
+ [ 0  0 23 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  0  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 13]]
+
+========== Classification Report ==========
+                                 precision    recall  f1-score   support
+
+               abbott's_babbler     0.3929    0.7333    0.5116        45
+                  aleutian_tern     0.8571    0.3529    0.5000        17
+                    amur_falcon     0.4340    0.5000    0.4646        46
+       amur_paradise_flycatcher     0.6000    0.1364    0.2222        22
+                 arctic_warbler     0.2239    0.3488    0.2727        43
+                    ashy_bulbul     0.5000    0.3438    0.4074        32
+                    ashy_drongo     0.4706    0.2000    0.2807        40
+                   ashy_minivet     0.2658    0.4667    0.3387        45
+                ashy_tailorbird     0.4138    0.5333    0.4660        45
+         asian_brown_flycatcher     0.3333    0.3864    0.3579        44
+           asian_emerald_cuckoo     0.8125    0.5200    0.6341        25
+             asian_emerald_dove     0.5897    0.8214    0.6866        28
+          asian_glossy_starling     0.4091    0.2093    0.2769        43
+             asian_house_martin     0.5385    0.1795    0.2692        39
+                     asian_koel     0.6000    0.1429    0.2308        21
+                 asian_openbill     0.3300    0.7333    0.4552        45
+               asian_palm_swift     0.2680    0.5778    0.3662        45
+          australasian_bushlark     0.4375    0.2188    0.2917        32
+                baillon's_crake     0.6154    0.8889    0.7273        45
+             band-bellied_crake     0.0000    0.0000    0.0000         5
+              banded_bay_cuckoo     0.3889    0.2333    0.2917        30
+              banded_woodpecker     0.9231    0.3636    0.5217        33
+                   barn_swallow     0.3265    0.3556    0.3404        45
+             barred_buttonquail     0.4638    0.7111    0.5614        45
+               barred_eagle_owl     0.0000    0.0000    0.0000         8
+                       bat_hawk     1.0000    0.0625    0.1176        16
+                    baya_weaver     0.4400    0.2444    0.3143        45
+               beach_thick_knee     0.8684    0.7333    0.7952        45
+                          besra     0.1959    0.4222    0.2676        45
+        black-and-red_broadbill     0.8421    0.7111    0.7711        45
+  black-backed_dwarf_kingfisher     0.5238    0.7857    0.6286        28
+          black-backed_swamphen     1.0000    0.1667    0.2857         6
+           black-bellied_plover     0.7143    0.4444    0.5479        45
+      black-browed_reed_warbler     0.3704    0.2222    0.2778        45
+        black-capped_kingfisher     0.7073    0.6444    0.6744        45
+           black-crested_bulbul     0.7000    0.4667    0.5600        45
+      black-crowned_night_heron     0.5000    0.2222    0.3077        45
+            black-headed_bulbul     0.5000    0.5111    0.5055        45
+           black-headed_bunting     0.6333    0.4222    0.5067        45
+              black-headed_gull     0.3846    0.3333    0.3571        45
+              black-headed_ibis     0.0000    0.0000    0.0000        10
+            black-naped_monarch     0.3704    0.2222    0.2778        45
+             black-naped_oriole     0.4412    0.6667    0.5310        45
+               black-naped_tern     0.6667    0.3556    0.4638        45
+            black-nest_swiftlet     0.0000    0.0000    0.0000         1
+         black-thighed_falconet     0.5556    0.7895    0.6522        38
+         black-throated_babbler     0.0000    0.0000    0.0000         3
+ black-winged_flycatcher_shrike     0.3478    0.2162    0.2667        37
+              black-winged_kite     1.0000    0.3111    0.4746        45
+          black-winged_starling     0.6667    0.1333    0.2222        15
+             black-winged_stilt     0.8108    0.6667    0.7317        45
+                     black_baza     0.2414    0.1556    0.1892        45
+                  black_bittern     0.2143    0.2143    0.2143        42
+                   black_drongo     0.1951    0.3556    0.2520        45
+                 black_hornbill     0.3175    0.5556    0.4040        36
+                     black_kite     0.5556    0.1111    0.1852        45
+      black_paradise_flycatcher     0.0000    0.0000    0.0000        12
+      blue-and-white_flycatcher     0.3333    0.0889    0.1404        45
+            blue-breasted_quail     0.0000    0.0000    0.0000         7
+    blue-crowned_hanging_parrot     0.2500    0.0476    0.0800        21
+          blue-eared_kingfisher     0.5789    0.7333    0.6471        45
+          blue-tailed_bee_eater     0.4490    0.4889    0.4681        45
+        blue-throated_bee_eater     0.5800    0.6444    0.6105        45
+              blue-winged_pitta     0.6316    0.4615    0.5333        26
+               blue_rock_thrush     0.2301    0.5778    0.3291        45
+          blue_whistling_thrush     0.4571    0.7111    0.5565        45
+    blyth's_paradise_flycatcher     0.6042    0.6444    0.6237        45
+       bold-striped_tit_babbler     0.0000    0.0000    0.0000         8
+                   booted_eagle     0.1667    0.0889    0.1159        45
+                 booted_warbler     0.3898    0.5111    0.4423        45
+                  brahminy_kite     0.3889    0.3111    0.3457        45
+                   bridled_tern     0.3922    0.4444    0.4167        45
+        brown-backed_needletail     0.1208    0.7111    0.2065        45
+      brown-breasted_flycatcher     0.2921    0.5778    0.3881        45
+brown-chested_jungle_flycatcher     1.0000    0.2000    0.3333         5
+              brown-headed_gull     0.3824    0.8667    0.5306        45
+      brown-streaked_flycatcher     0.0000    0.0000    0.0000         3
+         brown-throated_sunbird     0.0904    0.3556    0.1441        45
+                  brown_boobook     0.3750    0.8000    0.5106        45
+                    brown_booby     0.6667    0.2667    0.3810        45
+                   brown_shrike     0.3443    0.4667    0.3962        45
+                 brown_wood_owl     0.7000    0.7568    0.7273        37
+          buff-breasted_babbler     0.4333    0.5000    0.4643        26
+         buff-rumped_woodpecker     0.5000    0.6000    0.5455        15
+          buff-throated_warbler     0.0000    0.0000    0.0000         8
+             buff-vented_bulbul     0.0000    0.0000    0.0000         7
+                 buffy_fish_owl     0.7632    0.6444    0.6988        45
+                bulwer's_petrel     0.3333    0.5833    0.4242        24
+                 burmese_shrike     0.5000    0.3333    0.4000        45
+                   caspian_tern     0.2836    0.4222    0.3393        45
+          changeable_hawk_eagle     0.3443    0.4667    0.3962        45
+       chestnut-bellied_malkoha     0.0000    0.0000    0.0000         8
+      chestnut-cheeked_starling     0.3906    0.5556    0.4587        45
+        chestnut-winged_babbler     0.0000    0.0000    0.0000         6
+               chestnut_bunting     0.2500    0.0588    0.0952        17
+                 chestnut_munia     0.5429    0.4222    0.4750        45
+        chinese_blue_flycatcher     0.3750    0.3333    0.3529        18
+                  chinese_egret     0.5909    0.8667    0.7027        45
+             chinese_pond_heron     0.0833    0.0222    0.0351        45
+            chinese_sparrowhawk     0.1961    0.2222    0.2083        45
+   christmas_island_frigatebird     0.7073    0.6444    0.6744        45
+              cinereous_vulture     1.0000    0.1556    0.2692        45
+   cinnamon-headed_green-pigeon     0.0000    0.0000    0.0000        14
+               cinnamon_bittern     0.5882    0.4444    0.5063        45
+                citrine_wagtail     0.5556    0.2222    0.3175        45
+         clamorous_reed_warbler     0.3462    0.2571    0.2951        35
+               coconut_lorikeet     0.2333    0.3043    0.2642        23
+            collared_kingfisher     0.3582    0.5333    0.4286        45
+             collared_scops_owl     0.6757    0.5556    0.6098        45
+                 common_buzzard     0.2333    0.4667    0.3111        45
+               common_flameback     0.0000    0.0000    0.0000        45
+               common_hill_myna     0.4727    0.5778    0.5200        45
+                    common_iora     0.2308    0.4000    0.2927        45
+              common_kingfisher     0.6250    0.2222    0.3279        45
+                    common_myna     0.7222    0.7222    0.7222        18
+           common_ringed_plover     0.5957    0.6222    0.6087        45
+                   common_swift     0.0938    0.0667    0.0779        45
+                    common_tern     0.5000    0.0667    0.1176        45
+        copper-throated_sunbird     0.5312    0.4857    0.5075        35
+             coppersmith_barbet     0.4531    0.6444    0.5321        45
+             cotton_pygmy-goose     0.4872    0.6552    0.5588        29
+            cream-vented_bulbul     0.4000    0.0833    0.1379        24
+                crested_goshawk     0.3200    0.1778    0.2286        45
+          crested_serpent_eagle     0.2609    0.1333    0.1765        45
+      crimson-winged_woodpecker     0.0000    0.0000    0.0000        12
+                crimson_sunbird     0.6667    0.2667    0.3810        45
+             crow-billed_drongo     0.0000    0.0000    0.0000         7
+         dark-necked_tailorbird     0.4262    0.5778    0.4906        45
+              dark-sided_thrush     0.0000    0.0000    0.0000         2
+               daurian_starling     0.3529    0.1714    0.2308        35
+                     dollarbird     0.3014    0.4889    0.3729        45
+                  dusky_warbler     0.5556    0.2222    0.3175        45
+               eastern_barn_owl     0.6316    0.8000    0.7059        45
+                eastern_buzzard     0.3061    0.3333    0.3191        45
+           eastern_cattle_egret     0.6000    0.5333    0.5647        45
+         eastern_imperial_eagle     0.1000    0.2889    0.1486        45
+          eastern_marsh_harrier     0.1923    0.4444    0.2685        45
+         eastern_yellow_wagtail     0.2875    0.5111    0.3680        45
+                  eurasian_coot     0.7778    0.6222    0.6914        45
+                 eurasian_hobby     0.3265    0.3556    0.3404        45
+               eurasian_kestrel     0.3797    0.6667    0.4839        45
+               eurasian_moorhen     0.5312    0.3778    0.4416        45
+           eurasian_sparrowhawk     0.3725    0.4222    0.3958        45
+          eurasian_tree_sparrow     0.3538    0.5111    0.4182        45
+                eurasian_wigeon     0.3750    0.4286    0.4000        28
+            everett's_white_eye     0.0000    0.0000    0.0000         1
+               eyebrowed_thrush     0.4359    0.3778    0.4048        45
+                    fairy_pitta     0.8333    0.6667    0.7407        15
+            ferruginous_babbler     0.0000    0.0000    0.0000         4
+                 forest_wagtail     0.7895    0.6667    0.7229        45
+                        gadwall     0.2857    0.2667    0.2759        30
+                       garganey     0.5833    0.2800    0.3784        25
+                    glossy_ibis     0.5909    0.5778    0.5843        45
+        golden-bellied_gerygone     0.3333    0.1250    0.1818        40
+        golden-headed_cisticola     0.0000    0.0000    0.0000         3
+                  gray_nightjar     0.6000    0.6000    0.6000        15
+             great-billed_heron     0.3467    0.6047    0.4407        43
+                great_cormorant     0.4054    0.3333    0.3659        45
+             great_crested_tern     0.5152    0.3778    0.4359        45
+                    great_egret     0.5357    0.3333    0.4110        45
+         great_slaty_woodpecker     0.2576    0.7083    0.3778        24
+                 greater_coucal     0.4286    0.1000    0.1622        30
+              greater_flameback     0.3563    0.7750    0.4882        40
+          greater_painted_snipe     0.6410    0.5556    0.5952        45
+   greater_racket-tailed_drongo     0.3429    0.2667    0.3000        45
+            greater_sand_plover     0.2275    0.8444    0.3585        45
+          greater_spotted_eagle     0.1455    0.3556    0.2065        45
+              green-winged_teal     0.1818    0.0667    0.0976        30
+                green_broadbill     0.8571    0.5000    0.6316        12
+          green_imperial_pigeon     0.5000    0.5385    0.5185        26
+             grey-faced_buzzard     0.2222    0.1333    0.1667        45
+         grey-headed_fish_eagle     0.5833    0.3111    0.4058        45
+            grey-headed_lapwing     0.7419    0.5111    0.6053        45
+           grey-headed_swamphen     0.7447    0.7778    0.7609        45
+          grey-rumped_treeswift     0.4242    0.3333    0.3733        42
+       grey-streaked_flycatcher     0.4062    0.2889    0.3377        45
+                     grey_heron     0.5556    0.1111    0.1852        45
+                   grey_wagtail     0.5088    0.6444    0.5686        45
+               gull-billed_tern     0.5000    0.4222    0.4578        45
+            hair-crested_drongo     0.5000    0.1111    0.1818        45
+                    hen_harrier     0.4762    0.4444    0.4598        45
+              himalayan_buzzard     0.0000    0.0000    0.0000        21
+               himalayan_cuckoo     0.0000    0.0000    0.0000         7
+              himalayan_griffon     0.6250    0.2222    0.3279        45
+          hodgson's_hawk-cuckoo     0.0000    0.0000    0.0000         7
+      horsfield's_bronze_cuckoo     1.0000    0.0667    0.1250        30
+                     house_crow     0.4872    0.4222    0.4524        45
+                    house_swift     0.2083    0.2222    0.2151        45
+                  indian_cuckoo     0.3077    0.1600    0.2105        25
+     indian_paradise_flycatcher     0.2787    0.3778    0.3208        45
+              indian_pond_heron     0.2500    0.5111    0.3358        45
+              indigo_flycatcher     0.5128    0.6452    0.5714        31
+                  island_thrush     1.0000    0.3333    0.5000         6
+               jambu_fruit_dove     0.0000    0.0000    0.0000         6
+           japanese_sparrowhawk     0.2647    0.4000    0.3186        45
+                   java_sparrow     0.7391    0.7556    0.7473        45
+                     javan_myna     0.4889    0.4889    0.4889        45
+                   javan_plover     0.2000    0.0714    0.1053        14
+               javan_pond_heron     0.3902    0.3556    0.3721        45
+                  jerdon's_baza     0.4545    0.1562    0.2326        32
+                 kentish_plover     0.3000    0.0667    0.1091        45
+               laced_woodpecker     0.2000    0.3556    0.2560        45
+            lanceolated_warbler     0.5263    0.5000    0.5128        20
+              large-billed_crow     0.3250    0.5778    0.4160        45
+              large_hawk-cuckoo     0.2727    0.1034    0.1500        29
+                  large_niltava     0.4138    0.2667    0.3243        45
+               large_woodshrike     0.1667    0.1842    0.1750        38
+                lesser_adjutant     0.5283    0.6222    0.5714        45
+       lesser_black-backed_gull     0.7059    0.2667    0.3871        45
+                  lesser_coucal     0.2785    0.7333    0.4037        30
+            lesser_crested_tern     0.3077    0.4444    0.3636        45
+            lesser_cuckooshrike     0.0000    0.0000    0.0000         6
+             lesser_frigatebird     0.2931    0.3778    0.3301        45
+                 lesser_kestrel     0.2836    0.4222    0.3393        45
+          lesser_whistling-duck     0.7368    0.3500    0.4746        40
+                lineated_barbet     0.7895    0.3333    0.4688        45
+           little_bronze_cuckoo     0.3226    0.3333    0.3279        30
+                   little_egret     0.8000    0.2667    0.4000        45
+                   little_grebe     0.4681    0.7097    0.5641        31
+            little_green-pigeon     0.0000    0.0000    0.0000        11
+         little_pied_flycatcher     0.3750    0.4667    0.4158        45
+           little_ringed_plover     0.6500    0.5778    0.6118        45
+            little_spiderhunter     0.5455    0.2667    0.3582        45
+                    little_tern     0.1196    0.2444    0.1606        45
+       long-billed_spiderhunter     0.0000    0.0000    0.0000         5
+                 long-eared_owl     0.5806    0.8000    0.6729        45
+            long-legged_buzzard     0.3810    0.3556    0.3678        45
+             long-tailed_jaeger     0.2381    0.2222    0.2299        45
+           long-tailed_parakeet     0.6923    0.2727    0.3913        33
+             long-tailed_shrike     0.5952    0.5556    0.5747        45
+            malayan_night_heron     0.5870    0.6000    0.5934        45
+       malaysian_eared_nightjar     0.0000    0.0000    0.0000         1
+          malaysian_hawk-cuckoo     0.0000    0.0000    0.0000         3
+         malaysian_pied_fantail     0.2895    0.2444    0.2651        45
+               malaysian_plover     0.5926    0.4103    0.4848        39
+       mangrove_blue_flycatcher     1.0000    0.1667    0.2857        12
+                 mangrove_pitta     0.6875    0.5500    0.6111        20
+              mangrove_whistler     0.7500    0.3529    0.4800        17
+                 masked_lapwing     0.4062    0.5778    0.4771        45
+                   medium_egret     0.4615    0.5333    0.4948        45
+                    milky_stork     1.0000    0.1667    0.2857        24
+       mountain_imperial_pigeon     0.6957    0.4000    0.5079        40
+             moustached_babbler     0.0000    0.0000    0.0000         9
+            mugimaki_flycatcher     0.6667    0.1860    0.2909        43
+           narcissus_flycatcher     0.5161    0.3556    0.4211        45
+               northern_boobook     1.0000    0.0625    0.1176        16
+               northern_pintail     0.4286    0.4000    0.4138        30
+              northern_shoveler     0.4167    0.5000    0.4545        30
+             olive-backed_pipit     0.3276    0.4222    0.3689        45
+           olive-backed_sunbird     0.4167    0.1111    0.1754        45
+            olive-winged_bulbul     0.1951    0.1778    0.1860        45
+    orange-bellied_flowerpecker     0.4615    0.4000    0.4286        45
+   orange-breasted_green-pigeon     0.6000    0.3636    0.4528        33
+      orange-flanked_bush_robin     0.4286    0.5333    0.4752        45
+           orange-headed_thrush     0.8043    0.8222    0.8132        45
+                oriental_darter     0.5926    0.3556    0.4444        45
+         oriental_honey_buzzard     0.2857    0.0444    0.0769        45
+          oriental_magpie_robin     0.5122    0.4667    0.4884        45
+         oriental_pied_hornbill     0.5636    0.6889    0.6200        45
+                oriental_plover     0.6667    0.1667    0.2667        12
+            oriental_pratincole     0.2247    0.4444    0.2985        45
+          oriental_reed_warbler     0.3889    0.4667    0.4242        45
+             oriental_scops_owl     0.8824    0.6522    0.7500        23
+           oriental_turtle-dove     0.7857    0.5789    0.6667        38
+                         osprey     0.3214    0.2000    0.2466        45
+          pacific_golden_plover     0.6333    0.4222    0.5067        45
+             pacific_reef_heron     0.4426    0.6000    0.5094        45
+                pacific_swallow     0.5484    0.3778    0.4474        45
+                  pacific_swift     0.3030    0.2222    0.2564        45
+               paddyfield_pipit     0.4167    0.2222    0.2899        45
+                  painted_stork     0.6279    0.6000    0.6136        45
+       pale-legged_leaf_warbler     0.3333    0.0588    0.1000        17
+   pallas's_grasshopper_warbler     0.4157    0.8222    0.5522        45
+               parasitic_jaeger     0.4091    0.2000    0.2687        45
+               peregrine_falcon     0.3111    0.3111    0.3111        45
+         pheasant-tailed_jacana     0.5789    0.7333    0.6471        45
+                  pied_bushchat     0.7273    0.1778    0.2857        45
+                    pied_cuckoo     0.3636    0.1333    0.1951        30
+                   pied_harrier     0.4286    0.2000    0.2727        45
+           pied_imperial_pigeon     0.4800    0.5217    0.5000        46
+                     pied_stilt     0.4068    0.5333    0.4615        45
+                   pied_triller     0.3846    0.3333    0.3571        45
+        pin-striped_tit_babbler     1.0000    0.2500    0.4000        12
+         pin-tailed_parrotfinch     0.3966    0.7667    0.5227        30
+       pink-necked_green-pigeon     0.6552    0.4043    0.5000        47
+             plain_flowerpecker     0.0000    0.0000    0.0000        18
+               plaintive_cuckoo     0.2857    0.0667    0.1081        30
+            plume-toed_swiftlet     0.7143    0.5556    0.6250        36
+                pomarine_jaeger     0.4048    0.3778    0.3908        45
+             puff-backed_bulbul     0.0000    0.0000    0.0000         3
+         purple-backed_starling     0.3636    0.2286    0.2807        35
+           purple-naped_sunbird     0.2000    0.2000    0.2000        15
+                   purple_heron     0.5000    0.6667    0.5714        45
+                 purple_sunbird     0.5238    0.2444    0.3333        45
+                radde's_warbler     0.2703    0.2564    0.2632        39
+          red-billed_tropicbird     0.4304    0.7556    0.5484        45
+          red-breasted_parakeet     0.3898    0.5111    0.4423        45
+             red-crowned_barbet     1.0000    0.1176    0.2105        17
+                red-eyed_bulbul     0.8919    0.7333    0.8049        45
+               red-footed_booby     0.3810    0.3556    0.3678        45
+               red-legged_crake     0.7500    0.1765    0.2857        17
+             red-rumped_swallow     0.2041    0.2222    0.2128        45
+             red-throated_pipit     0.4375    0.7778    0.5600        45
+            red-wattled_lapwing     0.7667    0.5111    0.6133        45
+                   red_avadavat     0.6600    0.7333    0.6947        45
+                 red_junglefowl     0.7000    0.7500    0.7241        28
+            rhinoceros_hornbill     0.7333    0.7333    0.7333        45
+                richard's_pipit     0.3750    0.6667    0.4800        45
+                    rock_pigeon     0.6667    0.5000    0.5714        28
+           rose-ringed_parakeet     0.4127    0.5778    0.4815        45
+                   roseate_tern     0.4783    0.2444    0.3235        45
+                  rosy_starling     0.2500    0.2667    0.2581        45
+           ruby-cheeked_sunbird     0.4576    0.6000    0.5192        45
+           ruddy-breasted_crake     0.7619    0.7111    0.7356        45
+               ruddy_kingfisher     0.6364    0.3333    0.4375        21
+ rufous-backed_dwarf_kingfisher     0.6389    0.5111    0.5679        45
+           rufous-bellied_eagle     0.1667    0.2222    0.1905        45
+      rufous-chested_flycatcher     1.0000    0.1429    0.2500         7
+         rufous-crowned_babbler     0.3333    0.0833    0.1333        12
+       rufous-tailed_tailorbird     0.0000    0.0000    0.0000        13
+              rufous_woodpecker     0.4915    0.6444    0.5577        45
+                 rustic_bunting     0.3333    0.4667    0.3889        45
+          sakhalin_leaf_warbler     0.0000    0.0000    0.0000         6
+               savanna_nightjar     0.6000    0.3000    0.4000        30
+          scaly-breasted_bulbul     0.0000    0.0000    0.0000         9
+           scaly-breasted_munia     0.2941    0.3333    0.3125        45
+                   scaly_thrush     0.0000    0.0000    0.0000         8
+    scarlet-backed_flowerpecker     0.8667    0.2889    0.4333        45
+                scarlet_minivet     0.4595    0.3778    0.4146        45
+             schrenck's_bittern     0.3333    0.0833    0.1333        12
+                         shikra     0.4375    0.1556    0.2295        45
+                short-eared_owl     0.3452    0.6444    0.4496        45
+           short-tailed_babbler     0.0000    0.0000    0.0000         8
+        short-tailed_shearwater     0.6087    0.6222    0.6154        45
+         short-toed_snake_eagle     0.4815    0.2889    0.3611        45
+            siberian_blue_robin     0.6250    0.8889    0.7339        45
+                siberian_thrush     0.0000    0.0000    0.0000         9
+       silver-backed_needletail     0.0000    0.0000    0.0000         4
+       silver-rumped_needletail     0.0000    0.0000    0.0000         5
+            slaty-breasted_rail     0.8438    0.7500    0.7941        36
+             slaty-legged_crake     0.4848    0.8421    0.6154        19
+            slender-billed_crow     0.0000    0.0000    0.0000         8
+               small_pratincole     0.6757    0.5556    0.6098        45
+           sooty-capped_babbler     1.0000    0.1429    0.2500         7
+              spectacled_bulbul     0.0000    0.0000    0.0000        16
+        spectacled_spiderhunter     0.0000    0.0000    0.0000         7
+                   spotted_dove     0.5833    0.5600    0.5714        25
+             spotted_flycatcher     0.2683    0.2444    0.2558        45
+               spotted_wood_owl     0.9048    0.8261    0.8636        23
+    square-tailed_drongo-cuckoo     0.2143    0.5000    0.3000        30
+                   steppe_eagle     1.0000    0.1333    0.2353        45
+        stork-billed_kingfisher     0.4444    0.7111    0.5470        45
+            straw-headed_bulbul     0.3636    0.1600    0.2222        25
+                streaked_weaver     0.3182    0.5676    0.4078        37
+             striated_grassbird     0.5882    0.5000    0.5405        40
+                 striated_heron     0.4615    0.5333    0.4948        45
+               striated_swallow     0.0000    0.0000    0.0000        11
+         stripe-throated_bulbul     0.6562    0.4667    0.5455        45
+       sulphur-crested_cockatoo     0.3000    0.8000    0.4364        45
+                     sultan_tit     0.3095    0.5778    0.4031        45
+             sunda_brush_cuckoo     0.0000    0.0000    0.0000         7
+         sunda_pygmy_woodpecker     0.3636    0.7273    0.4848        33
+         swinhoe's_storm_petrel     0.0000    0.0000    0.0000         6
+            swinhoe's_white_eye     0.2222    0.2667    0.2424        45
+               taiga_flycatcher     0.7273    0.3556    0.4776        45
+               tanimbar_corella     0.7500    0.3600    0.4865        25
+      thick-billed_flowerpecker     0.2292    0.3056    0.2619        36
+      thick-billed_green-pigeon     0.1795    0.3889    0.2456        36
+            tibetan_sand_plover     0.7073    0.6444    0.6744        45
+                   tiger_shrike     0.8421    0.6154    0.7111        26
+                     tree_pipit     0.4062    0.2889    0.3377        45
+               tricolored_munia     0.6481    0.7778    0.7071        45
+                    tufted_duck     0.9091    0.2857    0.4348        35
+             two-barred_warbler     0.0000    0.0000    0.0000        28
+            verditer_flycatcher     0.4545    0.5556    0.5000        45
+       vinous-breasted_starling     0.3333    0.3571    0.3448        28
+                  violet_cuckoo     0.2368    0.3000    0.2647        30
+       wandering_whistling-duck     0.5862    0.5152    0.5484        33
+                      watercock     0.4133    0.6889    0.5167        45
+        wedge-tailed_shearwater     0.5172    0.3333    0.4054        45
+           western_hooded_pitta     0.8421    0.5517    0.6667        29
+                 whiskered_tern     0.4286    0.2000    0.2727        45
+            whiskered_treeswift     0.7857    0.5789    0.6667        38
+         white-bellied_erpornis     0.4390    0.4000    0.4186        45
+            white-bellied_munia     0.0000    0.0000    0.0000         5
+        white-bellied_sea_eagle     0.4348    0.2222    0.2941        45
+       white-bellied_woodpecker     1.0000    0.2400    0.3871        25
+        white-breasted_waterhen     0.9474    0.4000    0.5625        45
+             white-browed_crake     0.7222    0.7222    0.7222        36
+          white-chested_babbler     0.8333    0.2941    0.4348        17
+             white-faced_plover     0.3750    0.1500    0.2143        20
+           white-faced_starling     0.0000    0.0000    0.0000         5
+             white-headed_munia     0.6190    0.5778    0.5977        45
+             white-rumped_shama     0.5926    0.7111    0.6465        45
+      white-shouldered_starling     0.5000    0.0256    0.0488        39
+             white-tailed_robin     0.5490    0.6222    0.5833        45
+        white-tailed_tropicbird     0.4167    0.4444    0.4301        45
+      white-throated_kingfisher     0.7273    0.3556    0.4776        45
+      white-throated_needletail     0.2222    0.0571    0.0909        35
+     white-throated_rock_thrush     0.7143    0.5882    0.6452        17
+              white-winged_tern     0.3220    0.4222    0.3654        45
+                  white_wagtail     0.4681    0.4889    0.4783        45
+                 willow_warbler     0.3088    0.4667    0.3717        45
+    yellow-bellied_flowerpecker     0.0000    0.0000    0.0000         3
+          yellow-bellied_prinia     0.5106    0.5333    0.5217        45
+        yellow-breasted_bunting     0.2468    0.4222    0.3115        45
+          yellow-browed_warbler     0.2647    0.2000    0.2278        45
+        yellow-crested_cockatoo     0.0000    0.0000    0.0000        30
+      yellow-eared_spiderhunter     0.5000    0.2941    0.3704        17
+          yellow-fronted_canary     0.4921    0.6889    0.5741        45
+           yellow-vented_bulbul     0.5000    0.2000    0.2857        45
+     yellow-vented_flowerpecker     0.3559    0.6774    0.4667        31
+                 yellow_bittern     0.0000    0.0000    0.0000         6
+                     zebra_dove     0.7188    0.8519    0.7797        27
+              zitting_cisticola     0.3939    0.2889    0.3333        45
+
+                       accuracy                         0.4195     14491
+                      macro avg     0.4325    0.3681    0.3623     14491
+                   weighted avg     0.4631    0.4195    0.4066     14491
+
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 41.95%
+
+Epoch Summary
+Train Loss: 2.8080 | Train Acc: 35.32%
+Val   Loss: 2.3665 | Val   Acc: 41.95%
+Best  Val Acc so far: 41.95%
+----------------------------------------
+
+========== Epoch 3/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 2.4277
+Epoch Progress | Batch 100/1046 | Loss: 2.1484
+Epoch Progress | Batch 150/1046 | Loss: 2.4595
+Epoch Progress | Batch 200/1046 | Loss: 2.3775
+Epoch Progress | Batch 250/1046 | Loss: 1.8895
+Epoch Progress | Batch 300/1046 | Loss: 2.7204
+Epoch Progress | Batch 350/1046 | Loss: 2.2955
+Epoch Progress | Batch 400/1046 | Loss: 2.7574
+Epoch Progress | Batch 450/1046 | Loss: 2.1700
+Epoch Progress | Batch 500/1046 | Loss: 1.7277
+Epoch Progress | Batch 550/1046 | Loss: 2.2221
+Epoch Progress | Batch 600/1046 | Loss: 2.4694
+Epoch Progress | Batch 650/1046 | Loss: 2.6475
+Epoch Progress | Batch 700/1046 | Loss: 2.3384
+Epoch Progress | Batch 750/1046 | Loss: 2.4433
+Epoch Progress | Batch 800/1046 | Loss: 2.2636
+Epoch Progress | Batch 850/1046 | Loss: 1.5793
+Epoch Progress | Batch 900/1046 | Loss: 2.0748
+Epoch Progress | Batch 950/1046 | Loss: 2.6650
+Epoch Progress | Batch 1000/1046 | Loss: 2.0590
+
+=== Epoch Summary ===
+Train Loss: 2.2487 | Train Acc: 46.13%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[35  0  0 ...  0  0  0]
+ [ 0  6  0 ...  0  0  0]
+ [ 0  0 23 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  2  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 20]]
+
+========== Classification Report ==========
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 48.49%
+
+Epoch Summary
+Train Loss: 2.2487 | Train Acc: 46.13%
+Val   Loss: 2.0915 | Val   Acc: 48.49%
+Best  Val Acc so far: 48.49%
+----------------------------------------
+
+========== Epoch 4/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 2.6426
+Epoch Progress | Batch 100/1046 | Loss: 1.9349
+Epoch Progress | Batch 150/1046 | Loss: 1.9250
+Epoch Progress | Batch 200/1046 | Loss: 1.6324
+Epoch Progress | Batch 250/1046 | Loss: 2.0821
+Epoch Progress | Batch 300/1046 | Loss: 2.1109
+Epoch Progress | Batch 350/1046 | Loss: 1.4647
+Epoch Progress | Batch 400/1046 | Loss: 2.3069
+Epoch Progress | Batch 450/1046 | Loss: 1.7174
+Epoch Progress | Batch 500/1046 | Loss: 1.5984
+Epoch Progress | Batch 550/1046 | Loss: 1.3846
+Epoch Progress | Batch 600/1046 | Loss: 1.5658
+Epoch Progress | Batch 650/1046 | Loss: 1.5789
+Epoch Progress | Batch 700/1046 | Loss: 1.8768
+Epoch Progress | Batch 750/1046 | Loss: 1.6193
+Epoch Progress | Batch 800/1046 | Loss: 1.7728
+Epoch Progress | Batch 850/1046 | Loss: 1.9871
+Epoch Progress | Batch 900/1046 | Loss: 2.1079
+Epoch Progress | Batch 950/1046 | Loss: 1.4262
+Epoch Progress | Batch 1000/1046 | Loss: 1.2273
+
+=== Epoch Summary ===
+Train Loss: 1.8837 | Train Acc: 54.16%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[38  0  0 ...  0  0  0]
+ [ 0 11  0 ...  0  0  0]
+ [ 0  0 21 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  5  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 20]]
+
+========== Classification Report ==========
+                                 precision    recall  f1-score   support
+
+               abbott's_babbler     0.4270    0.8444    0.5672        45
+                  aleutian_tern     0.5238    0.6471    0.5789        17
+                    amur_falcon     0.6176    0.4565    0.5250        46
+       amur_paradise_flycatcher     0.5000    0.1364    0.2143        22
+                 arctic_warbler     0.2532    0.4651    0.3279        43
+                    ashy_bulbul     0.4107    0.7188    0.5227        32
+                    ashy_drongo     0.4167    0.2500    0.3125        40
+                   ashy_minivet     0.6154    0.3556    0.4507        45
+                ashy_tailorbird     0.5405    0.4444    0.4878        45
+         asian_brown_flycatcher     0.4600    0.5227    0.4894        44
+           asian_emerald_cuckoo     0.6154    0.6400    0.6275        25
+             asian_emerald_dove     0.8636    0.6786    0.7600        28
+          asian_glossy_starling     0.5882    0.4651    0.5195        43
+             asian_house_martin     0.4286    0.2308    0.3000        39
+                     asian_koel     0.5909    0.6190    0.6047        21
+                 asian_openbill     0.7368    0.6222    0.6747        45
+               asian_palm_swift     0.4237    0.5556    0.4808        45
+          australasian_bushlark     0.4737    0.5625    0.5143        32
+                baillon's_crake     0.7955    0.7778    0.7865        45
+             band-bellied_crake     1.0000    0.4000    0.5714         5
+              banded_bay_cuckoo     0.2472    0.7333    0.3697        30
+              banded_woodpecker     0.7619    0.4848    0.5926        33
+                   barn_swallow     0.3636    0.4444    0.4000        45
+             barred_buttonquail     0.5614    0.7111    0.6275        45
+               barred_eagle_owl     0.7500    0.3750    0.5000         8
+                       bat_hawk     1.0000    0.1250    0.2222        16
+                    baya_weaver     0.7083    0.3778    0.4928        45
+               beach_thick_knee     0.8205    0.7111    0.7619        45
+                          besra     0.4318    0.4222    0.4270        45
+        black-and-red_broadbill     0.8182    0.8000    0.8090        45
+  black-backed_dwarf_kingfisher     0.5192    0.9643    0.6750        28
+          black-backed_swamphen     1.0000    0.6667    0.8000         6
+           black-bellied_plover     0.5758    0.8444    0.6847        45
+      black-browed_reed_warbler     0.4808    0.5556    0.5155        45
+        black-capped_kingfisher     0.7857    0.7333    0.7586        45
+           black-crested_bulbul     0.4000    0.7556    0.5231        45
+      black-crowned_night_heron     0.5429    0.4222    0.4750        45
+            black-headed_bulbul     0.5128    0.4444    0.4762        45
+           black-headed_bunting     0.7353    0.5556    0.6329        45
+              black-headed_gull     0.5000    0.5333    0.5161        45
+              black-headed_ibis     0.5000    0.1000    0.1667        10
+            black-naped_monarch     0.6667    0.5333    0.5926        45
+             black-naped_oriole     0.5082    0.6889    0.5849        45
+               black-naped_tern     0.6667    0.4000    0.5000        45
+            black-nest_swiftlet     0.0000    0.0000    0.0000         1
+         black-thighed_falconet     0.6538    0.8947    0.7556        38
+         black-throated_babbler     0.0000    0.0000    0.0000         3
+ black-winged_flycatcher_shrike     0.4167    0.5405    0.4706        37
+              black-winged_kite     0.4909    0.6000    0.5400        45
+          black-winged_starling     1.0000    0.3333    0.5000        15
+             black-winged_stilt     0.8333    0.6667    0.7407        45
+                     black_baza     0.3855    0.7111    0.5000        45
+                  black_bittern     0.2286    0.3810    0.2857        42
+                   black_drongo     0.4324    0.3556    0.3902        45
+                 black_hornbill     0.5000    0.4444    0.4706        36
+                     black_kite     0.3095    0.2889    0.2989        45
+      black_paradise_flycatcher     0.0000    0.0000    0.0000        12
+      blue-and-white_flycatcher     0.5714    0.3556    0.4384        45
+            blue-breasted_quail     1.0000    0.1429    0.2500         7
+    blue-crowned_hanging_parrot     0.5333    0.3810    0.4444        21
+          blue-eared_kingfisher     0.7391    0.7556    0.7473        45
+          blue-tailed_bee_eater     0.7576    0.5556    0.6410        45
+        blue-throated_bee_eater     0.6939    0.7556    0.7234        45
+              blue-winged_pitta     0.9231    0.4615    0.6154        26
+               blue_rock_thrush     0.6250    0.4444    0.5195        45
+          blue_whistling_thrush     0.7600    0.8444    0.8000        45
+    blyth's_paradise_flycatcher     0.5938    0.8444    0.6972        45
+       bold-striped_tit_babbler     0.0714    0.1250    0.0909         8
+                   booted_eagle     0.2581    0.1778    0.2105        45
+                 booted_warbler     0.3860    0.4889    0.4314        45
+                  brahminy_kite     0.5333    0.3556    0.4267        45
+                   bridled_tern     0.6279    0.6000    0.6136        45
+        brown-backed_needletail     0.3750    0.4000    0.3871        45
+      brown-breasted_flycatcher     0.4516    0.6222    0.5234        45
+brown-chested_jungle_flycatcher     0.3333    0.4000    0.3636         5
+              brown-headed_gull     0.5278    0.8444    0.6496        45
+      brown-streaked_flycatcher     0.0000    0.0000    0.0000         3
+         brown-throated_sunbird     0.2766    0.2889    0.2826        45
+                  brown_boobook     0.6667    0.7556    0.7083        45
+                    brown_booby     0.6486    0.5333    0.5854        45
+                   brown_shrike     0.4194    0.5778    0.4860        45
+                 brown_wood_owl     0.7209    0.8378    0.7750        37
+          buff-breasted_babbler     0.6296    0.6538    0.6415        26
+         buff-rumped_woodpecker     0.6923    0.6000    0.6429        15
+          buff-throated_warbler     0.0000    0.0000    0.0000         8
+             buff-vented_bulbul     0.0000    0.0000    0.0000         7
+                 buffy_fish_owl     0.6613    0.9111    0.7664        45
+                bulwer's_petrel     0.4615    0.5000    0.4800        24
+                 burmese_shrike     0.3889    0.4667    0.4242        45
+                   caspian_tern     0.6000    0.4667    0.5250        45
+          changeable_hawk_eagle     0.7000    0.3111    0.4308        45
+       chestnut-bellied_malkoha     1.0000    0.2500    0.4000         8
+      chestnut-cheeked_starling     0.4603    0.6444    0.5370        45
+        chestnut-winged_babbler     0.0000    0.0000    0.0000         6
+               chestnut_bunting     0.6364    0.4118    0.5000        17
+                 chestnut_munia     0.5333    0.7111    0.6095        45
+        chinese_blue_flycatcher     0.6154    0.4444    0.5161        18
+                  chinese_egret     0.7400    0.8222    0.7789        45
+             chinese_pond_heron     0.2778    0.2222    0.2469        45
+            chinese_sparrowhawk     0.1765    0.2000    0.1875        45
+   christmas_island_frigatebird     0.8378    0.6889    0.7561        45
+              cinereous_vulture     0.6579    0.5556    0.6024        45
+   cinnamon-headed_green-pigeon     0.5333    0.5714    0.5517        14
+               cinnamon_bittern     0.5897    0.5111    0.5476        45
+                citrine_wagtail     0.5882    0.6667    0.6250        45
+         clamorous_reed_warbler     0.4318    0.5429    0.4810        35
+               coconut_lorikeet     0.4500    0.3913    0.4186        23
+            collared_kingfisher     0.6970    0.5111    0.5897        45
+             collared_scops_owl     0.6944    0.5556    0.6173        45
+                 common_buzzard     0.5000    0.5111    0.5055        45
+               common_flameback     0.7647    0.2889    0.4194        45
+               common_hill_myna     0.4143    0.6444    0.5043        45
+                    common_iora     0.6250    0.3333    0.4348        45
+              common_kingfisher     0.6129    0.4222    0.5000        45
+                    common_myna     0.6071    0.9444    0.7391        18
+           common_ringed_plover     0.5357    0.3333    0.4110        45
+                   common_swift     0.2540    0.3556    0.2963        45
+                    common_tern     0.4118    0.1556    0.2258        45
+        copper-throated_sunbird     0.6000    0.4286    0.5000        35
+             coppersmith_barbet     0.5556    0.6667    0.6061        45
+             cotton_pygmy-goose     0.6486    0.8276    0.7273        29
+            cream-vented_bulbul     0.3684    0.2917    0.3256        24
+                crested_goshawk     0.3000    0.2000    0.2400        45
+          crested_serpent_eagle     0.5385    0.3111    0.3944        45
+      crimson-winged_woodpecker     1.0000    0.5000    0.6667        12
+                crimson_sunbird     0.8400    0.4667    0.6000        45
+             crow-billed_drongo     0.0000    0.0000    0.0000         7
+         dark-necked_tailorbird     0.3293    0.6000    0.4252        45
+              dark-sided_thrush     0.0000    0.0000    0.0000         2
+               daurian_starling     0.4000    0.1714    0.2400        35
+                     dollarbird     0.5897    0.5111    0.5476        45
+                  dusky_warbler     0.5405    0.4444    0.4878        45
+               eastern_barn_owl     0.6230    0.8444    0.7170        45
+                eastern_buzzard     0.2581    0.5333    0.3478        45
+           eastern_cattle_egret     0.6750    0.6000    0.6353        45
+         eastern_imperial_eagle     0.2532    0.4444    0.3226        45
+          eastern_marsh_harrier     0.2500    0.2889    0.2680        45
+         eastern_yellow_wagtail     0.5172    0.3333    0.4054        45
+                  eurasian_coot     0.6522    0.6667    0.6593        45
+                 eurasian_hobby     0.4082    0.4444    0.4255        45
+               eurasian_kestrel     0.4583    0.7333    0.5641        45
+               eurasian_moorhen     0.7188    0.5111    0.5974        45
+           eurasian_sparrowhawk     0.4400    0.2444    0.3143        45
+          eurasian_tree_sparrow     0.4423    0.5111    0.4742        45
+                eurasian_wigeon     0.5135    0.6786    0.5846        28
+            everett's_white_eye     0.0000    0.0000    0.0000         1
+               eyebrowed_thrush     0.4800    0.5333    0.5053        45
+                    fairy_pitta     0.5600    0.9333    0.7000        15
+            ferruginous_babbler     0.5000    0.2500    0.3333         4
+                 forest_wagtail     0.8261    0.8444    0.8352        45
+                        gadwall     0.4706    0.5333    0.5000        30
+                       garganey     0.4348    0.4000    0.4167        25
+                    glossy_ibis     0.6591    0.6444    0.6517        45
+        golden-bellied_gerygone     0.2000    0.4750    0.2815        40
+        golden-headed_cisticola     0.0000    0.0000    0.0000         3
+                  gray_nightjar     0.6429    0.6000    0.6207        15
+             great-billed_heron     0.5000    0.5581    0.5275        43
+                great_cormorant     0.7273    0.3556    0.4776        45
+             great_crested_tern     0.6522    0.3333    0.4412        45
+                    great_egret     0.6250    0.4444    0.5195        45
+         great_slaty_woodpecker     0.4706    0.3333    0.3902        24
+                 greater_coucal     0.6207    0.6000    0.6102        30
+              greater_flameback     0.5179    0.7250    0.6042        40
+          greater_painted_snipe     0.6000    0.7333    0.6600        45
+   greater_racket-tailed_drongo     0.5094    0.6000    0.5510        45
+            greater_sand_plover     0.4565    0.4667    0.4615        45
+          greater_spotted_eagle     0.3333    0.2667    0.2963        45
+              green-winged_teal     0.3200    0.2667    0.2909        30
+                green_broadbill     0.6154    0.6667    0.6400        12
+          green_imperial_pigeon     0.4333    0.5000    0.4643        26
+             grey-faced_buzzard     0.1875    0.1333    0.1558        45
+         grey-headed_fish_eagle     0.5870    0.6000    0.5934        45
+            grey-headed_lapwing     0.6042    0.6444    0.6237        45
+           grey-headed_swamphen     0.8889    0.7111    0.7901        45
+          grey-rumped_treeswift     0.5833    0.3333    0.4242        42
+       grey-streaked_flycatcher     0.4286    0.4000    0.4138        45
+                     grey_heron     0.4143    0.6444    0.5043        45
+                   grey_wagtail     0.9000    0.6000    0.7200        45
+               gull-billed_tern     0.4154    0.6000    0.4909        45
+            hair-crested_drongo     0.4250    0.3778    0.4000        45
+                    hen_harrier     0.7419    0.5111    0.6053        45
+              himalayan_buzzard     0.6667    0.0952    0.1667        21
+               himalayan_cuckoo     0.0000    0.0000    0.0000         7
+              himalayan_griffon     0.7500    0.3333    0.4615        45
+          hodgson's_hawk-cuckoo     1.0000    0.2857    0.4444         7
+      horsfield's_bronze_cuckoo     0.8667    0.4333    0.5778        30
+                     house_crow     0.4865    0.4000    0.4390        45
+                    house_swift     0.3125    0.2222    0.2597        45
+                  indian_cuckoo     0.7143    0.4000    0.5128        25
+     indian_paradise_flycatcher     0.5319    0.5556    0.5435        45
+              indian_pond_heron     0.3684    0.4667    0.4118        45
+              indigo_flycatcher     0.5227    0.7419    0.6133        31
+                  island_thrush     1.0000    0.8333    0.9091         6
+               jambu_fruit_dove     0.0000    0.0000    0.0000         6
+           japanese_sparrowhawk     0.4651    0.4444    0.4545        45
+                   java_sparrow     0.9000    0.8000    0.8471        45
+                     javan_myna     0.6207    0.4000    0.4865        45
+                   javan_plover     0.7500    0.2143    0.3333        14
+               javan_pond_heron     0.6286    0.4889    0.5500        45
+                  jerdon's_baza     0.5882    0.3125    0.4082        32
+                 kentish_plover     0.4151    0.4889    0.4490        45
+               laced_woodpecker     0.3600    0.2000    0.2571        45
+            lanceolated_warbler     0.7857    0.5500    0.6471        20
+              large-billed_crow     0.6316    0.5333    0.5783        45
+              large_hawk-cuckoo     0.3191    0.5172    0.3947        29
+                  large_niltava     0.6000    0.4000    0.4800        45
+               large_woodshrike     0.1842    0.3684    0.2456        38
+                lesser_adjutant     0.8421    0.7111    0.7711        45
+       lesser_black-backed_gull     0.6250    0.4444    0.5195        45
+                  lesser_coucal     0.7391    0.5667    0.6415        30
+            lesser_crested_tern     0.3784    0.3111    0.3415        45
+            lesser_cuckooshrike     0.0000    0.0000    0.0000         6
+             lesser_frigatebird     0.4074    0.7333    0.5238        45
+                 lesser_kestrel     0.3333    0.6000    0.4286        45
+          lesser_whistling-duck     0.6452    0.5000    0.5634        40
+                lineated_barbet     0.5179    0.6444    0.5743        45
+           little_bronze_cuckoo     0.4737    0.6000    0.5294        30
+                   little_egret     0.4400    0.4889    0.4632        45
+                   little_grebe     0.7308    0.6129    0.6667        31
+            little_green-pigeon     0.0000    0.0000    0.0000        11
+         little_pied_flycatcher     0.6970    0.5111    0.5897        45
+           little_ringed_plover     0.5231    0.7556    0.6182        45
+            little_spiderhunter     0.3800    0.4222    0.4000        45
+                    little_tern     0.2059    0.3111    0.2478        45
+       long-billed_spiderhunter     0.0000    0.0000    0.0000         5
+                 long-eared_owl     0.6481    0.7778    0.7071        45
+            long-legged_buzzard     0.3800    0.4222    0.4000        45
+             long-tailed_jaeger     0.3939    0.2889    0.3333        45
+           long-tailed_parakeet     0.8000    0.3636    0.5000        33
+             long-tailed_shrike     0.8333    0.2222    0.3509        45
+            malayan_night_heron     0.6863    0.7778    0.7292        45
+       malaysian_eared_nightjar     0.0000    0.0000    0.0000         1
+          malaysian_hawk-cuckoo     0.0000    0.0000    0.0000         3
+         malaysian_pied_fantail     0.5000    0.6222    0.5545        45
+               malaysian_plover     0.6279    0.6923    0.6585        39
+       mangrove_blue_flycatcher     0.6667    0.1667    0.2667        12
+                 mangrove_pitta     0.9091    0.5000    0.6452        20
+              mangrove_whistler     0.3333    0.1765    0.2308        17
+                 masked_lapwing     0.6000    0.6667    0.6316        45
+                   medium_egret     0.7500    0.4667    0.5753        45
+                    milky_stork     0.9231    0.5000    0.6486        24
+       mountain_imperial_pigeon     0.6333    0.4750    0.5429        40
+             moustached_babbler     0.2500    0.2222    0.2353         9
+            mugimaki_flycatcher     0.6875    0.5116    0.5867        43
+           narcissus_flycatcher     0.7586    0.4889    0.5946        45
+               northern_boobook     0.8333    0.3125    0.4545        16
+               northern_pintail     0.5161    0.5333    0.5246        30
+              northern_shoveler     0.5789    0.3667    0.4490        30
+             olive-backed_pipit     0.4821    0.6000    0.5347        45
+           olive-backed_sunbird     0.3333    0.4667    0.3889        45
+            olive-winged_bulbul     0.6000    0.2000    0.3000        45
+    orange-bellied_flowerpecker     0.3333    0.6667    0.4444        45
+   orange-breasted_green-pigeon     0.5366    0.6667    0.5946        33
+      orange-flanked_bush_robin     0.6944    0.5556    0.6173        45
+           orange-headed_thrush     0.8298    0.8667    0.8478        45
+                oriental_darter     0.5476    0.5111    0.5287        45
+         oriental_honey_buzzard     0.3333    0.1333    0.1905        45
+          oriental_magpie_robin     0.4366    0.6889    0.5345        45
+         oriental_pied_hornbill     0.7209    0.6889    0.7045        45
+                oriental_plover     0.8333    0.4167    0.5556        12
+            oriental_pratincole     0.7895    0.3333    0.4688        45
+          oriental_reed_warbler     0.5000    0.5333    0.5161        45
+             oriental_scops_owl     0.8947    0.7391    0.8095        23
+           oriental_turtle-dove     0.7561    0.8158    0.7848        38
+                         osprey     0.5000    0.5111    0.5055        45
+          pacific_golden_plover     0.6341    0.5778    0.6047        45
+             pacific_reef_heron     0.7917    0.4222    0.5507        45
+                pacific_swallow     0.4182    0.5111    0.4600        45
+                  pacific_swift     0.1818    0.3556    0.2406        45
+               paddyfield_pipit     0.4906    0.5778    0.5306        45
+                  painted_stork     0.3302    0.7778    0.4636        45
+       pale-legged_leaf_warbler     0.2500    0.0588    0.0952        17
+   pallas's_grasshopper_warbler     0.6786    0.8444    0.7525        45
+               parasitic_jaeger     0.3043    0.6222    0.4088        45
+               peregrine_falcon     0.3125    0.3333    0.3226        45
+         pheasant-tailed_jacana     0.3738    0.8889    0.5263        45
+                  pied_bushchat     0.5200    0.2889    0.3714        45
+                    pied_cuckoo     0.4722    0.5667    0.5152        30
+                   pied_harrier     0.3725    0.4222    0.3958        45
+           pied_imperial_pigeon     0.8333    0.6522    0.7317        46
+                     pied_stilt     0.5918    0.6444    0.6170        45
+                   pied_triller     0.4340    0.5111    0.4694        45
+        pin-striped_tit_babbler     0.4118    0.5833    0.4828        12
+         pin-tailed_parrotfinch     0.6000    0.7000    0.6462        30
+       pink-necked_green-pigeon     0.6429    0.5745    0.6067        47
+             plain_flowerpecker     1.0000    0.0556    0.1053        18
+               plaintive_cuckoo     0.5200    0.4333    0.4727        30
+            plume-toed_swiftlet     0.5946    0.6111    0.6027        36
+                pomarine_jaeger     0.4146    0.3778    0.3953        45
+             puff-backed_bulbul     0.0000    0.0000    0.0000         3
+         purple-backed_starling     0.3947    0.4286    0.4110        35
+           purple-naped_sunbird     0.5000    0.1333    0.2105        15
+                   purple_heron     0.5660    0.6667    0.6122        45
+                 purple_sunbird     0.3770    0.5111    0.4340        45
+                radde's_warbler     0.3281    0.5385    0.4078        39
+          red-billed_tropicbird     0.6579    0.5556    0.6024        45
+          red-breasted_parakeet     0.6216    0.5111    0.5610        45
+             red-crowned_barbet     0.4412    0.8824    0.5882        17
+                red-eyed_bulbul     0.8140    0.7778    0.7955        45
+               red-footed_booby     0.5938    0.4222    0.4935        45
+               red-legged_crake     0.5882    0.5882    0.5882        17
+             red-rumped_swallow     0.2105    0.4444    0.2857        45
+             red-throated_pipit     0.5738    0.7778    0.6604        45
+            red-wattled_lapwing     0.7838    0.6444    0.7073        45
+                   red_avadavat     0.7083    0.7556    0.7312        45
+                 red_junglefowl     0.7692    0.7143    0.7407        28
+            rhinoceros_hornbill     0.7955    0.7778    0.7865        45
+                richard's_pipit     0.5238    0.7333    0.6111        45
+                    rock_pigeon     0.6800    0.6071    0.6415        28
+           rose-ringed_parakeet     0.3971    0.6000    0.4779        45
+                   roseate_tern     0.4186    0.4000    0.4091        45
+                  rosy_starling     0.4706    0.3556    0.4051        45
+           ruby-cheeked_sunbird     0.7826    0.4000    0.5294        45
+           ruddy-breasted_crake     0.5507    0.8444    0.6667        45
+               ruddy_kingfisher     0.8500    0.8095    0.8293        21
+ rufous-backed_dwarf_kingfisher     0.8462    0.4889    0.6197        45
+           rufous-bellied_eagle     0.4516    0.3111    0.3684        45
+      rufous-chested_flycatcher     1.0000    0.2857    0.4444         7
+         rufous-crowned_babbler     0.4444    0.3333    0.3810        12
+       rufous-tailed_tailorbird     1.0000    0.1538    0.2667        13
+              rufous_woodpecker     0.4400    0.7333    0.5500        45
+                 rustic_bunting     0.4231    0.4889    0.4536        45
+          sakhalin_leaf_warbler     0.5000    0.3333    0.4000         6
+               savanna_nightjar     0.5500    0.3667    0.4400        30
+          scaly-breasted_bulbul     1.0000    0.1111    0.2000         9
+           scaly-breasted_munia     0.6667    0.3556    0.4638        45
+                   scaly_thrush     0.4000    0.2500    0.3077         8
+    scarlet-backed_flowerpecker     0.7419    0.5111    0.6053        45
+                scarlet_minivet     0.5417    0.5778    0.5591        45
+             schrenck's_bittern     0.5455    0.5000    0.5217        12
+                         shikra     0.4898    0.5333    0.5106        45
+                short-eared_owl     0.5088    0.6444    0.5686        45
+           short-tailed_babbler     0.6667    0.5000    0.5714         8
+        short-tailed_shearwater     0.7059    0.5333    0.6076        45
+         short-toed_snake_eagle     0.6667    0.2222    0.3333        45
+            siberian_blue_robin     0.9355    0.6444    0.7632        45
+                siberian_thrush     1.0000    0.1111    0.2000         9
+       silver-backed_needletail     0.0000    0.0000    0.0000         4
+       silver-rumped_needletail     1.0000    0.2000    0.3333         5
+            slaty-breasted_rail     0.9630    0.7222    0.8254        36
+             slaty-legged_crake     0.9000    0.4737    0.6207        19
+            slender-billed_crow     0.0000    0.0000    0.0000         8
+               small_pratincole     0.5410    0.7333    0.6226        45
+           sooty-capped_babbler     0.5000    0.1429    0.2222         7
+              spectacled_bulbul     0.1000    0.1250    0.1111        16
+        spectacled_spiderhunter     0.0000    0.0000    0.0000         7
+                   spotted_dove     0.7500    0.6000    0.6667        25
+             spotted_flycatcher     0.6154    0.1778    0.2759        45
+               spotted_wood_owl     0.8400    0.9130    0.8750        23
+    square-tailed_drongo-cuckoo     0.3864    0.5667    0.4595        30
+                   steppe_eagle     0.6207    0.4000    0.4865        45
+        stork-billed_kingfisher     0.6875    0.7333    0.7097        45
+            straw-headed_bulbul     0.7500    0.2400    0.3636        25
+                streaked_weaver     0.5000    0.6757    0.5747        37
+             striated_grassbird     0.6000    0.6750    0.6353        40
+                 striated_heron     0.8889    0.5333    0.6667        45
+               striated_swallow     0.0000    0.0000    0.0000        11
+         stripe-throated_bulbul     0.6122    0.6667    0.6383        45
+       sulphur-crested_cockatoo     0.5167    0.6889    0.5905        45
+                     sultan_tit     0.6098    0.5556    0.5814        45
+             sunda_brush_cuckoo     0.5000    0.1429    0.2222         7
+         sunda_pygmy_woodpecker     0.5106    0.7273    0.6000        33
+         swinhoe's_storm_petrel     1.0000    0.5000    0.6667         6
+            swinhoe's_white_eye     0.3158    0.5333    0.3967        45
+               taiga_flycatcher     0.4783    0.4889    0.4835        45
+               tanimbar_corella     0.7826    0.7200    0.7500        25
+      thick-billed_flowerpecker     0.3659    0.4167    0.3896        36
+      thick-billed_green-pigeon     0.4000    0.2778    0.3279        36
+            tibetan_sand_plover     0.7500    0.6667    0.7059        45
+                   tiger_shrike     0.7200    0.6923    0.7059        26
+                     tree_pipit     0.5000    0.4000    0.4444        45
+               tricolored_munia     0.8049    0.7333    0.7674        45
+                    tufted_duck     0.6571    0.6571    0.6571        35
+             two-barred_warbler     0.1667    0.0714    0.1000        28
+            verditer_flycatcher     0.7179    0.6222    0.6667        45
+       vinous-breasted_starling     0.3939    0.4643    0.4262        28
+                  violet_cuckoo     0.0000    0.0000    0.0000        30
+       wandering_whistling-duck     0.8400    0.6364    0.7241        33
+                      watercock     0.7436    0.6444    0.6905        45
+        wedge-tailed_shearwater     0.6897    0.4444    0.5405        45
+           western_hooded_pitta     0.8125    0.8966    0.8525        29
+                 whiskered_tern     0.3542    0.3778    0.3656        45
+            whiskered_treeswift     0.7297    0.7105    0.7200        38
+         white-bellied_erpornis     0.5263    0.4444    0.4819        45
+            white-bellied_munia     0.0000    0.0000    0.0000         5
+        white-bellied_sea_eagle     0.4762    0.2222    0.3030        45
+       white-bellied_woodpecker     0.5926    0.6400    0.6154        25
+        white-breasted_waterhen     0.5745    0.6000    0.5870        45
+             white-browed_crake     0.6364    0.7778    0.7000        36
+          white-chested_babbler     0.6111    0.6471    0.6286        17
+             white-faced_plover     0.2750    0.5500    0.3667        20
+           white-faced_starling     0.7500    0.6000    0.6667         5
+             white-headed_munia     0.6579    0.5556    0.6024        45
+             white-rumped_shama     0.5763    0.7556    0.6538        45
+      white-shouldered_starling     0.3824    0.3333    0.3562        39
+             white-tailed_robin     0.5179    0.6444    0.5743        45
+        white-tailed_tropicbird     0.5469    0.7778    0.6422        45
+      white-throated_kingfisher     0.7000    0.7778    0.7368        45
+      white-throated_needletail     0.2917    0.2000    0.2373        35
+     white-throated_rock_thrush     0.7895    0.8824    0.8333        17
+              white-winged_tern     0.3205    0.5556    0.4065        45
+                  white_wagtail     0.5439    0.6889    0.6078        45
+                 willow_warbler     0.3846    0.5556    0.4545        45
+    yellow-bellied_flowerpecker     0.0000    0.0000    0.0000         3
+          yellow-bellied_prinia     0.6531    0.7111    0.6809        45
+        yellow-breasted_bunting     0.6957    0.3556    0.4706        45
+          yellow-browed_warbler     0.4130    0.4222    0.4176        45
+        yellow-crested_cockatoo     0.5000    0.2000    0.2857        30
+      yellow-eared_spiderhunter     0.7778    0.4118    0.5385        17
+          yellow-fronted_canary     0.5926    0.7111    0.6465        45
+           yellow-vented_bulbul     0.5312    0.3778    0.4416        45
+     yellow-vented_flowerpecker     0.5556    0.8065    0.6579        31
+                 yellow_bittern     1.0000    0.8333    0.9091         6
+                     zebra_dove     0.8519    0.8519    0.8519        27
+              zitting_cisticola     0.4651    0.4444    0.4545        45
+
+                       accuracy                         0.5240     14491
+                      macro avg     0.5413    0.4841    0.4856     14491
+                   weighted avg     0.5546    0.5240    0.5184     14491
+
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 52.40%
+
+Epoch Summary
+Train Loss: 1.8837 | Train Acc: 54.16%
+Val   Loss: 1.9208 | Val   Acc: 52.40%
+Best  Val Acc so far: 52.40%
+----------------------------------------
+
+========== Epoch 5/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 1.3582
+Epoch Progress | Batch 100/1046 | Loss: 1.5524
+Epoch Progress | Batch 150/1046 | Loss: 1.2992
+Epoch Progress | Batch 200/1046 | Loss: 1.2943
+Epoch Progress | Batch 250/1046 | Loss: 1.8993
+Epoch Progress | Batch 300/1046 | Loss: 1.1543
+Epoch Progress | Batch 350/1046 | Loss: 1.8791
+Epoch Progress | Batch 400/1046 | Loss: 0.9038
+Epoch Progress | Batch 450/1046 | Loss: 1.5779
+Epoch Progress | Batch 500/1046 | Loss: 1.3294
+Epoch Progress | Batch 550/1046 | Loss: 1.7187
+Epoch Progress | Batch 600/1046 | Loss: 1.1234
+Epoch Progress | Batch 650/1046 | Loss: 1.3401
+Epoch Progress | Batch 700/1046 | Loss: 1.8055
+Epoch Progress | Batch 750/1046 | Loss: 1.5565
+Epoch Progress | Batch 800/1046 | Loss: 1.5244
+Epoch Progress | Batch 850/1046 | Loss: 1.3959
+Epoch Progress | Batch 900/1046 | Loss: 1.4063
+Epoch Progress | Batch 950/1046 | Loss: 1.3313
+Epoch Progress | Batch 1000/1046 | Loss: 2.0662
+
+=== Epoch Summary ===
+Train Loss: 1.6098 | Train Acc: 60.01%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[33  0  0 ...  0  0  0]
+ [ 0  4  0 ...  0  0  0]
+ [ 0  0 29 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  4  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 24]]
+
+========== Classification Report ==========
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 54.85%
+
+Epoch Summary
+Train Loss: 1.6098 | Train Acc: 60.01%
+Val   Loss: 1.8488 | Val   Acc: 54.85%
+Best  Val Acc so far: 54.85%
+----------------------------------------
+
+========== Epoch 6/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 1.5063
+Epoch Progress | Batch 100/1046 | Loss: 1.2821
+Epoch Progress | Batch 150/1046 | Loss: 1.4254
+Epoch Progress | Batch 200/1046 | Loss: 1.3500
+Epoch Progress | Batch 250/1046 | Loss: 1.2326
+Epoch Progress | Batch 300/1046 | Loss: 1.3268
+Epoch Progress | Batch 350/1046 | Loss: 1.8570
+Epoch Progress | Batch 400/1046 | Loss: 1.5886
+Epoch Progress | Batch 450/1046 | Loss: 1.6061
+Epoch Progress | Batch 500/1046 | Loss: 1.1098
+Epoch Progress | Batch 550/1046 | Loss: 1.5769
+Epoch Progress | Batch 600/1046 | Loss: 1.3516
+Epoch Progress | Batch 650/1046 | Loss: 1.1741
+Epoch Progress | Batch 700/1046 | Loss: 1.4290
+Epoch Progress | Batch 750/1046 | Loss: 1.1013
+Epoch Progress | Batch 800/1046 | Loss: 1.3258
+Epoch Progress | Batch 850/1046 | Loss: 0.9354
+Epoch Progress | Batch 900/1046 | Loss: 1.5330
+Epoch Progress | Batch 950/1046 | Loss: 1.1981
+Epoch Progress | Batch 1000/1046 | Loss: 1.7895
+
+=== Epoch Summary ===
+Train Loss: 1.3996 | Train Acc: 65.22%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[38  0  0 ...  0  0  0]
+ [ 0  8  0 ...  0  0  0]
+ [ 0  0 25 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  5  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 26]]
+
+========== Classification Report ==========
+                                 precision    recall  f1-score   support
+
+               abbott's_babbler     0.7600    0.8444    0.8000        45
+                  aleutian_tern     0.7273    0.4706    0.5714        17
+                    amur_falcon     0.4717    0.5435    0.5051        46
+       amur_paradise_flycatcher     0.3750    0.5455    0.4444        22
+                 arctic_warbler     0.7368    0.3256    0.4516        43
+                    ashy_bulbul     0.6562    0.6562    0.6562        32
+                    ashy_drongo     0.5278    0.4750    0.5000        40
+                   ashy_minivet     0.5185    0.6222    0.5657        45
+                ashy_tailorbird     0.5526    0.4667    0.5060        45
+         asian_brown_flycatcher     0.5106    0.5455    0.5275        44
+           asian_emerald_cuckoo     0.8182    0.7200    0.7660        25
+             asian_emerald_dove     0.8846    0.8214    0.8519        28
+          asian_glossy_starling     0.6944    0.5814    0.6329        43
+             asian_house_martin     0.4231    0.2821    0.3385        39
+                     asian_koel     0.6190    0.6190    0.6190        21
+                 asian_openbill     0.6809    0.7111    0.6957        45
+               asian_palm_swift     0.4675    0.8000    0.5902        45
+          australasian_bushlark     0.6552    0.5938    0.6230        32
+                baillon's_crake     0.8636    0.8444    0.8539        45
+             band-bellied_crake     1.0000    0.6000    0.7500         5
+              banded_bay_cuckoo     0.2069    0.2000    0.2034        30
+              banded_woodpecker     0.6786    0.5758    0.6230        33
+                   barn_swallow     0.3590    0.6222    0.4553        45
+             barred_buttonquail     0.5763    0.7556    0.6538        45
+               barred_eagle_owl     1.0000    0.2500    0.4000         8
+                       bat_hawk     0.4286    0.1875    0.2609        16
+                    baya_weaver     0.4792    0.5111    0.4946        45
+               beach_thick_knee     0.7091    0.8667    0.7800        45
+                          besra     0.4894    0.5111    0.5000        45
+        black-and-red_broadbill     0.6852    0.8222    0.7475        45
+  black-backed_dwarf_kingfisher     0.6000    0.9643    0.7397        28
+          black-backed_swamphen     1.0000    0.6667    0.8000         6
+           black-bellied_plover     0.7347    0.8000    0.7660        45
+      black-browed_reed_warbler     0.6829    0.6222    0.6512        45
+        black-capped_kingfisher     0.5065    0.8667    0.6393        45
+           black-crested_bulbul     0.8235    0.6222    0.7089        45
+      black-crowned_night_heron     0.7667    0.5111    0.6133        45
+            black-headed_bulbul     0.6818    0.6667    0.6742        45
+           black-headed_bunting     0.5536    0.6889    0.6139        45
+              black-headed_gull     0.3611    0.5778    0.4444        45
+              black-headed_ibis     0.5000    0.2000    0.2857        10
+            black-naped_monarch     0.6250    0.7778    0.6931        45
+             black-naped_oriole     0.6486    0.5333    0.5854        45
+               black-naped_tern     0.4878    0.4444    0.4651        45
+            black-nest_swiftlet     0.0000    0.0000    0.0000         1
+         black-thighed_falconet     0.7561    0.8158    0.7848        38
+         black-throated_babbler     1.0000    0.3333    0.5000         3
+ black-winged_flycatcher_shrike     0.5357    0.4054    0.4615        37
+              black-winged_kite     0.6042    0.6444    0.6237        45
+          black-winged_starling     0.8571    0.4000    0.5455        15
+             black-winged_stilt     0.8462    0.7333    0.7857        45
+                     black_baza     0.5676    0.4667    0.5122        45
+                  black_bittern     0.4333    0.3095    0.3611        42
+                   black_drongo     0.4359    0.3778    0.4048        45
+                 black_hornbill     0.5273    0.8056    0.6374        36
+                     black_kite     0.3226    0.4444    0.3738        45
+      black_paradise_flycatcher     0.1429    0.0833    0.1053        12
+      blue-and-white_flycatcher     0.5135    0.4222    0.4634        45
+            blue-breasted_quail     0.5000    0.2857    0.3636         7
+    blue-crowned_hanging_parrot     0.6667    0.2857    0.4000        21
+          blue-eared_kingfisher     0.7234    0.7556    0.7391        45
+          blue-tailed_bee_eater     0.6444    0.6444    0.6444        45
+        blue-throated_bee_eater     0.5484    0.7556    0.6355        45
+              blue-winged_pitta     0.8095    0.6538    0.7234        26
+               blue_rock_thrush     0.4918    0.6667    0.5660        45
+          blue_whistling_thrush     0.7727    0.7556    0.7640        45
+    blyth's_paradise_flycatcher     0.6977    0.6667    0.6818        45
+       bold-striped_tit_babbler     0.4000    0.2500    0.3077         8
+                   booted_eagle     0.3953    0.3778    0.3864        45
+                 booted_warbler     0.5526    0.4667    0.5060        45
+                  brahminy_kite     0.6190    0.2889    0.3939        45
+                   bridled_tern     0.8077    0.4667    0.5915        45
+        brown-backed_needletail     0.3667    0.4889    0.4190        45
+      brown-breasted_flycatcher     0.5818    0.7111    0.6400        45
+brown-chested_jungle_flycatcher     0.5000    0.2000    0.2857         5
+              brown-headed_gull     0.6415    0.7556    0.6939        45
+      brown-streaked_flycatcher     0.3333    0.3333    0.3333         3
+         brown-throated_sunbird     0.2419    0.3333    0.2804        45
+                  brown_boobook     0.5469    0.7778    0.6422        45
+                    brown_booby     0.5833    0.6222    0.6022        45
+                   brown_shrike     0.6585    0.6000    0.6279        45
+                 brown_wood_owl     0.8000    0.8649    0.8312        37
+          buff-breasted_babbler     0.9444    0.6538    0.7727        26
+         buff-rumped_woodpecker     0.5000    0.5333    0.5161        15
+          buff-throated_warbler     0.0000    0.0000    0.0000         8
+             buff-vented_bulbul     1.0000    0.1429    0.2500         7
+                 buffy_fish_owl     0.8125    0.8667    0.8387        45
+                bulwer's_petrel     0.3902    0.6667    0.4923        24
+                 burmese_shrike     0.3898    0.5111    0.4423        45
+                   caspian_tern     0.4107    0.5111    0.4554        45
+          changeable_hawk_eagle     0.5000    0.4667    0.4828        45
+       chestnut-bellied_malkoha     0.4545    0.6250    0.5263         8
+      chestnut-cheeked_starling     0.6667    0.5333    0.5926        45
+        chestnut-winged_babbler     0.3333    0.1667    0.2222         6
+               chestnut_bunting     0.6667    0.4706    0.5517        17
+                 chestnut_munia     0.7714    0.6000    0.6750        45
+        chinese_blue_flycatcher     0.7273    0.4444    0.5517        18
+                  chinese_egret     0.6481    0.7778    0.7071        45
+             chinese_pond_heron     0.4516    0.3111    0.3684        45
+            chinese_sparrowhawk     0.5000    0.2667    0.3478        45
+   christmas_island_frigatebird     0.6102    0.8000    0.6923        45
+              cinereous_vulture     0.5926    0.7111    0.6465        45
+   cinnamon-headed_green-pigeon     0.8571    0.4286    0.5714        14
+               cinnamon_bittern     0.6136    0.6000    0.6067        45
+                citrine_wagtail     0.5238    0.7333    0.6111        45
+         clamorous_reed_warbler     0.6071    0.4857    0.5397        35
+               coconut_lorikeet     0.2698    0.7391    0.3953        23
+            collared_kingfisher     0.5200    0.5778    0.5474        45
+             collared_scops_owl     0.6744    0.6444    0.6591        45
+                 common_buzzard     0.4429    0.6889    0.5391        45
+               common_flameback     0.6897    0.4444    0.5405        45
+               common_hill_myna     0.6905    0.6444    0.6667        45
+                    common_iora     0.3793    0.4889    0.4272        45
+              common_kingfisher     0.7143    0.4444    0.5479        45
+                    common_myna     0.7647    0.7222    0.7429        18
+           common_ringed_plover     0.6923    0.4000    0.5070        45
+                   common_swift     0.3871    0.2667    0.3158        45
+                    common_tern     0.3846    0.3333    0.3571        45
+        copper-throated_sunbird     0.7200    0.5143    0.6000        35
+             coppersmith_barbet     0.5682    0.5556    0.5618        45
+             cotton_pygmy-goose     0.6875    0.7586    0.7213        29
+            cream-vented_bulbul     0.4348    0.4167    0.4255        24
+                crested_goshawk     0.3333    0.0667    0.1111        45
+          crested_serpent_eagle     0.6087    0.3111    0.4118        45
+      crimson-winged_woodpecker     0.7500    0.7500    0.7500        12
+                crimson_sunbird     0.6486    0.5333    0.5854        45
+             crow-billed_drongo     0.0000    0.0000    0.0000         7
+         dark-necked_tailorbird     0.7143    0.5556    0.6250        45
+              dark-sided_thrush     1.0000    0.5000    0.6667         2
+               daurian_starling     0.4000    0.2857    0.3333        35
+                     dollarbird     0.4030    0.6000    0.4821        45
+                  dusky_warbler     0.5641    0.4889    0.5238        45
+               eastern_barn_owl     0.8750    0.7778    0.8235        45
+                eastern_buzzard     0.4400    0.4889    0.4632        45
+           eastern_cattle_egret     0.6038    0.7111    0.6531        45
+         eastern_imperial_eagle     0.2812    0.4000    0.3303        45
+          eastern_marsh_harrier     0.2600    0.5778    0.3586        45
+         eastern_yellow_wagtail     0.5652    0.5778    0.5714        45
+                  eurasian_coot     0.6415    0.7556    0.6939        45
+                 eurasian_hobby     0.3962    0.4667    0.4286        45
+               eurasian_kestrel     0.4231    0.7333    0.5366        45
+               eurasian_moorhen     0.5439    0.6889    0.6078        45
+           eurasian_sparrowhawk     0.6216    0.5111    0.5610        45
+          eurasian_tree_sparrow     0.6111    0.4889    0.5432        45
+                eurasian_wigeon     0.8333    0.3571    0.5000        28
+            everett's_white_eye     0.0000    0.0000    0.0000         1
+               eyebrowed_thrush     0.6667    0.5333    0.5926        45
+                    fairy_pitta     0.9231    0.8000    0.8571        15
+            ferruginous_babbler     1.0000    0.7500    0.8571         4
+                 forest_wagtail     0.9474    0.8000    0.8675        45
+                        gadwall     0.5000    0.7333    0.5946        30
+                       garganey     0.4194    0.5200    0.4643        25
+                    glossy_ibis     0.5536    0.6889    0.6139        45
+        golden-bellied_gerygone     0.3393    0.4750    0.3958        40
+        golden-headed_cisticola     1.0000    0.3333    0.5000         3
+                  gray_nightjar     0.4762    0.6667    0.5556        15
+             great-billed_heron     0.6842    0.6047    0.6420        43
+                great_cormorant     0.7143    0.4444    0.5479        45
+             great_crested_tern     0.5000    0.5333    0.5161        45
+                    great_egret     0.3649    0.6000    0.4538        45
+         great_slaty_woodpecker     0.5000    0.4167    0.4545        24
+                 greater_coucal     0.6316    0.4000    0.4898        30
+              greater_flameback     0.6667    0.5000    0.5714        40
+          greater_painted_snipe     0.7561    0.6889    0.7209        45
+   greater_racket-tailed_drongo     0.6250    0.5556    0.5882        45
+            greater_sand_plover     0.5714    0.3556    0.4384        45
+          greater_spotted_eagle     0.3409    0.3333    0.3371        45
+              green-winged_teal     0.5238    0.3667    0.4314        30
+                green_broadbill     0.7692    0.8333    0.8000        12
+          green_imperial_pigeon     0.5455    0.4615    0.5000        26
+             grey-faced_buzzard     0.3913    0.2000    0.2647        45
+         grey-headed_fish_eagle     0.6486    0.5333    0.5854        45
+            grey-headed_lapwing     0.6765    0.5111    0.5823        45
+           grey-headed_swamphen     0.7907    0.7556    0.7727        45
+          grey-rumped_treeswift     0.8000    0.3810    0.5161        42
+       grey-streaked_flycatcher     0.5306    0.5778    0.5532        45
+                     grey_heron     0.4182    0.5111    0.4600        45
+                   grey_wagtail     0.9032    0.6222    0.7368        45
+               gull-billed_tern     0.4559    0.6889    0.5487        45
+            hair-crested_drongo     0.5200    0.2889    0.3714        45
+                    hen_harrier     0.5000    0.7556    0.6018        45
+              himalayan_buzzard     0.7500    0.1429    0.2400        21
+               himalayan_cuckoo     0.0000    0.0000    0.0000         7
+              himalayan_griffon     0.5682    0.5556    0.5618        45
+          hodgson's_hawk-cuckoo     0.8000    0.5714    0.6667         7
+      horsfield's_bronze_cuckoo     0.7500    0.5000    0.6000        30
+                     house_crow     0.6154    0.3556    0.4507        45
+                    house_swift     0.2180    0.6444    0.3258        45
+                  indian_cuckoo     0.4054    0.6000    0.4839        25
+     indian_paradise_flycatcher     0.5429    0.4222    0.4750        45
+              indian_pond_heron     0.5714    0.4444    0.5000        45
+              indigo_flycatcher     0.8261    0.6129    0.7037        31
+                  island_thrush     1.0000    0.8333    0.9091         6
+               jambu_fruit_dove     0.0000    0.0000    0.0000         6
+           japanese_sparrowhawk     0.6842    0.5778    0.6265        45
+                   java_sparrow     0.7600    0.8444    0.8000        45
+                     javan_myna     0.6136    0.6000    0.6067        45
+                   javan_plover     0.6000    0.2143    0.3158        14
+               javan_pond_heron     0.6053    0.5111    0.5542        45
+                  jerdon's_baza     0.6875    0.3438    0.4583        32
+                 kentish_plover     0.4638    0.7111    0.5614        45
+               laced_woodpecker     0.4407    0.5778    0.5000        45
+            lanceolated_warbler     0.5926    0.8000    0.6809        20
+              large-billed_crow     0.5088    0.6444    0.5686        45
+              large_hawk-cuckoo     0.4848    0.5517    0.5161        29
+                  large_niltava     0.6875    0.4889    0.5714        45
+               large_woodshrike     0.2632    0.5263    0.3509        38
+                lesser_adjutant     0.8235    0.6222    0.7089        45
+       lesser_black-backed_gull     0.8421    0.3556    0.5000        45
+                  lesser_coucal     0.6053    0.7667    0.6765        30
+            lesser_crested_tern     0.3846    0.6667    0.4878        45
+            lesser_cuckooshrike     0.0000    0.0000    0.0000         6
+             lesser_frigatebird     0.5476    0.5111    0.5287        45
+                 lesser_kestrel     0.5192    0.6000    0.5567        45
+          lesser_whistling-duck     0.7500    0.5250    0.6176        40
+                lineated_barbet     0.5714    0.6222    0.5957        45
+           little_bronze_cuckoo     0.5625    0.6000    0.5806        30
+                   little_egret     0.7600    0.4222    0.5429        45
+                   little_grebe     0.6970    0.7419    0.7188        31
+            little_green-pigeon     1.0000    0.3636    0.5333        11
+         little_pied_flycatcher     0.7222    0.5778    0.6420        45
+           little_ringed_plover     0.5926    0.7111    0.6465        45
+            little_spiderhunter     0.6207    0.4000    0.4865        45
+                    little_tern     0.2222    0.3556    0.2735        45
+       long-billed_spiderhunter     0.0000    0.0000    0.0000         5
+                 long-eared_owl     0.7083    0.7556    0.7312        45
+            long-legged_buzzard     0.6522    0.3333    0.4412        45
+             long-tailed_jaeger     0.2526    0.5333    0.3429        45
+           long-tailed_parakeet     0.5116    0.6667    0.5789        33
+             long-tailed_shrike     0.7826    0.4000    0.5294        45
+            malayan_night_heron     0.6000    0.7333    0.6600        45
+       malaysian_eared_nightjar     0.0000    0.0000    0.0000         1
+          malaysian_hawk-cuckoo     0.0000    0.0000    0.0000         3
+         malaysian_pied_fantail     0.5200    0.5778    0.5474        45
+               malaysian_plover     0.8710    0.6923    0.7714        39
+       mangrove_blue_flycatcher     0.8333    0.4167    0.5556        12
+                 mangrove_pitta     1.0000    0.5500    0.7097        20
+              mangrove_whistler     0.2286    0.4706    0.3077        17
+                 masked_lapwing     0.6744    0.6444    0.6591        45
+                   medium_egret     0.7619    0.3556    0.4848        45
+                    milky_stork     0.8000    0.5000    0.6154        24
+       mountain_imperial_pigeon     0.6875    0.5500    0.6111        40
+             moustached_babbler     0.2222    0.2222    0.2222         9
+            mugimaki_flycatcher     0.5750    0.5349    0.5542        43
+           narcissus_flycatcher     0.6757    0.5556    0.6098        45
+               northern_boobook     1.0000    0.3125    0.4762        16
+               northern_pintail     0.6923    0.6000    0.6429        30
+              northern_shoveler     0.5714    0.5333    0.5517        30
+             olive-backed_pipit     0.4714    0.7333    0.5739        45
+           olive-backed_sunbird     0.3778    0.3778    0.3778        45
+            olive-winged_bulbul     0.7308    0.4222    0.5352        45
+    orange-bellied_flowerpecker     0.4219    0.6000    0.4954        45
+   orange-breasted_green-pigeon     0.6341    0.7879    0.7027        33
+      orange-flanked_bush_robin     0.6977    0.6667    0.6818        45
+           orange-headed_thrush     0.9070    0.8667    0.8864        45
+                oriental_darter     0.5500    0.7333    0.6286        45
+         oriental_honey_buzzard     0.3684    0.1556    0.2188        45
+          oriental_magpie_robin     0.6571    0.5111    0.5750        45
+         oriental_pied_hornbill     0.6042    0.6444    0.6237        45
+                oriental_plover     0.7143    0.4167    0.5263        12
+            oriental_pratincole     0.6207    0.4000    0.4865        45
+          oriental_reed_warbler     0.4915    0.6444    0.5577        45
+             oriental_scops_owl     0.8500    0.7391    0.7907        23
+           oriental_turtle-dove     0.8966    0.6842    0.7761        38
+                         osprey     0.5122    0.4667    0.4884        45
+          pacific_golden_plover     0.7500    0.5333    0.6234        45
+             pacific_reef_heron     0.7750    0.6889    0.7294        45
+                pacific_swallow     0.6774    0.4667    0.5526        45
+                  pacific_swift     0.3256    0.3111    0.3182        45
+               paddyfield_pipit     0.6429    0.6000    0.6207        45
+                  painted_stork     0.7027    0.5778    0.6341        45
+       pale-legged_leaf_warbler     0.4667    0.4118    0.4375        17
+   pallas's_grasshopper_warbler     0.8974    0.7778    0.8333        45
+               parasitic_jaeger     0.5769    0.6667    0.6186        45
+               peregrine_falcon     0.2073    0.3778    0.2677        45
+         pheasant-tailed_jacana     0.4868    0.8222    0.6116        45
+                  pied_bushchat     0.6061    0.4444    0.5128        45
+                    pied_cuckoo     0.5652    0.4333    0.4906        30
+                   pied_harrier     0.5909    0.2889    0.3881        45
+           pied_imperial_pigeon     0.6170    0.6304    0.6237        46
+                     pied_stilt     0.7647    0.5778    0.6582        45
+                   pied_triller     0.4912    0.6222    0.5490        45
+        pin-striped_tit_babbler     1.0000    0.5000    0.6667        12
+         pin-tailed_parrotfinch     0.7333    0.7333    0.7333        30
+       pink-necked_green-pigeon     0.6889    0.6596    0.6739        47
+             plain_flowerpecker     0.6000    0.1667    0.2609        18
+               plaintive_cuckoo     0.6087    0.4667    0.5283        30
+            plume-toed_swiftlet     0.7200    0.5000    0.5902        36
+                pomarine_jaeger     0.5714    0.2667    0.3636        45
+             puff-backed_bulbul     1.0000    0.3333    0.5000         3
+         purple-backed_starling     0.4231    0.3143    0.3607        35
+           purple-naped_sunbird     0.8000    0.2667    0.4000        15
+                   purple_heron     0.7209    0.6889    0.7045        45
+                 purple_sunbird     0.3611    0.5778    0.4444        45
+                radde's_warbler     0.5250    0.5385    0.5316        39
+          red-billed_tropicbird     0.5385    0.7778    0.6364        45
+          red-breasted_parakeet     0.4857    0.3778    0.4250        45
+             red-crowned_barbet     0.4333    0.7647    0.5532        17
+                red-eyed_bulbul     0.8409    0.8222    0.8315        45
+               red-footed_booby     0.4250    0.3778    0.4000        45
+               red-legged_crake     0.7647    0.7647    0.7647        17
+             red-rumped_swallow     0.3065    0.4222    0.3551        45
+             red-throated_pipit     0.5873    0.8222    0.6852        45
+            red-wattled_lapwing     0.7317    0.6667    0.6977        45
+                   red_avadavat     0.7234    0.7556    0.7391        45
+                 red_junglefowl     0.7241    0.7500    0.7368        28
+            rhinoceros_hornbill     0.6545    0.8000    0.7200        45
+                richard's_pipit     0.6889    0.6889    0.6889        45
+                    rock_pigeon     0.7826    0.6429    0.7059        28
+           rose-ringed_parakeet     0.5833    0.6222    0.6022        45
+                   roseate_tern     0.6296    0.3778    0.4722        45
+                  rosy_starling     0.4815    0.5778    0.5253        45
+           ruby-cheeked_sunbird     0.5814    0.5556    0.5682        45
+           ruddy-breasted_crake     0.6981    0.8222    0.7551        45
+               ruddy_kingfisher     0.8500    0.8095    0.8293        21
+ rufous-backed_dwarf_kingfisher     0.8000    0.6222    0.7000        45
+           rufous-bellied_eagle     0.4103    0.3556    0.3810        45
+      rufous-chested_flycatcher     0.7500    0.4286    0.5455         7
+         rufous-crowned_babbler     0.3750    0.2500    0.3000        12
+       rufous-tailed_tailorbird     0.5714    0.3077    0.4000        13
+              rufous_woodpecker     0.3854    0.8222    0.5248        45
+                 rustic_bunting     0.4848    0.7111    0.5766        45
+          sakhalin_leaf_warbler     1.0000    0.1667    0.2857         6
+               savanna_nightjar     0.5517    0.5333    0.5424        30
+          scaly-breasted_bulbul     0.3333    0.1111    0.1667         9
+           scaly-breasted_munia     0.7083    0.3778    0.4928        45
+                   scaly_thrush     1.0000    0.3750    0.5455         8
+    scarlet-backed_flowerpecker     0.6667    0.6667    0.6667        45
+                scarlet_minivet     0.7368    0.6222    0.6747        45
+             schrenck's_bittern     0.7500    0.2500    0.3750        12
+                         shikra     0.4000    0.5333    0.4571        45
+                short-eared_owl     0.7692    0.6667    0.7143        45
+           short-tailed_babbler     1.0000    0.3750    0.5455         8
+        short-tailed_shearwater     0.9231    0.5333    0.6761        45
+         short-toed_snake_eagle     0.7200    0.4000    0.5143        45
+            siberian_blue_robin     0.6324    0.9556    0.7611        45
+                siberian_thrush     1.0000    0.2222    0.3636         9
+       silver-backed_needletail     0.0000    0.0000    0.0000         4
+       silver-rumped_needletail     0.0000    0.0000    0.0000         5
+            slaty-breasted_rail     0.9600    0.6667    0.7869        36
+             slaty-legged_crake     0.8462    0.5789    0.6875        19
+            slender-billed_crow     0.3333    0.1250    0.1818         8
+               small_pratincole     0.7333    0.7333    0.7333        45
+           sooty-capped_babbler     0.0000    0.0000    0.0000         7
+              spectacled_bulbul     0.1818    0.1250    0.1481        16
+        spectacled_spiderhunter     0.0000    0.0000    0.0000         7
+                   spotted_dove     0.6667    0.5600    0.6087        25
+             spotted_flycatcher     0.4783    0.2444    0.3235        45
+               spotted_wood_owl     0.8077    0.9130    0.8571        23
+    square-tailed_drongo-cuckoo     0.3438    0.7333    0.4681        30
+                   steppe_eagle     0.5500    0.4889    0.5176        45
+        stork-billed_kingfisher     0.7368    0.6222    0.6747        45
+            straw-headed_bulbul     0.5909    0.5200    0.5532        25
+                streaked_weaver     0.5294    0.7297    0.6136        37
+             striated_grassbird     0.6923    0.6750    0.6835        40
+                 striated_heron     0.4222    0.8444    0.5630        45
+               striated_swallow     0.2857    0.1818    0.2222        11
+         stripe-throated_bulbul     0.7500    0.6667    0.7059        45
+       sulphur-crested_cockatoo     0.4783    0.7333    0.5789        45
+                     sultan_tit     0.6596    0.6889    0.6739        45
+             sunda_brush_cuckoo     1.0000    0.4286    0.6000         7
+         sunda_pygmy_woodpecker     0.5854    0.7273    0.6486        33
+         swinhoe's_storm_petrel     1.0000    0.3333    0.5000         6
+            swinhoe's_white_eye     0.4062    0.5778    0.4771        45
+               taiga_flycatcher     0.4615    0.5333    0.4948        45
+               tanimbar_corella     0.8000    0.6400    0.7111        25
+      thick-billed_flowerpecker     0.4000    0.3333    0.3636        36
+      thick-billed_green-pigeon     0.5882    0.2778    0.3774        36
+            tibetan_sand_plover     0.8108    0.6667    0.7317        45
+                   tiger_shrike     0.6562    0.8077    0.7241        26
+                     tree_pipit     0.6400    0.3556    0.4571        45
+               tricolored_munia     0.7708    0.8222    0.7957        45
+                    tufted_duck     0.6500    0.7429    0.6933        35
+             two-barred_warbler     0.3171    0.4643    0.3768        28
+            verditer_flycatcher     0.8056    0.6444    0.7160        45
+       vinous-breasted_starling     0.6667    0.4286    0.5217        28
+                  violet_cuckoo     0.3889    0.4667    0.4242        30
+       wandering_whistling-duck     0.8750    0.6364    0.7368        33
+                      watercock     0.7045    0.6889    0.6966        45
+        wedge-tailed_shearwater     0.7027    0.5778    0.6341        45
+           western_hooded_pitta     0.6750    0.9310    0.7826        29
+                 whiskered_tern     0.4444    0.3556    0.3951        45
+            whiskered_treeswift     0.7500    0.7895    0.7692        38
+         white-bellied_erpornis     0.6585    0.6000    0.6279        45
+            white-bellied_munia     1.0000    0.4000    0.5714         5
+        white-bellied_sea_eagle     0.3175    0.4444    0.3704        45
+       white-bellied_woodpecker     0.5600    0.5600    0.5600        25
+        white-breasted_waterhen     0.8276    0.5333    0.6486        45
+             white-browed_crake     0.6818    0.8333    0.7500        36
+          white-chested_babbler     0.5625    0.5294    0.5455        17
+             white-faced_plover     0.6000    0.4500    0.5143        20
+           white-faced_starling     0.8000    0.8000    0.8000         5
+             white-headed_munia     0.5517    0.7111    0.6214        45
+             white-rumped_shama     0.6552    0.8444    0.7379        45
+      white-shouldered_starling     0.6957    0.4103    0.5161        39
+             white-tailed_robin     0.6809    0.7111    0.6957        45
+        white-tailed_tropicbird     0.6471    0.4889    0.5570        45
+      white-throated_kingfisher     0.5263    0.8889    0.6612        45
+      white-throated_needletail     0.3333    0.2571    0.2903        35
+     white-throated_rock_thrush     0.7222    0.7647    0.7429        17
+              white-winged_tern     0.5472    0.6444    0.5918        45
+                  white_wagtail     0.5763    0.7556    0.6538        45
+                 willow_warbler     0.5000    0.5556    0.5263        45
+    yellow-bellied_flowerpecker     0.0000    0.0000    0.0000         3
+          yellow-bellied_prinia     0.6600    0.7333    0.6947        45
+        yellow-breasted_bunting     0.5385    0.4667    0.5000        45
+          yellow-browed_warbler     0.4884    0.4667    0.4773        45
+        yellow-crested_cockatoo     0.3889    0.2333    0.2917        30
+      yellow-eared_spiderhunter     0.8000    0.4706    0.5926        17
+          yellow-fronted_canary     0.7083    0.7556    0.7312        45
+           yellow-vented_bulbul     0.6552    0.4222    0.5135        45
+     yellow-vented_flowerpecker     0.7222    0.8387    0.7761        31
+                 yellow_bittern     1.0000    0.8333    0.9091         6
+                     zebra_dove     0.6765    0.8519    0.7541        27
+              zitting_cisticola     0.6190    0.5778    0.5977        45
+
+                       accuracy                         0.5691     14491
+                      macro avg     0.5955    0.5342    0.5418     14491
+                   weighted avg     0.5975    0.5691    0.5663     14491
+
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 56.91%
+
+Epoch Summary
+Train Loss: 1.3996 | Train Acc: 65.22%
+Val   Loss: 1.7952 | Val   Acc: 56.91%
+Best  Val Acc so far: 56.91%
+----------------------------------------
+
+========== Epoch 7/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 1.1307
+Epoch Progress | Batch 100/1046 | Loss: 0.9660
+Epoch Progress | Batch 150/1046 | Loss: 1.3841
+Epoch Progress | Batch 200/1046 | Loss: 1.5228
+Epoch Progress | Batch 250/1046 | Loss: 1.0325
+Epoch Progress | Batch 300/1046 | Loss: 1.1791
+Epoch Progress | Batch 350/1046 | Loss: 1.2001
+Epoch Progress | Batch 400/1046 | Loss: 1.5136
+Epoch Progress | Batch 450/1046 | Loss: 1.0568
+Epoch Progress | Batch 500/1046 | Loss: 1.1062
+Epoch Progress | Batch 550/1046 | Loss: 1.3608
+Epoch Progress | Batch 600/1046 | Loss: 1.5365
+Epoch Progress | Batch 650/1046 | Loss: 1.2157
+Epoch Progress | Batch 700/1046 | Loss: 1.1877
+Epoch Progress | Batch 750/1046 | Loss: 1.1815
+Epoch Progress | Batch 800/1046 | Loss: 1.6173
+Epoch Progress | Batch 850/1046 | Loss: 1.4109
+Epoch Progress | Batch 900/1046 | Loss: 0.9824
+Epoch Progress | Batch 950/1046 | Loss: 1.3352
+Epoch Progress | Batch 1000/1046 | Loss: 1.3010
+
+=== Epoch Summary ===
+Train Loss: 1.2335 | Train Acc: 68.78%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[32  0  0 ...  0  0  0]
+ [ 0 10  0 ...  0  0  0]
+ [ 0  0 23 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  4  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 30]]
+
+========== Classification Report ==========
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 58.11%
+
+Epoch Summary
+Train Loss: 1.2335 | Train Acc: 68.78%
+Val   Loss: 1.7449 | Val   Acc: 58.11%
+Best  Val Acc so far: 58.11%
+----------------------------------------
+
+========== Epoch 8/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 0.8588
+Epoch Progress | Batch 100/1046 | Loss: 1.3166
+Epoch Progress | Batch 150/1046 | Loss: 1.1288
+Epoch Progress | Batch 200/1046 | Loss: 1.0223
+Epoch Progress | Batch 250/1046 | Loss: 0.9086
+Epoch Progress | Batch 300/1046 | Loss: 1.1312
+Epoch Progress | Batch 350/1046 | Loss: 0.9276
+Epoch Progress | Batch 400/1046 | Loss: 1.1822
+Epoch Progress | Batch 450/1046 | Loss: 0.8537
+Epoch Progress | Batch 500/1046 | Loss: 1.0814
+Epoch Progress | Batch 550/1046 | Loss: 1.1192
+Epoch Progress | Batch 600/1046 | Loss: 1.2693
+Epoch Progress | Batch 650/1046 | Loss: 1.2844
+Epoch Progress | Batch 700/1046 | Loss: 1.2533
+Epoch Progress | Batch 750/1046 | Loss: 0.7028
+Epoch Progress | Batch 800/1046 | Loss: 1.2146
+Epoch Progress | Batch 850/1046 | Loss: 1.5316
+Epoch Progress | Batch 900/1046 | Loss: 1.1518
+Epoch Progress | Batch 950/1046 | Loss: 1.6073
+Epoch Progress | Batch 1000/1046 | Loss: 0.8147
+
+=== Epoch Summary ===
+Train Loss: 1.0762 | Train Acc: 72.58%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[36  0  0 ...  0  0  0]
+ [ 0 14  0 ...  0  0  0]
+ [ 0  0 31 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  4  0  0]
+ [ 0  0  0 ...  0 22  0]
+ [ 0  0  0 ...  0  0 28]]
+
+========== Classification Report ==========
+                                 precision    recall  f1-score   support
+
+               abbott's_babbler     0.5714    0.8000    0.6667        45
+                  aleutian_tern     0.3784    0.8235    0.5185        17
+                    amur_falcon     0.4559    0.6739    0.5439        46
+       amur_paradise_flycatcher     0.6250    0.4545    0.5263        22
+                 arctic_warbler     0.4340    0.5349    0.4792        43
+                    ashy_bulbul     0.5526    0.6562    0.6000        32
+                    ashy_drongo     0.5000    0.5250    0.5122        40
+                   ashy_minivet     0.6552    0.4222    0.5135        45
+                ashy_tailorbird     0.6562    0.4667    0.5455        45
+         asian_brown_flycatcher     0.6774    0.4773    0.5600        44
+           asian_emerald_cuckoo     0.7619    0.6400    0.6957        25
+             asian_emerald_dove     0.8800    0.7857    0.8302        28
+          asian_glossy_starling     0.6098    0.5814    0.5952        43
+             asian_house_martin     0.5217    0.3077    0.3871        39
+                     asian_koel     0.3409    0.7143    0.4615        21
+                 asian_openbill     0.9333    0.6222    0.7467        45
+               asian_palm_swift     0.4459    0.7333    0.5546        45
+          australasian_bushlark     0.6061    0.6250    0.6154        32
+                baillon's_crake     0.8043    0.8222    0.8132        45
+             band-bellied_crake     1.0000    0.4000    0.5714         5
+              banded_bay_cuckoo     0.4211    0.5333    0.4706        30
+              banded_woodpecker     0.8333    0.4545    0.5882        33
+                   barn_swallow     0.5714    0.5333    0.5517        45
+             barred_buttonquail     0.7292    0.7778    0.7527        45
+               barred_eagle_owl     0.5000    0.1250    0.2000         8
+                       bat_hawk     0.5556    0.3125    0.4000        16
+                    baya_weaver     0.5208    0.5556    0.5376        45
+               beach_thick_knee     0.8125    0.8667    0.8387        45
+                          besra     0.3256    0.6222    0.4275        45
+        black-and-red_broadbill     0.8889    0.7111    0.7901        45
+  black-backed_dwarf_kingfisher     0.8000    0.7143    0.7547        28
+          black-backed_swamphen     1.0000    0.6667    0.8000         6
+           black-bellied_plover     0.6078    0.6889    0.6458        45
+      black-browed_reed_warbler     0.7105    0.6000    0.6506        45
+        black-capped_kingfisher     0.8649    0.7111    0.7805        45
+           black-crested_bulbul     0.7959    0.8667    0.8298        45
+      black-crowned_night_heron     0.5000    0.7333    0.5946        45
+            black-headed_bulbul     0.8696    0.4444    0.5882        45
+           black-headed_bunting     0.7750    0.6889    0.7294        45
+              black-headed_gull     0.5455    0.4000    0.4615        45
+              black-headed_ibis     0.5000    0.2000    0.2857        10
+            black-naped_monarch     0.6667    0.6222    0.6437        45
+             black-naped_oriole     0.8400    0.4667    0.6000        45
+               black-naped_tern     0.4878    0.4444    0.4651        45
+            black-nest_swiftlet     0.0000    0.0000    0.0000         1
+         black-thighed_falconet     0.7347    0.9474    0.8276        38
+         black-throated_babbler     1.0000    1.0000    1.0000         3
+ black-winged_flycatcher_shrike     0.4490    0.5946    0.5116        37
+              black-winged_kite     0.5161    0.7111    0.5981        45
+          black-winged_starling     0.7778    0.4667    0.5833        15
+             black-winged_stilt     0.7727    0.7556    0.7640        45
+                     black_baza     0.5652    0.5778    0.5714        45
+                  black_bittern     0.4571    0.3810    0.4156        42
+                   black_drongo     0.3934    0.5333    0.4528        45
+                 black_hornbill     0.4267    0.8889    0.5766        36
+                     black_kite     0.4595    0.3778    0.4146        45
+      black_paradise_flycatcher     0.1667    0.0833    0.1111        12
+      blue-and-white_flycatcher     0.6667    0.4444    0.5333        45
+            blue-breasted_quail     0.6667    0.2857    0.4000         7
+    blue-crowned_hanging_parrot     0.3939    0.6190    0.4815        21
+          blue-eared_kingfisher     0.7857    0.7333    0.7586        45
+          blue-tailed_bee_eater     0.7692    0.6667    0.7143        45
+        blue-throated_bee_eater     0.8333    0.7778    0.8046        45
+              blue-winged_pitta     0.8500    0.6538    0.7391        26
+               blue_rock_thrush     0.6829    0.6222    0.6512        45
+          blue_whistling_thrush     0.8043    0.8222    0.8132        45
+    blyth's_paradise_flycatcher     0.8409    0.8222    0.8315        45
+       bold-striped_tit_babbler     1.0000    0.1250    0.2222         8
+                   booted_eagle     0.4242    0.3111    0.3590        45
+                 booted_warbler     0.5333    0.5333    0.5333        45
+                  brahminy_kite     0.3049    0.5556    0.3937        45
+                   bridled_tern     0.5849    0.6889    0.6327        45
+        brown-backed_needletail     0.3421    0.5778    0.4298        45
+      brown-breasted_flycatcher     0.5606    0.8222    0.6667        45
+brown-chested_jungle_flycatcher     1.0000    0.4000    0.5714         5
+              brown-headed_gull     0.8372    0.8000    0.8182        45
+      brown-streaked_flycatcher     0.0000    0.0000    0.0000         3
+         brown-throated_sunbird     0.2857    0.4444    0.3478        45
+                  brown_boobook     0.6852    0.8222    0.7475        45
+                    brown_booby     0.7021    0.7333    0.7174        45
+                   brown_shrike     0.4769    0.6889    0.5636        45
+                 brown_wood_owl     0.8919    0.8919    0.8919        37
+          buff-breasted_babbler     0.9412    0.6154    0.7442        26
+         buff-rumped_woodpecker     0.7143    0.6667    0.6897        15
+          buff-throated_warbler     0.0000    0.0000    0.0000         8
+             buff-vented_bulbul     0.3333    0.1429    0.2000         7
+                 buffy_fish_owl     0.8367    0.9111    0.8723        45
+                bulwer's_petrel     0.4815    0.5417    0.5098        24
+                 burmese_shrike     0.4545    0.5556    0.5000        45
+                   caspian_tern     0.6053    0.5111    0.5542        45
+          changeable_hawk_eagle     0.4000    0.4889    0.4400        45
+       chestnut-bellied_malkoha     0.6667    0.5000    0.5714         8
+      chestnut-cheeked_starling     0.6757    0.5556    0.6098        45
+        chestnut-winged_babbler     0.0000    0.0000    0.0000         6
+               chestnut_bunting     0.8333    0.2941    0.4348        17
+                 chestnut_munia     0.5660    0.6667    0.6122        45
+        chinese_blue_flycatcher     0.5556    0.2778    0.3704        18
+                  chinese_egret     0.7551    0.8222    0.7872        45
+             chinese_pond_heron     0.4286    0.2667    0.3288        45
+            chinese_sparrowhawk     0.4872    0.4222    0.4524        45
+   christmas_island_frigatebird     0.8605    0.8222    0.8409        45
+              cinereous_vulture     0.6591    0.6444    0.6517        45
+   cinnamon-headed_green-pigeon     0.8000    0.5714    0.6667        14
+               cinnamon_bittern     0.8846    0.5111    0.6479        45
+                citrine_wagtail     0.7568    0.6222    0.6829        45
+         clamorous_reed_warbler     0.6667    0.4571    0.5424        35
+               coconut_lorikeet     0.4231    0.4783    0.4490        23
+            collared_kingfisher     0.6585    0.6000    0.6279        45
+             collared_scops_owl     0.7143    0.6667    0.6897        45
+                 common_buzzard     0.5833    0.6222    0.6022        45
+               common_flameback     0.5676    0.4667    0.5122        45
+               common_hill_myna     0.6458    0.6889    0.6667        45
+                    common_iora     0.4800    0.5333    0.5053        45
+              common_kingfisher     0.7500    0.4000    0.5217        45
+                    common_myna     0.8571    0.6667    0.7500        18
+           common_ringed_plover     0.8000    0.5333    0.6400        45
+                   common_swift     0.4211    0.3556    0.3855        45
+                    common_tern     0.3966    0.5111    0.4466        45
+        copper-throated_sunbird     0.6667    0.5143    0.5806        35
+             coppersmith_barbet     0.5781    0.8222    0.6789        45
+             cotton_pygmy-goose     0.8000    0.8276    0.8136        29
+            cream-vented_bulbul     0.4138    0.5000    0.4528        24
+                crested_goshawk     0.3750    0.2667    0.3117        45
+          crested_serpent_eagle     0.5333    0.3556    0.4267        45
+      crimson-winged_woodpecker     0.7000    0.5833    0.6364        12
+                crimson_sunbird     0.6471    0.4889    0.5570        45
+             crow-billed_drongo     0.3333    0.2857    0.3077         7
+         dark-necked_tailorbird     0.7714    0.6000    0.6750        45
+              dark-sided_thrush     1.0000    0.5000    0.6667         2
+               daurian_starling     0.3472    0.7143    0.4673        35
+                     dollarbird     0.4697    0.6889    0.5586        45
+                  dusky_warbler     0.4030    0.6000    0.4821        45
+               eastern_barn_owl     0.8718    0.7556    0.8095        45
+                eastern_buzzard     0.4722    0.3778    0.4198        45
+           eastern_cattle_egret     0.7500    0.6000    0.6667        45
+         eastern_imperial_eagle     0.3281    0.4667    0.3853        45
+          eastern_marsh_harrier     0.2642    0.3111    0.2857        45
+         eastern_yellow_wagtail     0.5536    0.6889    0.6139        45
+                  eurasian_coot     0.6471    0.7333    0.6875        45
+                 eurasian_hobby     0.6800    0.3778    0.4857        45
+               eurasian_kestrel     0.5254    0.6889    0.5962        45
+               eurasian_moorhen     0.6364    0.6222    0.6292        45
+           eurasian_sparrowhawk     0.6136    0.6000    0.6067        45
+          eurasian_tree_sparrow     0.7273    0.5333    0.6154        45
+                eurasian_wigeon     0.6818    0.5357    0.6000        28
+            everett's_white_eye     0.0000    0.0000    0.0000         1
+               eyebrowed_thrush     0.7407    0.4444    0.5556        45
+                    fairy_pitta     0.9286    0.8667    0.8966        15
+            ferruginous_babbler     0.6667    0.5000    0.5714         4
+                 forest_wagtail     0.9744    0.8444    0.9048        45
+                        gadwall     0.6842    0.4333    0.5306        30
+                       garganey     0.5625    0.3600    0.4390        25
+                    glossy_ibis     0.6957    0.7111    0.7033        45
+        golden-bellied_gerygone     0.2647    0.6750    0.3803        40
+        golden-headed_cisticola     0.0000    0.0000    0.0000         3
+                  gray_nightjar     0.4444    0.8000    0.5714        15
+             great-billed_heron     0.7429    0.6047    0.6667        43
+                great_cormorant     0.5000    0.6000    0.5455        45
+             great_crested_tern     0.5122    0.4667    0.4884        45
+                    great_egret     0.6667    0.3556    0.4638        45
+         great_slaty_woodpecker     0.5000    0.4583    0.4783        24
+                 greater_coucal     0.7500    0.5000    0.6000        30
+              greater_flameback     0.5455    0.6000    0.5714        40
+          greater_painted_snipe     0.8286    0.6444    0.7250        45
+   greater_racket-tailed_drongo     0.5273    0.6444    0.5800        45
+            greater_sand_plover     0.5750    0.5111    0.5412        45
+          greater_spotted_eagle     0.3390    0.4444    0.3846        45
+              green-winged_teal     0.5882    0.3333    0.4255        30
+                green_broadbill     0.7143    0.8333    0.7692        12
+          green_imperial_pigeon     0.6429    0.6923    0.6667        26
+             grey-faced_buzzard     0.3095    0.2889    0.2989        45
+         grey-headed_fish_eagle     0.7353    0.5556    0.6329        45
+            grey-headed_lapwing     0.6154    0.5333    0.5714        45
+           grey-headed_swamphen     0.7037    0.8444    0.7677        45
+          grey-rumped_treeswift     0.7895    0.3571    0.4918        42
+       grey-streaked_flycatcher     0.6047    0.5778    0.5909        45
+                     grey_heron     0.4643    0.5778    0.5149        45
+                   grey_wagtail     0.6471    0.7333    0.6875        45
+               gull-billed_tern     0.3797    0.6667    0.4839        45
+            hair-crested_drongo     0.5758    0.4222    0.4872        45
+                    hen_harrier     0.5957    0.6222    0.6087        45
+              himalayan_buzzard     0.4286    0.1429    0.2143        21
+               himalayan_cuckoo     0.0000    0.0000    0.0000         7
+              himalayan_griffon     0.5424    0.7111    0.6154        45
+          hodgson's_hawk-cuckoo     1.0000    0.4286    0.6000         7
+      horsfield's_bronze_cuckoo     0.7500    0.5000    0.6000        30
+                     house_crow     0.4032    0.5556    0.4673        45
+                    house_swift     0.4878    0.4444    0.4651        45
+                  indian_cuckoo     0.5172    0.6000    0.5556        25
+     indian_paradise_flycatcher     0.7333    0.4889    0.5867        45
+              indian_pond_heron     0.4423    0.5111    0.4742        45
+              indigo_flycatcher     0.7083    0.5484    0.6182        31
+                  island_thrush     0.8333    0.8333    0.8333         6
+               jambu_fruit_dove     1.0000    0.3333    0.5000         6
+           japanese_sparrowhawk     0.5897    0.5111    0.5476        45
+                   java_sparrow     0.6964    0.8667    0.7723        45
+                     javan_myna     0.6190    0.5778    0.5977        45
+                   javan_plover     0.3158    0.4286    0.3636        14
+               javan_pond_heron     0.5000    0.4667    0.4828        45
+                  jerdon's_baza     0.5417    0.4062    0.4643        32
+                 kentish_plover     0.5385    0.4667    0.5000        45
+               laced_woodpecker     0.6042    0.6444    0.6237        45
+            lanceolated_warbler     0.7895    0.7500    0.7692        20
+              large-billed_crow     0.7778    0.4667    0.5833        45
+              large_hawk-cuckoo     0.5238    0.3793    0.4400        29
+                  large_niltava     0.6571    0.5111    0.5750        45
+               large_woodshrike     0.2360    0.5526    0.3307        38
+                lesser_adjutant     0.6863    0.7778    0.7292        45
+       lesser_black-backed_gull     0.5625    0.6000    0.5806        45
+                  lesser_coucal     0.7188    0.7667    0.7419        30
+            lesser_crested_tern     0.5000    0.6000    0.5455        45
+            lesser_cuckooshrike     1.0000    0.3333    0.5000         6
+             lesser_frigatebird     0.6226    0.7333    0.6735        45
+                 lesser_kestrel     0.4262    0.5778    0.4906        45
+          lesser_whistling-duck     0.5333    0.6000    0.5647        40
+                lineated_barbet     0.5714    0.7111    0.6337        45
+           little_bronze_cuckoo     0.5429    0.6333    0.5846        30
+                   little_egret     0.4426    0.6000    0.5094        45
+                   little_grebe     0.6190    0.8387    0.7123        31
+            little_green-pigeon     1.0000    0.4545    0.6250        11
+         little_pied_flycatcher     0.5741    0.6889    0.6263        45
+           little_ringed_plover     0.6667    0.7556    0.7083        45
+            little_spiderhunter     0.4194    0.5778    0.4860        45
+                    little_tern     0.4516    0.3111    0.3684        45
+       long-billed_spiderhunter     0.0000    0.0000    0.0000         5
+                 long-eared_owl     0.8718    0.7556    0.8095        45
+            long-legged_buzzard     0.3860    0.4889    0.4314        45
+             long-tailed_jaeger     0.3818    0.4667    0.4200        45
+           long-tailed_parakeet     0.8824    0.4545    0.6000        33
+             long-tailed_shrike     0.6154    0.5333    0.5714        45
+            malayan_night_heron     0.7674    0.7333    0.7500        45
+       malaysian_eared_nightjar     0.0000    0.0000    0.0000         1
+          malaysian_hawk-cuckoo     1.0000    0.3333    0.5000         3
+         malaysian_pied_fantail     0.7250    0.6444    0.6824        45
+               malaysian_plover     0.8378    0.7949    0.8158        39
+       mangrove_blue_flycatcher     0.4375    0.5833    0.5000        12
+                 mangrove_pitta     1.0000    0.6500    0.7879        20
+              mangrove_whistler     0.5385    0.4118    0.4667        17
+                 masked_lapwing     0.7317    0.6667    0.6977        45
+                   medium_egret     0.5682    0.5556    0.5618        45
+                    milky_stork     0.8333    0.6250    0.7143        24
+       mountain_imperial_pigeon     0.4464    0.6250    0.5208        40
+             moustached_babbler     1.0000    0.2222    0.3636         9
+            mugimaki_flycatcher     0.6000    0.4186    0.4932        43
+           narcissus_flycatcher     0.6341    0.5778    0.6047        45
+               northern_boobook     0.8571    0.3750    0.5217        16
+               northern_pintail     0.6176    0.7000    0.6562        30
+              northern_shoveler     0.4400    0.3667    0.4000        30
+             olive-backed_pipit     0.6809    0.7111    0.6957        45
+           olive-backed_sunbird     0.3165    0.5556    0.4032        45
+            olive-winged_bulbul     0.6786    0.4222    0.5205        45
+    orange-bellied_flowerpecker     0.7895    0.6667    0.7229        45
+   orange-breasted_green-pigeon     0.6829    0.8485    0.7568        33
+      orange-flanked_bush_robin     0.5333    0.7111    0.6095        45
+           orange-headed_thrush     0.9750    0.8667    0.9176        45
+                oriental_darter     0.6579    0.5556    0.6024        45
+         oriental_honey_buzzard     0.1852    0.3333    0.2381        45
+          oriental_magpie_robin     0.6000    0.5333    0.5647        45
+         oriental_pied_hornbill     0.8571    0.6667    0.7500        45
+                oriental_plover     0.7778    0.5833    0.6667        12
+            oriental_pratincole     0.5208    0.5556    0.5376        45
+          oriental_reed_warbler     0.4133    0.6889    0.5167        45
+             oriental_scops_owl     0.9000    0.7826    0.8372        23
+           oriental_turtle-dove     0.8108    0.7895    0.8000        38
+                         osprey     0.6000    0.6000    0.6000        45
+          pacific_golden_plover     0.6591    0.6444    0.6517        45
+             pacific_reef_heron     0.7778    0.6222    0.6914        45
+                pacific_swallow     0.7059    0.5333    0.6076        45
+                  pacific_swift     0.2941    0.2222    0.2532        45
+               paddyfield_pipit     0.5957    0.6222    0.6087        45
+                  painted_stork     0.6744    0.6444    0.6591        45
+       pale-legged_leaf_warbler     0.4286    0.1765    0.2500        17
+   pallas's_grasshopper_warbler     0.7843    0.8889    0.8333        45
+               parasitic_jaeger     0.4697    0.6889    0.5586        45
+               peregrine_falcon     0.4444    0.4444    0.4444        45
+         pheasant-tailed_jacana     0.5873    0.8222    0.6852        45
+                  pied_bushchat     0.6667    0.4000    0.5000        45
+                    pied_cuckoo     0.6400    0.5333    0.5818        30
+                   pied_harrier     0.3714    0.5778    0.4522        45
+           pied_imperial_pigeon     0.8056    0.6304    0.7073        46
+                     pied_stilt     0.7021    0.7333    0.7174        45
+                   pied_triller     0.4833    0.6444    0.5524        45
+        pin-striped_tit_babbler     0.6667    0.6667    0.6667        12
+         pin-tailed_parrotfinch     0.6786    0.6333    0.6552        30
+       pink-necked_green-pigeon     0.7632    0.6170    0.6824        47
+             plain_flowerpecker     0.3500    0.3889    0.3684        18
+               plaintive_cuckoo     0.7059    0.4000    0.5106        30
+            plume-toed_swiftlet     0.8333    0.5556    0.6667        36
+                pomarine_jaeger     0.3966    0.5111    0.4466        45
+             puff-backed_bulbul     1.0000    0.3333    0.5000         3
+         purple-backed_starling     0.0000    0.0000    0.0000        35
+           purple-naped_sunbird     0.6667    0.1333    0.2222        15
+                   purple_heron     0.7292    0.7778    0.7527        45
+                 purple_sunbird     0.5455    0.5333    0.5393        45
+                radde's_warbler     0.5179    0.7436    0.6105        39
+          red-billed_tropicbird     0.6200    0.6889    0.6526        45
+          red-breasted_parakeet     0.7273    0.5333    0.6154        45
+             red-crowned_barbet     0.7857    0.6471    0.7097        17
+                red-eyed_bulbul     0.8810    0.8222    0.8506        45
+               red-footed_booby     0.6667    0.4000    0.5000        45
+               red-legged_crake     0.8125    0.7647    0.7879        17
+             red-rumped_swallow     0.3871    0.5333    0.4486        45
+             red-throated_pipit     0.6316    0.8000    0.7059        45
+            red-wattled_lapwing     0.6154    0.7111    0.6598        45
+                   red_avadavat     0.8421    0.7111    0.7711        45
+                 red_junglefowl     0.6562    0.7500    0.7000        28
+            rhinoceros_hornbill     1.0000    0.6667    0.8000        45
+                richard's_pipit     0.6296    0.7556    0.6869        45
+                    rock_pigeon     0.9444    0.6071    0.7391        28
+           rose-ringed_parakeet     0.7045    0.6889    0.6966        45
+                   roseate_tern     0.7619    0.3556    0.4848        45
+                  rosy_starling     0.5385    0.4667    0.5000        45
+           ruby-cheeked_sunbird     0.5273    0.6444    0.5800        45
+           ruddy-breasted_crake     0.8571    0.8000    0.8276        45
+               ruddy_kingfisher     0.9375    0.7143    0.8108        21
+ rufous-backed_dwarf_kingfisher     0.7551    0.8222    0.7872        45
+           rufous-bellied_eagle     0.4667    0.4667    0.4667        45
+      rufous-chested_flycatcher     0.8000    0.5714    0.6667         7
+         rufous-crowned_babbler     0.4118    0.5833    0.4828        12
+       rufous-tailed_tailorbird     0.3750    0.2308    0.2857        13
+              rufous_woodpecker     0.5763    0.7556    0.6538        45
+                 rustic_bunting     0.7222    0.5778    0.6420        45
+          sakhalin_leaf_warbler     0.4000    0.3333    0.3636         6
+               savanna_nightjar     0.8571    0.4000    0.5455        30
+          scaly-breasted_bulbul     0.5000    0.4444    0.4706         9
+           scaly-breasted_munia     0.5610    0.5111    0.5349        45
+                   scaly_thrush     0.8333    0.6250    0.7143         8
+    scarlet-backed_flowerpecker     0.7353    0.5556    0.6329        45
+                scarlet_minivet     0.4933    0.8222    0.6167        45
+             schrenck's_bittern     0.6250    0.4167    0.5000        12
+                         shikra     0.5238    0.4889    0.5057        45
+                short-eared_owl     0.8286    0.6444    0.7250        45
+           short-tailed_babbler     0.8750    0.8750    0.8750         8
+        short-tailed_shearwater     0.6471    0.7333    0.6875        45
+         short-toed_snake_eagle     0.5385    0.3111    0.3944        45
+            siberian_blue_robin     0.8696    0.8889    0.8791        45
+                siberian_thrush     0.7143    0.5556    0.6250         9
+       silver-backed_needletail     0.0000    0.0000    0.0000         4
+       silver-rumped_needletail     0.2000    0.2000    0.2000         5
+            slaty-breasted_rail     1.0000    0.7222    0.8387        36
+             slaty-legged_crake     0.6538    0.8947    0.7556        19
+            slender-billed_crow     0.2000    0.1250    0.1538         8
+               small_pratincole     0.6809    0.7111    0.6957        45
+           sooty-capped_babbler     0.4000    0.2857    0.3333         7
+              spectacled_bulbul     0.3333    0.1250    0.1818        16
+        spectacled_spiderhunter     0.0000    0.0000    0.0000         7
+                   spotted_dove     0.6400    0.6400    0.6400        25
+             spotted_flycatcher     0.4038    0.4667    0.4330        45
+               spotted_wood_owl     0.8750    0.9130    0.8936        23
+    square-tailed_drongo-cuckoo     0.5556    0.5000    0.5263        30
+                   steppe_eagle     0.5610    0.5111    0.5349        45
+        stork-billed_kingfisher     0.6552    0.8444    0.7379        45
+            straw-headed_bulbul     0.8667    0.5200    0.6500        25
+                streaked_weaver     0.6154    0.6486    0.6316        37
+             striated_grassbird     0.5577    0.7250    0.6304        40
+                 striated_heron     0.8000    0.8000    0.8000        45
+               striated_swallow     0.2857    0.1818    0.2222        11
+         stripe-throated_bulbul     0.7778    0.6222    0.6914        45
+       sulphur-crested_cockatoo     0.6500    0.5778    0.6118        45
+                     sultan_tit     0.9118    0.6889    0.7848        45
+             sunda_brush_cuckoo     0.7143    0.7143    0.7143         7
+         sunda_pygmy_woodpecker     0.6829    0.8485    0.7568        33
+         swinhoe's_storm_petrel     1.0000    0.5000    0.6667         6
+            swinhoe's_white_eye     0.6176    0.4667    0.5316        45
+               taiga_flycatcher     0.7667    0.5111    0.6133        45
+               tanimbar_corella     0.8261    0.7600    0.7917        25
+      thick-billed_flowerpecker     0.3462    0.5000    0.4091        36
+      thick-billed_green-pigeon     0.6000    0.4167    0.4918        36
+            tibetan_sand_plover     0.7955    0.7778    0.7865        45
+                   tiger_shrike     0.6207    0.6923    0.6545        26
+                     tree_pipit     0.6190    0.5778    0.5977        45
+               tricolored_munia     0.7826    0.8000    0.7912        45
+                    tufted_duck     0.4906    0.7429    0.5909        35
+             two-barred_warbler     0.5500    0.3929    0.4583        28
+            verditer_flycatcher     0.5806    0.8000    0.6729        45
+       vinous-breasted_starling     0.4211    0.5714    0.4848        28
+                  violet_cuckoo     0.3333    0.0667    0.1111        30
+       wandering_whistling-duck     0.6000    0.5455    0.5714        33
+                      watercock     0.7805    0.7111    0.7442        45
+        wedge-tailed_shearwater     0.8235    0.6222    0.7089        45
+           western_hooded_pitta     0.6222    0.9655    0.7568        29
+                 whiskered_tern     0.4259    0.5111    0.4646        45
+            whiskered_treeswift     0.8421    0.8421    0.8421        38
+         white-bellied_erpornis     0.7250    0.6444    0.6824        45
+            white-bellied_munia     0.5000    0.6000    0.5455         5
+        white-bellied_sea_eagle     0.5758    0.4222    0.4872        45
+       white-bellied_woodpecker     0.6667    0.6400    0.6531        25
+        white-breasted_waterhen     0.8571    0.5333    0.6575        45
+             white-browed_crake     0.6829    0.7778    0.7273        36
+          white-chested_babbler     0.7000    0.4118    0.5185        17
+             white-faced_plover     0.5238    0.5500    0.5366        20
+           white-faced_starling     0.8000    0.8000    0.8000         5
+             white-headed_munia     0.7381    0.6889    0.7126        45
+             white-rumped_shama     0.7955    0.7778    0.7865        45
+      white-shouldered_starling     0.3846    0.5128    0.4396        39
+             white-tailed_robin     0.8125    0.5778    0.6753        45
+        white-tailed_tropicbird     0.6744    0.6444    0.6591        45
+      white-throated_kingfisher     0.6981    0.8222    0.7551        45
+      white-throated_needletail     0.3030    0.2857    0.2941        35
+     white-throated_rock_thrush     0.8667    0.7647    0.8125        17
+              white-winged_tern     0.5600    0.6222    0.5895        45
+                  white_wagtail     0.8438    0.6000    0.7013        45
+                 willow_warbler     0.5200    0.5778    0.5474        45
+    yellow-bellied_flowerpecker     1.0000    0.3333    0.5000         3
+          yellow-bellied_prinia     0.5312    0.7556    0.6239        45
+        yellow-breasted_bunting     0.4694    0.5111    0.4894        45
+          yellow-browed_warbler     0.4510    0.5111    0.4792        45
+        yellow-crested_cockatoo     0.4000    0.5333    0.4571        30
+      yellow-eared_spiderhunter     0.8000    0.4706    0.5926        17
+          yellow-fronted_canary     0.6275    0.7111    0.6667        45
+           yellow-vented_bulbul     0.5833    0.4667    0.5185        45
+     yellow-vented_flowerpecker     0.7273    0.7742    0.7500        31
+                 yellow_bittern     1.0000    0.6667    0.8000         6
+                     zebra_dove     0.8462    0.8148    0.8302        27
+              zitting_cisticola     0.6829    0.6222    0.6512        45
+
+                       accuracy                         0.5962     14491
+                      macro avg     0.6182    0.5655    0.5735     14491
+                   weighted avg     0.6218    0.5962    0.5958     14491
+
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 59.62%
+
+Epoch Summary
+Train Loss: 1.0762 | Train Acc: 72.58%
+Val   Loss: 1.6994 | Val   Acc: 59.62%
+Best  Val Acc so far: 59.62%
+----------------------------------------
+
+========== Epoch 9/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 1.0642
+Epoch Progress | Batch 100/1046 | Loss: 0.9320
+Epoch Progress | Batch 150/1046 | Loss: 0.9261
+Epoch Progress | Batch 200/1046 | Loss: 0.6222
+Epoch Progress | Batch 250/1046 | Loss: 0.6532
+Epoch Progress | Batch 300/1046 | Loss: 0.5855
+Epoch Progress | Batch 350/1046 | Loss: 0.7622
+Epoch Progress | Batch 400/1046 | Loss: 1.1946
+Epoch Progress | Batch 450/1046 | Loss: 0.9425
+Epoch Progress | Batch 500/1046 | Loss: 0.9682
+Epoch Progress | Batch 550/1046 | Loss: 1.5609
+Epoch Progress | Batch 600/1046 | Loss: 1.4465
+Epoch Progress | Batch 650/1046 | Loss: 0.9172
+Epoch Progress | Batch 700/1046 | Loss: 1.0827
+Epoch Progress | Batch 750/1046 | Loss: 0.7511
+Epoch Progress | Batch 800/1046 | Loss: 1.0654
+Epoch Progress | Batch 850/1046 | Loss: 1.0420
+Epoch Progress | Batch 900/1046 | Loss: 0.9552
+Epoch Progress | Batch 950/1046 | Loss: 0.9190
+Epoch Progress | Batch 1000/1046 | Loss: 0.4033
+
+=== Epoch Summary ===
+Train Loss: 0.9447 | Train Acc: 75.75%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[33  0  0 ...  0  0  0]
+ [ 0 11  0 ...  0  0  0]
+ [ 0  0 30 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  3  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 34]]
+
+========== Classification Report ==========
+📉 Current Learning Rate: 0.000100
+⚠️ No improvement for 1 epoch(s)
+
+Epoch Summary
+Train Loss: 0.9447 | Train Acc: 75.75%
+Val   Loss: 1.7556 | Val   Acc: 59.60%
+Best  Val Acc so far: 59.62%
+----------------------------------------
+
+========== Epoch 10/10 ==========
+Epoch Progress | Batch 50/1046 | Loss: 0.5908
+Epoch Progress | Batch 100/1046 | Loss: 0.9529
+Epoch Progress | Batch 150/1046 | Loss: 0.8141
+Epoch Progress | Batch 200/1046 | Loss: 0.9272
+Epoch Progress | Batch 250/1046 | Loss: 1.2031
+Epoch Progress | Batch 300/1046 | Loss: 0.6125
+Epoch Progress | Batch 350/1046 | Loss: 0.6469
+Epoch Progress | Batch 400/1046 | Loss: 0.5979
+Epoch Progress | Batch 450/1046 | Loss: 0.5587
+Epoch Progress | Batch 500/1046 | Loss: 0.6594
+Epoch Progress | Batch 550/1046 | Loss: 0.9516
+Epoch Progress | Batch 600/1046 | Loss: 0.8922
+Epoch Progress | Batch 650/1046 | Loss: 0.9069
+Epoch Progress | Batch 700/1046 | Loss: 0.8117
+Epoch Progress | Batch 750/1046 | Loss: 1.0154
+Epoch Progress | Batch 800/1046 | Loss: 0.4217
+Epoch Progress | Batch 850/1046 | Loss: 0.5141
+Epoch Progress | Batch 900/1046 | Loss: 0.8095
+Epoch Progress | Batch 950/1046 | Loss: 0.8698
+Epoch Progress | Batch 1000/1046 | Loss: 0.7759
+
+=== Epoch Summary ===
+Train Loss: 0.8547 | Train Acc: 77.95%
+----------------------------------------
+
+========== Confusion Matrix ==========
+[[38  0  0 ...  0  0  0]
+ [ 0 11  0 ...  0  0  0]
+ [ 0  0 24 ...  0  0  0]
+ ...
+ [ 0  0  0 ...  5  0  0]
+ [ 0  0  0 ...  0 23  0]
+ [ 0  0  0 ...  0  0 26]]
+
+========== Classification Report ==========
+                                 precision    recall  f1-score   support
+
+               abbott's_babbler     0.5278    0.8444    0.6496        45
+                  aleutian_tern     0.6875    0.6471    0.6667        17
+                    amur_falcon     0.5106    0.5217    0.5161        46
+       amur_paradise_flycatcher     0.5789    0.5000    0.5366        22
+                 arctic_warbler     0.5312    0.3953    0.4533        43
+                    ashy_bulbul     0.7600    0.5938    0.6667        32
+                    ashy_drongo     0.4314    0.5500    0.4835        40
+                   ashy_minivet     0.5833    0.4667    0.5185        45
+                ashy_tailorbird     0.7600    0.4222    0.5429        45
+         asian_brown_flycatcher     0.4468    0.4773    0.4615        44
+           asian_emerald_cuckoo     0.8947    0.6800    0.7727        25
+             asian_emerald_dove     0.7931    0.8214    0.8070        28
+          asian_glossy_starling     0.6765    0.5349    0.5974        43
+             asian_house_martin     0.3333    0.3846    0.3571        39
+                     asian_koel     0.6316    0.5714    0.6000        21
+                 asian_openbill     0.6000    0.7333    0.6600        45
+               asian_palm_swift     0.5273    0.6444    0.5800        45
+          australasian_bushlark     0.6538    0.5312    0.5862        32
+                baillon's_crake     0.6909    0.8444    0.7600        45
+             band-bellied_crake     0.5000    0.6000    0.5455         5
+              banded_bay_cuckoo     0.3125    0.1667    0.2174        30
+              banded_woodpecker     0.6552    0.5758    0.6129        33
+                   barn_swallow     0.4314    0.4889    0.4583        45
+             barred_buttonquail     0.7021    0.7333    0.7174        45
+               barred_eagle_owl     0.3333    0.1250    0.1818         8
+                       bat_hawk     0.7500    0.3750    0.5000        16
+                    baya_weaver     0.5778    0.5778    0.5778        45
+               beach_thick_knee     0.8837    0.8444    0.8636        45
+                          besra     0.4902    0.5556    0.5208        45
+        black-and-red_broadbill     0.9000    0.8000    0.8471        45
+  black-backed_dwarf_kingfisher     0.5400    0.9643    0.6923        28
+          black-backed_swamphen     1.0000    0.6667    0.8000         6
+           black-bellied_plover     0.7895    0.6667    0.7229        45
+      black-browed_reed_warbler     0.4429    0.6889    0.5391        45
+        black-capped_kingfisher     0.7045    0.6889    0.6966        45
+           black-crested_bulbul     0.8378    0.6889    0.7561        45
+      black-crowned_night_heron     0.7209    0.6889    0.7045        45
+            black-headed_bulbul     0.7143    0.6667    0.6897        45
+           black-headed_bunting     0.8333    0.6667    0.7407        45
+              black-headed_gull     0.4318    0.4222    0.4270        45
+              black-headed_ibis     1.0000    0.3000    0.4615        10
+            black-naped_monarch     0.7500    0.6000    0.6667        45
+             black-naped_oriole     0.8261    0.4222    0.5588        45
+               black-naped_tern     0.5789    0.4889    0.5301        45
+            black-nest_swiftlet     0.0000    0.0000    0.0000         1
+         black-thighed_falconet     0.6604    0.9211    0.7692        38
+         black-throated_babbler     1.0000    0.6667    0.8000         3
+ black-winged_flycatcher_shrike     0.3889    0.7568    0.5138        37
+              black-winged_kite     0.7714    0.6000    0.6750        45
+          black-winged_starling     1.0000    0.4667    0.6364        15
+             black-winged_stilt     0.7059    0.8000    0.7500        45
+                     black_baza     0.4348    0.6667    0.5263        45
+                  black_bittern     0.3607    0.5238    0.4272        42
+                   black_drongo     0.4400    0.4889    0.4632        45
+                 black_hornbill     0.6047    0.7222    0.6582        36
+                     black_kite     0.4286    0.4000    0.4138        45
+      black_paradise_flycatcher     0.2500    0.0833    0.1250        12
+      blue-and-white_flycatcher     0.7778    0.4667    0.5833        45
+            blue-breasted_quail     0.7500    0.4286    0.5455         7
+    blue-crowned_hanging_parrot     0.8333    0.4762    0.6061        21
+          blue-eared_kingfisher     0.7045    0.6889    0.6966        45
+          blue-tailed_bee_eater     0.6875    0.7333    0.7097        45
+        blue-throated_bee_eater     0.8649    0.7111    0.7805        45
+              blue-winged_pitta     0.8000    0.6154    0.6957        26
+               blue_rock_thrush     0.6735    0.7333    0.7021        45
+          blue_whistling_thrush     0.7778    0.7778    0.7778        45
+    blyth's_paradise_flycatcher     0.7647    0.8667    0.8125        45
+       bold-striped_tit_babbler     0.3333    0.1250    0.1818         8
+                   booted_eagle     0.3902    0.3556    0.3721        45
+                 booted_warbler     0.5676    0.4667    0.5122        45
+                  brahminy_kite     0.6000    0.4667    0.5250        45
+                   bridled_tern     0.8485    0.6222    0.7179        45
+        brown-backed_needletail     0.4386    0.5556    0.4902        45
+      brown-breasted_flycatcher     0.6102    0.8000    0.6923        45
+brown-chested_jungle_flycatcher     0.6667    0.4000    0.5000         5
+              brown-headed_gull     0.7059    0.8000    0.7500        45
+      brown-streaked_flycatcher     0.0000    0.0000    0.0000         3
+         brown-throated_sunbird     0.3288    0.5333    0.4068        45
+                  brown_boobook     0.5588    0.8444    0.6726        45
+                    brown_booby     0.6364    0.6222    0.6292        45
+                   brown_shrike     0.6316    0.5333    0.5783        45
+                 brown_wood_owl     0.9706    0.8919    0.9296        37
+          buff-breasted_babbler     0.7826    0.6923    0.7347        26
+         buff-rumped_woodpecker     0.6667    0.6667    0.6667        15
+          buff-throated_warbler     0.6667    0.2500    0.3636         8
+             buff-vented_bulbul     0.1250    0.1429    0.1333         7
+                 buffy_fish_owl     0.8039    0.9111    0.8542        45
+                bulwer's_petrel     0.5312    0.7083    0.6071        24
+                 burmese_shrike     0.5625    0.6000    0.5806        45
+                   caspian_tern     0.5273    0.6444    0.5800        45
+          changeable_hawk_eagle     0.4773    0.4667    0.4719        45
+       chestnut-bellied_malkoha     0.6667    0.5000    0.5714         8
+      chestnut-cheeked_starling     0.7353    0.5556    0.6329        45
+        chestnut-winged_babbler     0.0000    0.0000    0.0000         6
+               chestnut_bunting     0.8750    0.4118    0.5600        17
+                 chestnut_munia     0.7297    0.6000    0.6585        45
+        chinese_blue_flycatcher     0.6667    0.5556    0.6061        18
+                  chinese_egret     0.8293    0.7556    0.7907        45
+             chinese_pond_heron     0.4848    0.3556    0.4103        45
+            chinese_sparrowhawk     0.3542    0.3778    0.3656        45
+   christmas_island_frigatebird     0.8333    0.7778    0.8046        45
+              cinereous_vulture     0.6750    0.6000    0.6353        45
+   cinnamon-headed_green-pigeon     0.5833    0.5000    0.5385        14
+               cinnamon_bittern     0.5952    0.5556    0.5747        45
+                citrine_wagtail     0.7000    0.7778    0.7368        45
+         clamorous_reed_warbler     0.4407    0.7429    0.5532        35
+               coconut_lorikeet     0.5455    0.2609    0.3529        23
+            collared_kingfisher     0.8125    0.5778    0.6753        45
+             collared_scops_owl     0.8276    0.5333    0.6486        45
+                 common_buzzard     0.5303    0.7778    0.6306        45
+               common_flameback     0.4412    0.6667    0.5310        45
+               common_hill_myna     0.7059    0.5333    0.6076        45
+                    common_iora     0.5122    0.4667    0.4884        45
+              common_kingfisher     0.7037    0.4222    0.5278        45
+                    common_myna     0.5862    0.9444    0.7234        18
+           common_ringed_plover     0.6591    0.6444    0.6517        45
+                   common_swift     0.4667    0.1556    0.2333        45
+                    common_tern     0.4634    0.4222    0.4419        45
+        copper-throated_sunbird     0.5500    0.6286    0.5867        35
+             coppersmith_barbet     0.6863    0.7778    0.7292        45
+             cotton_pygmy-goose     0.7500    0.7241    0.7368        29
+            cream-vented_bulbul     0.2895    0.4583    0.3548        24
+                crested_goshawk     0.2955    0.2889    0.2921        45
+          crested_serpent_eagle     0.8235    0.3111    0.4516        45
+      crimson-winged_woodpecker     0.4444    0.6667    0.5333        12
+                crimson_sunbird     0.8519    0.5111    0.6389        45
+             crow-billed_drongo     1.0000    0.1429    0.2500         7
+         dark-necked_tailorbird     0.6078    0.6889    0.6458        45
+              dark-sided_thrush     0.5000    0.5000    0.5000         2
+               daurian_starling     0.0000    0.0000    0.0000        35
+                     dollarbird     0.5333    0.7111    0.6095        45
+                  dusky_warbler     0.3816    0.6444    0.4793        45
+               eastern_barn_owl     0.6721    0.9111    0.7736        45
+                eastern_buzzard     0.5000    0.5111    0.5055        45
+           eastern_cattle_egret     0.7353    0.5556    0.6329        45
+         eastern_imperial_eagle     0.3134    0.4667    0.3750        45
+          eastern_marsh_harrier     0.5385    0.3111    0.3944        45
+         eastern_yellow_wagtail     0.7381    0.6889    0.7126        45
+                  eurasian_coot     0.9688    0.6889    0.8052        45
+                 eurasian_hobby     0.4375    0.6222    0.5138        45
+               eurasian_kestrel     0.4366    0.6889    0.5345        45
+               eurasian_moorhen     0.7857    0.4889    0.6027        45
+           eurasian_sparrowhawk     0.5227    0.5111    0.5169        45
+          eurasian_tree_sparrow     0.5333    0.5333    0.5333        45
+                eurasian_wigeon     0.5517    0.5714    0.5614        28
+            everett's_white_eye     0.0000    0.0000    0.0000         1
+               eyebrowed_thrush     0.6250    0.4444    0.5195        45
+                    fairy_pitta     1.0000    0.7333    0.8462        15
+            ferruginous_babbler     0.6000    0.7500    0.6667         4
+                 forest_wagtail     0.8696    0.8889    0.8791        45
+                        gadwall     0.4857    0.5667    0.5231        30
+                       garganey     0.3636    0.4800    0.4138        25
+                    glossy_ibis     0.7368    0.6222    0.6747        45
+        golden-bellied_gerygone     0.2697    0.6000    0.3721        40
+        golden-headed_cisticola     0.5000    0.3333    0.4000         3
+                  gray_nightjar     1.0000    0.5333    0.6957        15
+             great-billed_heron     0.9032    0.6512    0.7568        43
+                great_cormorant     0.6667    0.5333    0.5926        45
+             great_crested_tern     0.4419    0.4222    0.4318        45
+                    great_egret     0.4839    0.3333    0.3947        45
+         great_slaty_woodpecker     0.6111    0.4583    0.5238        24
+                 greater_coucal     0.7037    0.6333    0.6667        30
+              greater_flameback     0.7273    0.4000    0.5161        40
+          greater_painted_snipe     0.6809    0.7111    0.6957        45
+   greater_racket-tailed_drongo     0.7222    0.5778    0.6420        45
+            greater_sand_plover     0.4342    0.7333    0.5455        45
+          greater_spotted_eagle     0.4615    0.2667    0.3380        45
+              green-winged_teal     0.3684    0.2333    0.2857        30
+                green_broadbill     0.8333    0.8333    0.8333        12
+          green_imperial_pigeon     0.6364    0.5385    0.5833        26
+             grey-faced_buzzard     0.2982    0.3778    0.3333        45
+         grey-headed_fish_eagle     0.8000    0.5333    0.6400        45
+            grey-headed_lapwing     0.6923    0.6000    0.6429        45
+           grey-headed_swamphen     0.8462    0.7333    0.7857        45
+          grey-rumped_treeswift     0.5152    0.4048    0.4533        42
+       grey-streaked_flycatcher     0.9167    0.4889    0.6377        45
+                     grey_heron     0.5000    0.6222    0.5545        45
+                   grey_wagtail     0.7021    0.7333    0.7174        45
+               gull-billed_tern     0.3654    0.8444    0.5101        45
+            hair-crested_drongo     0.5319    0.5556    0.5435        45
+                    hen_harrier     0.4648    0.7333    0.5690        45
+              himalayan_buzzard     0.4167    0.2381    0.3030        21
+               himalayan_cuckoo     0.5000    0.2857    0.3636         7
+              himalayan_griffon     0.6087    0.6222    0.6154        45
+          hodgson's_hawk-cuckoo     1.0000    0.4286    0.6000         7
+      horsfield's_bronze_cuckoo     0.9375    0.5000    0.6522        30
+                     house_crow     0.4808    0.5556    0.5155        45
+                    house_swift     0.3043    0.4667    0.3684        45
+                  indian_cuckoo     0.5385    0.5600    0.5490        25
+     indian_paradise_flycatcher     0.7250    0.6444    0.6824        45
+              indian_pond_heron     0.5750    0.5111    0.5412        45
+              indigo_flycatcher     0.7500    0.7742    0.7619        31
+                  island_thrush     1.0000    1.0000    1.0000         6
+               jambu_fruit_dove     0.0000    0.0000    0.0000         6
+           japanese_sparrowhawk     0.5283    0.6222    0.5714        45
+                   java_sparrow     0.8222    0.8222    0.8222        45
+                     javan_myna     0.8077    0.4667    0.5915        45
+                   javan_plover     0.7143    0.3571    0.4762        14
+               javan_pond_heron     0.5882    0.4444    0.5063        45
+                  jerdon's_baza     0.3800    0.5938    0.4634        32
+                 kentish_plover     0.4697    0.6889    0.5586        45
+               laced_woodpecker     0.4839    0.6667    0.5607        45
+            lanceolated_warbler     0.8421    0.8000    0.8205        20
+              large-billed_crow     0.6667    0.6222    0.6437        45
+              large_hawk-cuckoo     0.7059    0.4138    0.5217        29
+                  large_niltava     0.5918    0.6444    0.6170        45
+               large_woodshrike     0.4048    0.4474    0.4250        38
+                lesser_adjutant     0.8462    0.7333    0.7857        45
+       lesser_black-backed_gull     0.7241    0.4667    0.5676        45
+                  lesser_coucal     0.6875    0.7333    0.7097        30
+            lesser_crested_tern     0.6216    0.5111    0.5610        45
+            lesser_cuckooshrike     0.5000    0.1667    0.2500         6
+             lesser_frigatebird     0.6429    0.6000    0.6207        45
+                 lesser_kestrel     0.5349    0.5111    0.5227        45
+          lesser_whistling-duck     0.6500    0.6500    0.6500        40
+                lineated_barbet     0.5400    0.6000    0.5684        45
+           little_bronze_cuckoo     0.6800    0.5667    0.6182        30
+                   little_egret     0.4259    0.5111    0.4646        45
+                   little_grebe     0.7407    0.6452    0.6897        31
+            little_green-pigeon     1.0000    0.6364    0.7778        11
+         little_pied_flycatcher     0.8000    0.5333    0.6400        45
+           little_ringed_plover     0.8919    0.7333    0.8049        45
+            little_spiderhunter     0.4138    0.5333    0.4660        45
+                    little_tern     0.3889    0.3111    0.3457        45
+       long-billed_spiderhunter     0.0000    0.0000    0.0000         5
+                 long-eared_owl     0.7200    0.8000    0.7579        45
+            long-legged_buzzard     0.4894    0.5111    0.5000        45
+             long-tailed_jaeger     0.3571    0.5556    0.4348        45
+           long-tailed_parakeet     0.5476    0.6970    0.6133        33
+             long-tailed_shrike     0.6111    0.4889    0.5432        45
+            malayan_night_heron     0.8810    0.8222    0.8506        45
+       malaysian_eared_nightjar     0.0000    0.0000    0.0000         1
+          malaysian_hawk-cuckoo     1.0000    0.3333    0.5000         3
+         malaysian_pied_fantail     0.7576    0.5556    0.6410        45
+               malaysian_plover     0.9375    0.7692    0.8451        39
+       mangrove_blue_flycatcher     1.0000    0.3333    0.5000        12
+                 mangrove_pitta     0.7619    0.8000    0.7805        20
+              mangrove_whistler     0.2917    0.4118    0.3415        17
+                 masked_lapwing     0.4800    0.8000    0.6000        45
+                   medium_egret     0.4776    0.7111    0.5714        45
+                    milky_stork     0.7143    0.6250    0.6667        24
+       mountain_imperial_pigeon     0.6857    0.6000    0.6400        40
+             moustached_babbler     0.3000    0.3333    0.3158         9
+            mugimaki_flycatcher     0.7143    0.5814    0.6410        43
+           narcissus_flycatcher     0.5870    0.6000    0.5934        45
+               northern_boobook     1.0000    0.5000    0.6667        16
+               northern_pintail     0.3898    0.7667    0.5169        30
+              northern_shoveler     0.4054    0.5000    0.4478        30
+             olive-backed_pipit     0.6458    0.6889    0.6667        45
+           olive-backed_sunbird     0.3108    0.5111    0.3866        45
+            olive-winged_bulbul     0.4444    0.6222    0.5185        45
+    orange-bellied_flowerpecker     0.5357    0.6667    0.5941        45
+   orange-breasted_green-pigeon     0.8750    0.6364    0.7368        33
+      orange-flanked_bush_robin     0.5510    0.6000    0.5745        45
+           orange-headed_thrush     0.9091    0.8889    0.8989        45
+                oriental_darter     0.6591    0.6444    0.6517        45
+         oriental_honey_buzzard     0.3824    0.2889    0.3291        45
+          oriental_magpie_robin     0.7222    0.5778    0.6420        45
+         oriental_pied_hornbill     0.5484    0.7556    0.6355        45
+                oriental_plover     0.8182    0.7500    0.7826        12
+            oriental_pratincole     0.7826    0.4000    0.5294        45
+          oriental_reed_warbler     0.4906    0.5778    0.5306        45
+             oriental_scops_owl     0.9091    0.8696    0.8889        23
+           oriental_turtle-dove     0.8710    0.7105    0.7826        38
+                         osprey     0.5250    0.4667    0.4941        45
+          pacific_golden_plover     0.5926    0.7111    0.6465        45
+             pacific_reef_heron     0.5323    0.7333    0.6168        45
+                pacific_swallow     0.6316    0.5333    0.5783        45
+                  pacific_swift     0.2644    0.5111    0.3485        45
+               paddyfield_pipit     0.5238    0.4889    0.5057        45
+                  painted_stork     0.5510    0.6000    0.5745        45
+       pale-legged_leaf_warbler     0.2857    0.1176    0.1667        17
+   pallas's_grasshopper_warbler     0.8974    0.7778    0.8333        45
+               parasitic_jaeger     0.5577    0.6444    0.5979        45
+               peregrine_falcon     0.3922    0.4444    0.4167        45
+         pheasant-tailed_jacana     0.6102    0.8000    0.6923        45
+                  pied_bushchat     0.8667    0.2889    0.4333        45
+                    pied_cuckoo     0.5769    0.5000    0.5357        30
+                   pied_harrier     0.6129    0.4222    0.5000        45
+           pied_imperial_pigeon     0.8286    0.6304    0.7160        46
+                     pied_stilt     0.7111    0.7111    0.7111        45
+                   pied_triller     0.6429    0.4000    0.4932        45
+        pin-striped_tit_babbler     1.0000    0.4167    0.5882        12
+         pin-tailed_parrotfinch     0.9130    0.7000    0.7925        30
+       pink-necked_green-pigeon     0.7556    0.7234    0.7391        47
+             plain_flowerpecker     0.5000    0.4444    0.4706        18
+               plaintive_cuckoo     0.7200    0.6000    0.6545        30
+            plume-toed_swiftlet     0.8214    0.6389    0.7188        36
+                pomarine_jaeger     0.4762    0.4444    0.4598        45
+             puff-backed_bulbul     1.0000    0.3333    0.5000         3
+         purple-backed_starling     0.4182    0.6571    0.5111        35
+           purple-naped_sunbird     1.0000    0.2000    0.3333        15
+                   purple_heron     0.8095    0.7556    0.7816        45
+                 purple_sunbird     0.4902    0.5556    0.5208        45
+                radde's_warbler     0.4043    0.4872    0.4419        39
+          red-billed_tropicbird     0.7949    0.6889    0.7381        45
+          red-breasted_parakeet     0.6897    0.4444    0.5405        45
+             red-crowned_barbet     0.5200    0.7647    0.6190        17
+                red-eyed_bulbul     1.0000    0.7778    0.8750        45
+               red-footed_booby     0.5333    0.3556    0.4267        45
+               red-legged_crake     0.7059    0.7059    0.7059        17
+             red-rumped_swallow     0.4107    0.5111    0.4554        45
+             red-throated_pipit     0.7255    0.8222    0.7708        45
+            red-wattled_lapwing     0.7568    0.6222    0.6829        45
+                   red_avadavat     0.8372    0.8000    0.8182        45
+                 red_junglefowl     0.6364    0.7500    0.6885        28
+            rhinoceros_hornbill     0.7200    0.8000    0.7579        45
+                richard's_pipit     0.5763    0.7556    0.6538        45
+                    rock_pigeon     0.9412    0.5714    0.7111        28
+           rose-ringed_parakeet     0.9000    0.6000    0.7200        45
+                   roseate_tern     0.5278    0.4222    0.4691        45
+                  rosy_starling     0.5294    0.6000    0.5625        45
+           ruby-cheeked_sunbird     0.6444    0.6444    0.6444        45
+           ruddy-breasted_crake     0.7358    0.8667    0.7959        45
+               ruddy_kingfisher     0.7727    0.8095    0.7907        21
+ rufous-backed_dwarf_kingfisher     0.8158    0.6889    0.7470        45
+           rufous-bellied_eagle     0.4872    0.4222    0.4524        45
+      rufous-chested_flycatcher     0.7143    0.7143    0.7143         7
+         rufous-crowned_babbler     0.5714    0.3333    0.4211        12
+       rufous-tailed_tailorbird     0.4000    0.3077    0.3478        13
+              rufous_woodpecker     0.8158    0.6889    0.7470        45
+                 rustic_bunting     0.6111    0.7333    0.6667        45
+          sakhalin_leaf_warbler     0.6667    0.3333    0.4444         6
+               savanna_nightjar     0.7778    0.4667    0.5833        30
+          scaly-breasted_bulbul     0.5000    0.5556    0.5263         9
+           scaly-breasted_munia     0.3467    0.5778    0.4333        45
+                   scaly_thrush     0.6667    0.5000    0.5714         8
+    scarlet-backed_flowerpecker     0.6444    0.6444    0.6444        45
+                scarlet_minivet     0.7778    0.6222    0.6914        45
+             schrenck's_bittern     0.4286    0.5000    0.4615        12
+                         shikra     0.4643    0.5778    0.5149        45
+                short-eared_owl     0.6471    0.7333    0.6875        45
+           short-tailed_babbler     0.7000    0.8750    0.7778         8
+        short-tailed_shearwater     0.7907    0.7556    0.7727        45
+         short-toed_snake_eagle     0.4528    0.5333    0.4898        45
+            siberian_blue_robin     0.8696    0.8889    0.8791        45
+                siberian_thrush     1.0000    0.3333    0.5000         9
+       silver-backed_needletail     0.0000    0.0000    0.0000         4
+       silver-rumped_needletail     1.0000    0.2000    0.3333         5
+            slaty-breasted_rail     0.9310    0.7500    0.8308        36
+             slaty-legged_crake     0.6471    0.5789    0.6111        19
+            slender-billed_crow     0.6667    0.2500    0.3636         8
+               small_pratincole     0.6071    0.7556    0.6733        45
+           sooty-capped_babbler     0.1250    0.1429    0.1333         7
+              spectacled_bulbul     0.1667    0.0625    0.0909        16
+        spectacled_spiderhunter     0.0000    0.0000    0.0000         7
+                   spotted_dove     0.6667    0.5600    0.6087        25
+             spotted_flycatcher     0.4286    0.4667    0.4468        45
+               spotted_wood_owl     0.7931    1.0000    0.8846        23
+    square-tailed_drongo-cuckoo     0.5455    0.6000    0.5714        30
+                   steppe_eagle     0.4516    0.6222    0.5234        45
+        stork-billed_kingfisher     0.6275    0.7111    0.6667        45
+            straw-headed_bulbul     0.8462    0.4400    0.5789        25
+                streaked_weaver     0.7222    0.7027    0.7123        37
+             striated_grassbird     0.6744    0.7250    0.6988        40
+                 striated_heron     0.9167    0.7333    0.8148        45
+               striated_swallow     0.2000    0.1818    0.1905        11
+         stripe-throated_bulbul     0.6296    0.7556    0.6869        45
+       sulphur-crested_cockatoo     0.5965    0.7556    0.6667        45
+                     sultan_tit     0.8158    0.6889    0.7470        45
+             sunda_brush_cuckoo     0.5000    0.7143    0.5882         7
+         sunda_pygmy_woodpecker     0.6923    0.8182    0.7500        33
+         swinhoe's_storm_petrel     1.0000    0.5000    0.6667         6
+            swinhoe's_white_eye     0.4340    0.5111    0.4694        45
+               taiga_flycatcher     0.7586    0.4889    0.5946        45
+               tanimbar_corella     0.8667    0.5200    0.6500        25
+      thick-billed_flowerpecker     0.3770    0.6389    0.4742        36
+      thick-billed_green-pigeon     0.5909    0.3611    0.4483        36
+            tibetan_sand_plover     0.8000    0.7111    0.7529        45
+                   tiger_shrike     0.8000    0.6154    0.6957        26
+                     tree_pipit     0.7059    0.5333    0.6076        45
+               tricolored_munia     0.7755    0.8444    0.8085        45
+                    tufted_duck     0.7500    0.6000    0.6667        35
+             two-barred_warbler     0.2963    0.2857    0.2909        28
+            verditer_flycatcher     0.5763    0.7556    0.6538        45
+       vinous-breasted_starling     0.5714    0.5714    0.5714        28
+                  violet_cuckoo     0.3871    0.4000    0.3934        30
+       wandering_whistling-duck     0.8261    0.5758    0.6786        33
+                      watercock     0.9118    0.6889    0.7848        45
+        wedge-tailed_shearwater     0.7576    0.5556    0.6410        45
+           western_hooded_pitta     0.6923    0.9310    0.7941        29
+                 whiskered_tern     0.3651    0.5111    0.4259        45
+            whiskered_treeswift     0.8000    0.8421    0.8205        38
+         white-bellied_erpornis     0.6905    0.6444    0.6667        45
+            white-bellied_munia     0.6667    0.4000    0.5000         5
+        white-bellied_sea_eagle     0.5000    0.5556    0.5263        45
+       white-bellied_woodpecker     0.5600    0.5600    0.5600        25
+        white-breasted_waterhen     0.7500    0.6667    0.7059        45
+             white-browed_crake     0.7500    0.7500    0.7500        36
+          white-chested_babbler     0.5556    0.8824    0.6818        17
+             white-faced_plover     0.7222    0.6500    0.6842        20
+           white-faced_starling     0.8000    0.8000    0.8000         5
+             white-headed_munia     0.6957    0.7111    0.7033        45
+             white-rumped_shama     0.7955    0.7778    0.7865        45
+      white-shouldered_starling     0.3594    0.5897    0.4466        39
+             white-tailed_robin     0.7021    0.7333    0.7174        45
+        white-tailed_tropicbird     0.8000    0.7111    0.7529        45
+      white-throated_kingfisher     0.6119    0.9111    0.7321        45
+      white-throated_needletail     0.3333    0.3714    0.3514        35
+     white-throated_rock_thrush     0.8125    0.7647    0.7879        17
+              white-winged_tern     0.6389    0.5111    0.5679        45
+                  white_wagtail     0.6000    0.6667    0.6316        45
+                 willow_warbler     0.7353    0.5556    0.6329        45
+    yellow-bellied_flowerpecker     0.0000    0.0000    0.0000         3
+          yellow-bellied_prinia     0.5789    0.7333    0.6471        45
+        yellow-breasted_bunting     0.5714    0.3556    0.4384        45
+          yellow-browed_warbler     0.5556    0.5556    0.5556        45
+        yellow-crested_cockatoo     0.4286    0.4000    0.4138        30
+      yellow-eared_spiderhunter     0.8000    0.4706    0.5926        17
+          yellow-fronted_canary     0.6471    0.7333    0.6875        45
+           yellow-vented_bulbul     0.5000    0.4889    0.4944        45
+     yellow-vented_flowerpecker     0.6429    0.8710    0.7397        31
+                 yellow_bittern     1.0000    0.8333    0.9091         6
+                     zebra_dove     1.0000    0.8519    0.9200        27
+              zitting_cisticola     0.7027    0.5778    0.6341        45
+
+                       accuracy                         0.6006     14491
+                      macro avg     0.6226    0.5706    0.5781     14491
+                   weighted avg     0.6278    0.6006    0.6005     14491
+
+📉 Current Learning Rate: 0.000100
+💾 New best model saved! Val Acc: 60.06%
+
+Epoch Summary
+Train Loss: 0.8547 | Train Acc: 77.95%
+Val   Loss: 1.7312 | Val   Acc: 60.06%
+Best  Val Acc so far: 60.06%
+----------------------------------------
+
+🏁 Training finished
+Best model saved at: best_bird_model.pth
+Best validation accuracy: 60.06%
