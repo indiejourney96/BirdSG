@@ -15,7 +15,7 @@ import numpy as np
 DATA_PATH = r"C:\Users\Admin\Daryl\SD Projects\BirdSG\data\images"
 BATCH_SIZE = 32
 IMAGE_SIZE = (224, 224)
-EPOCHS = 5
+EPOCHS = 10
 
 
 def get_transforms(train=True):
