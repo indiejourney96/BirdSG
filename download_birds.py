@@ -1,81 +1,101 @@
 import os
+import json
+import time
 import requests
 from pathlib import Path
-import time
+
+from app.sg_species import ALL_SINGAPORE_SPECIES
 
 # ---------------- CONFIG ----------------
 OUTPUT_DIR = "dataset"
-IMAGES_PER_SPECIES = 100  # max images per species per run
-PER_PAGE = 100  # max per API request
-# Allowed licenses
-ALLOWED_LICENSES = ["cc0", "cc-by", "cc-by-sa"]
-
+IMAGES_PER_SPECIES = 150
+PER_PAGE = 100
 
 MODE = "global"  # "global" or "regional"
-# Species list: (common_name, taxon_id)
-# SPECIES = [
-#     ("Spotted Dove", 1455918), 
-#     ("Asian Koel", 204510),
-#     ("Blue-breasted Quail", 505884),
-#     ("Common Myna", 204454),
-#     ("Zebra Dove", 3607),
-#     ("Rock Pigeon", 3017),
-#     ("Red Junglefowl", 882),
-#     ("Green Imperial Pigeon", 3211),
-#     ("Asian Emerald Dove", 508097),
-#     ("Wandering Whistling-Duck", 6896), 
-#     ("Lesser Whistling-Duck", 6891),
-#     ("Cotton Pygmy-Goose", 7128),
-#     ("Garganey", 558429),
-#     ("Northern Shoveler", 558438),
-#     ("Gadwall", 558439),
-#     ("Eurasian Wigeon", 558441),
-#     ("Northern Pintail", 6933),
-#     ("Green-winged Teal", 6937),
-#     ("Tufted Duck", 7046),
-#     ("Little Grebe", 4237),
-#     ("Oriental Turtle-Dove", 2927),
-#     ("Little Green-Pigeon", 3423),
-#     ("Pink-necked Green-Pigeon", 3393),
-#     ("Cinnamon-headed Green-Pigeon", 3384),
-#     ("Orange-breasted Green-Pigeon", 3394),
-#     ("Thick-billed Green-Pigeon", 3358),
-#     ("Jambu Fruit Dove", 1650573),
-#     ("Mountain Imperial Pigeon", 3246),
-#     ("Pied Imperial Pigeon", 3255),
-#     ("Blue-breasted Quail", 505884),
-#     # Add more species as needed
-# ]
-SPECIES = [
-    ("Greater Coucal", 1677),
-    ("Lesser Coucal", 1644),
-    ("Chestnut-bellied Malkoha", 73190),
-    ("Chestnut-bellied Cuckoo", 72744),
-    ("Pied Cuckoo", 1789),
-    ("Asian Emerald Cuckoo", 1728),
-    ("Violet Cuckoo", 1720),
-    ("Horsfield's Bronze Cuckoo", 1578710),
-    ("Little Bronze Cuckoo", 369157),
-    ("Banded Bay Cuckoo", 1827),
-    ("Violet Cuckoo", 1827),
-    ("Plaintive Cuckoo", 1856),
-    ("Sunda Brush Cuckoo", 96387),
-    ("Square-tailed Drongo-Cuckoo", 1930),
-    ("Large Hawk-Cuckoo", 567164),
-    ("Hodgson's Hawk-Cuckoo", 144577),
-    ("Malaysian Hawk-Cuckoo", 144579),
-    ("Indian Cuckoo", 1904),
-    ("Himalayan Cuckoo", 1899),
-    ("Malaysian Eared Nightjar", 201063),
-    ("Gray Nightjar", 367509),
-    ("Savanna Nightjar", 19466),
-    # Add more species as needed
-]
 
-# Only used if MODE = "regional"
-PLACE_IDS = [6734, 7155, 6966]  # Singapore + Malaysia + Indonesia
+PLACE_IDS = [6734, 7155, 6966]  # SG, MY, ID
 
-# ---------------- FUNCTIONS ----------------
+ALLOWED_LICENSES = {"cc0", "cc-by", "cc-by-sa"}
+
+CACHE_FILE = "taxon_cache.json"
+
+# ---------------- CACHE ----------------
+def load_cache():
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+def save_cache(cache):
+    with open(CACHE_FILE, "w") as f:
+        json.dump(cache, f)
+
+taxon_cache = load_cache()
+
+# ---------------- HELPERS ----------------
+def normalize_name(name: str) -> str:
+    return name.lower().replace("-", " ").strip()
+
+def get_taxon_id(species_name):
+    if species_name in taxon_cache:
+        return taxon_cache[species_name]
+
+    url = "https://api.inaturalist.org/v1/taxa"
+    params = {
+        "q": species_name,
+        "rank": "species",
+        "per_page": 5
+    }
+
+    try:
+        response = requests.get(url, params=params).json()
+        results = response.get("results", [])
+
+        if not results:
+            print(f"❌ No taxon found: {species_name}")
+            return None
+
+        target = normalize_name(species_name)
+
+        # 1. Exact match
+        for taxon in results:
+            name = normalize_name(taxon.get("preferred_common_name", ""))
+            if name == target:
+                taxon_cache[species_name] = taxon["id"]
+                save_cache(taxon_cache)
+                return taxon["id"]
+
+        # 2. Loose match
+        for taxon in results:
+            name = normalize_name(taxon.get("preferred_common_name", ""))
+            if target in name or name in target:
+                taxon_cache[species_name] = taxon["id"]
+                save_cache(taxon_cache)
+                return taxon["id"]
+
+        # 3. Fallback
+        fallback = results[0]["id"]
+        print(f"⚠️ Fallback match: {species_name}")
+        taxon_cache[species_name] = fallback
+        save_cache(taxon_cache)
+        return fallback
+
+    except Exception as e:
+        print(f"Error fetching taxon for {species_name}: {e}")
+        return None
+
+
+# def has_enough_data(taxon_id):
+#     url = "https://api.inaturalist.org/v1/observations"
+#     params = {"taxon_id": taxon_id, "per_page": 1}
+
+#     try:
+#         response = requests.get(url, params=params).json()
+#         return response.get("total_results", 0) >= MIN_RESULTS
+#     except:
+#         return False
+
+
 def fetch_results(taxon_id, page, place_id=None):
     url = "https://api.inaturalist.org/v1/observations"
 
@@ -87,21 +107,53 @@ def fetch_results(taxon_id, page, place_id=None):
         "page": page
     }
 
-    if place_id is not None:
+    if place_id:
         params["place_id"] = place_id
 
     try:
         return requests.get(url, params=params).json()
-    except Exception as e:
-        print("Request failed:", e)
+    except:
         return {}
 
 
-def download_species(species_name, taxon_id):
-    print(f"\nDownloading {species_name} ({MODE})")
+def download_image(url, path):
+    try:
+        img_data = requests.get(url).content
+        with open(path, "wb") as f:
+            f.write(img_data)
+        return True
+    except:
+        return False
 
-    folder_name = species_name.lower().replace(" ", "_")
-    save_dir = Path(OUTPUT_DIR) / folder_name
+
+# ---------------- CORE ----------------
+def process_results(results, save_dir, prefix, count):
+    for result in results:
+        if count >= IMAGES_PER_SPECIES:
+            break
+
+        for photo in result.get("photos", []):
+            if count >= IMAGES_PER_SPECIES:
+                break
+
+            if photo.get("license_code") not in ALLOWED_LICENSES:
+                continue
+
+            img_url = photo["url"].replace("square", "large")
+            file_path = save_dir / f"{count}_{prefix}.jpg"
+
+            if download_image(img_url, file_path):
+                count += 1
+                print(f"Saved {file_path}")
+
+    return count
+
+
+def download_species(species_name, taxon_id):
+    print(f"\n⬇️ Downloading {species_name} ({MODE})")
+
+    folder = species_name.lower().replace(" ", "_")
+    save_dir = Path(OUTPUT_DIR) / folder
     save_dir.mkdir(parents=True, exist_ok=True)
 
     count = 0
@@ -112,29 +164,23 @@ def download_species(species_name, taxon_id):
         while count < IMAGES_PER_SPECIES:
             all_empty = True
 
-            for place_id in PLACE_IDS:
+            for pid in PLACE_IDS:
                 if count >= IMAGES_PER_SPECIES:
                     break
 
-                response = fetch_results(
-                    taxon_id,
-                    page_map[place_id],
-                    place_id=place_id
-                )
-
+                response = fetch_results(taxon_id, page_map[pid], pid)
                 results = response.get("results", [])
+
                 if not results:
                     continue
 
                 all_empty = False
+                count = process_results(results, save_dir, folder, count)
 
-                count = process_results(results, save_dir, folder_name, count)
-
-                page_map[place_id] += 1
-                time.sleep(1)
+                page_map[pid] += 1
+                time.sleep(0.5)
 
             if all_empty:
-                print(f"No more results from all places for {species_name}.")
                 break
 
     elif MODE == "global":
@@ -142,54 +188,36 @@ def download_species(species_name, taxon_id):
 
         while count < IMAGES_PER_SPECIES:
             response = fetch_results(taxon_id, page)
-
             results = response.get("results", [])
+
             if not results:
-                print(f"No more global results for {species_name}.")
                 break
 
-            count = process_results(results, save_dir, folder_name, count)
+            count = process_results(results, save_dir, folder, count)
 
             page += 1
-            time.sleep(1)
+            time.sleep(0.5)
 
-    else:
-        raise ValueError("MODE must be 'global' or 'regional'")
-
-
-def process_results(results, save_dir, folder_name, count):
-    for result in results:
-        if count >= IMAGES_PER_SPECIES:
-            break
-
-        for photo in result.get("photos", []):
-            license_code = photo.get("license_code")
-            if license_code not in ALLOWED_LICENSES:
-                continue
-
-            img_url = photo["url"].replace("square", "large")
-
-            try:
-                img_data = requests.get(img_url).content
-                file_path = save_dir / f"{count}_{folder_name}.png"
-
-                with open(file_path, "wb") as f:
-                    f.write(img_data)
-
-                count += 1
-                print(f"Saved {file_path}")
-
-            except Exception as e:
-                print("Failed:", e)
-
-            if count >= IMAGES_PER_SPECIES:
-                break
-
-    return count
+    print(f"✅ Done {species_name}: {count} images")
 
 
 # ---------------- MAIN ----------------
-for species_name, taxon_id in SPECIES:
-    download_species(species_name, taxon_id)
+def main():
+    for species_name in ALL_SINGAPORE_SPECIES:
+        taxon_id = get_taxon_id(species_name)
 
-print("\nAll downloads complete.")
+        if not taxon_id:
+            continue
+
+        # if not has_enough_data(taxon_id):
+        #     print(f"⏭️ Skipping {species_name} (low data)")
+        #     continue
+
+        download_species(species_name, taxon_id)
+        time.sleep(1)
+
+    print("\n🎉 All downloads complete.")
+
+
+if __name__ == "__main__":
+    main()
