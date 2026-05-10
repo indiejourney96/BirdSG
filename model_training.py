@@ -58,6 +58,10 @@ def get_model(num_classes, device):
     in_features = model.fc.in_features
     model.fc = nn.Linear(in_features, num_classes)
 
+    # Unfreeze classifier
+    for param in model.fc.parameters():
+        param.requires_grad = True
+
     model = model.to(device)
 
     # Debug info
