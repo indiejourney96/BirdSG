@@ -83,23 +83,23 @@ def train_one_epoch(model, loader, optimizer, criterion, device):
 
         # 1️⃣ Reset gradients
         optimizer.zero_grad()
-        print(f"\n[Batch {batch_idx}] Gradients reset")
+        # print(f"\n[Batch {batch_idx}] Gradients reset")
 
         # 2️⃣ Forward pass
         outputs = model(images)
-        print(f"[Batch {batch_idx}] Model outputs (logits) sample: {outputs[0].detach().cpu().numpy()}")
+        # print(f"[Batch {batch_idx}] Model outputs (logits) sample: {outputs[0].detach().cpu().numpy()}")
 
         # 3️⃣ Compute loss
         loss = criterion(outputs, labels)
-        print(f"[Batch {batch_idx}] Batch loss: {loss.item():.4f}")
+        # print(f"[Batch {batch_idx}] Batch loss: {loss.item():.4f}")
 
         # 4️⃣ Backpropagation
         loss.backward()
-        print(f"[Batch {batch_idx}] Gradients computed (first param sample): {list(model.fc.parameters())[0].grad[0][0].item():.6f}")
+        # print(f"[Batch {batch_idx}] Gradients computed (first param sample): {list(model.fc.parameters())[0].grad[0][0].item():.6f}")
 
         # 5️⃣ Update weights
         optimizer.step()
-        print(f"[Batch {batch_idx}] Weights updated (first param sample): {list(model.fc.parameters())[0][0][0].item():.6f}")
+        # print(f"[Batch {batch_idx}] Weights updated (first param sample): {list(model.fc.parameters())[0][0][0].item():.6f}")
 
         # 6️⃣ Track running loss
         running_loss += loss.item()
@@ -110,7 +110,13 @@ def train_one_epoch(model, loader, optimizer, criterion, device):
         correct += batch_correct
         total += labels.size(0)
         batch_acc = 100 * batch_correct / labels.size(0)
-        print(f"[Batch {batch_idx}] Batch accuracy: {batch_acc:.2f}%")
+        # print(f"[Batch {batch_idx}] Batch accuracy: {batch_acc:.2f}%")
+
+        if batch_idx % 50 == 0:
+         print(
+        f"Epoch Progress | Batch {batch_idx}/{len(loader)} "
+        f"| Loss: {loss.item():.4f}"
+        )
 
     # 8️⃣ Epoch-level metrics
     epoch_loss = running_loss / len(loader)
@@ -253,7 +259,8 @@ def main():
             zero_division=0
         )
 
-        print(report)
+        if (epoch + 1) % 2 == 0:
+            print(report)
 
         # ---- Scheduler step ----
         scheduler.step(val_acc)
