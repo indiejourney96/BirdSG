@@ -1,16 +1,22 @@
+// frontend/components/home/IdentifyCard.tsx
 "use client";
 import { useState } from "react";
 import { predictBird } from "@/lib/api";
 
-export default function IdentifyCard() {
+interface IdentifyCardProps {
+  onPredictionSuccess: (data: any) => void;
+}
+
+export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps) {
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
 
   async function handleUpload(file: File) {
     try {
       setLoading(true);
       const data = await predictBird(file);
-      setResult(data);
+      
+      // Pass the complete server dataset upward to layout parent container
+      onPredictionSuccess(data);
     } catch (error) {
       console.error(error);
       alert("Prediction failed");
@@ -21,22 +27,20 @@ export default function IdentifyCard() {
 
   return (
     <section className="mb-xl">
-      <div className="relative overflow-hidden rounded-xl bg-primary-container text-on-primary-container p-lg shadow-lg flex flex-col md:flex-row items-center justify-between gap-md group transition-transform duration-150">
+      <div className="relative overflow-hidden rounded-xl bg-primary-container text-on-primary-container p-lg shadow-lg flex flex-col md:flex-row items-center justify-between gap-md group">
         <div className="z-10 text-center md:text-left flex-1">
           <h3 className="font-headline-md text-headline-md mb-2 text-on-primary-container">Identify Bird</h3>
           <p className="font-body-md text-body-md opacity-90 mb-lg">Point your camera to instantly identify species and log your encounter.</p>
           
           <label className="inline-flex items-center gap-2 bg-on-primary text-primary px-lg py-sm rounded-full font-label-md text-label-md shadow-md cursor-pointer hover:opacity-90 transition-opacity">
             <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>photo_camera</span>
-            {loading ? "Predicting..." : "Launch Scanner"}
+            {loading ? "Analyzing Specimen..." : "Launch Scanner"}
             <input
               type="file"
               accept="image/*"
               onChange={(e) => {
                 const file = e.target.files?.[0];
-                if (file) {
-                  handleUpload(file);
-                }
+                if (file) handleUpload(file);
               }}
               className="hidden"
             />

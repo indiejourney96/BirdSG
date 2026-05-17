@@ -1,0 +1,122 @@
+// frontend/components/home/PredictionResults.tsx
+"use client";
+
+interface Prediction {
+  label: string;
+  confidence: number;
+  singapore_match: boolean;
+}
+
+interface PredictionResultsProps {
+  data: {
+    filename: string;
+    mode: string;
+    predictions: Prediction[];
+    singapore_filtered: boolean;
+    sighting_id: string | null;
+    recording: string | null;
+  };
+  onReset: () => void;
+}
+
+// Helper to turn snake_case labels into clean display titles
+function formatLabel(label: string): string {
+  return label
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+export default function PredictionResults({ data, onReset }: PredictionResultsProps) {
+  return (
+    <section className="mb-xl animate-fade-in">
+      {/* Header Area */}
+      <div className="flex items-center justify-between mb-md">
+        <h3 className="font-headline text-headline-md text-on-surface">
+          Analysis Results
+        </h3>
+        <button
+          onClick={onReset}
+          className="inline-flex items-center gap-1.5 text-primary hover:bg-surface-container-high px-md py-xs rounded-full font-label-md text-label-md transition-colors active:scale-95"
+        >
+          <span className="material-symbols-outlined text-[18px]">refresh</span>
+          Scan Another
+        </button>
+      </div>
+
+      {/* Main Results Wrapper Card */}
+      <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-lg">
+        <div>
+          <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">
+            Source File
+          </p>
+          <p className="font-body text-body-lg font-semibold text-on-surface">
+            {data.filename}
+          </p>
+        </div>
+
+        {/* Predictions Stack */}
+        <div className="flex flex-col gap-md">
+          <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+            Top Matches
+          </p>
+
+          {data.predictions.map((pred, index) => {
+            const percentage = (pred.confidence * 100).toFixed(2);
+            
+            return (
+              <div 
+                key={pred.label} 
+                className={`p-md rounded-lg border transition-all ${
+                  index === 0 
+                    ? "bg-primary-container/20 border-primary/20 shadow-xs" 
+                    : "bg-surface border-outline-variant/30"
+                }`}
+              >
+                <div className="flex justify-between items-start mb-sm">
+                  <div>
+                    <div className="flex items-center gap-xs">
+                      <span className={`font-body text-body-lg font-bold ${
+                        index === 0 ? "text-primary" : "text-on-surface"
+                      }`}>
+                        {formatLabel(pred.label)}
+                      </span>
+                      
+                      {/* Singapore Native / Resident Stamp badge */}
+                      {pred.singapore_match && (
+                        <span className="inline-flex items-center gap-0.5 bg-secondary-container text-on-secondary-container text-[11px] font-semibold px-2 py-0.5 rounded-full">
+                          <span className="material-symbols-outlined text-[12px]">location_on</span>
+                          SG Native
+                        </span>
+                      )}
+                    </div>
+                    <p className="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
+                      Rank #{index + 1} Match
+                    </p>
+                  </div>
+                  
+                  {/* Percentage Metric */}
+                  <span className={`font-headline text-body-lg font-bold ${
+                    index === 0 ? "text-primary" : "text-on-surface-variant"
+                  }`}>
+                    {percentage}%
+                  </span>
+                </div>
+
+                {/* Accuracy Progress Bar */}
+                <div className="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all duration-500 ${
+                      index === 0 ? "bg-primary" : "bg-secondary"
+                    }`}
+                    style={{ width: `${percentage}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
