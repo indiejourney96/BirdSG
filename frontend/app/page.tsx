@@ -8,6 +8,8 @@ import PredictionResults from "@/components/home/PredictionResults";
 import Hotspots from "@/components/home/Hotspots";
 import RecentSightings from "@/components/home/RecentSightings";
 import BottomNav from "@/components/home/BottomNav";
+import Header from "@/components/home/Header";
+
 
 export default function Home() {
   // Local state to maintain the server result hook
@@ -15,6 +17,7 @@ export default function Home() {
 
   return (
     <>
+    <Header />
       <main className="pt-24 px-margin-mobile max-w-screen-xl mx-auto pb-32">
         <Hero />
         
