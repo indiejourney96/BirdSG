@@ -13,7 +13,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from app.ebird import get_recent_sightings, get_species_info
-from app.imagenet_to_ebird import get_ebird_code
+from app.species_mapping import get_species
 from app.xeno_canto import get_reference_audio
 
 router = APIRouter(prefix="/birds", tags=["birds"])
@@ -53,7 +53,9 @@ def get_bird_info(label: str):
     Look up species info, recent Singapore sightings, and a reference
     recording for an ImageNet label.
     """
-    ebird_code = get_ebird_code(label)
+    species = get_species(label)
+
+    ebird_code = species["ebird_code"]
     if ebird_code is None:
         raise HTTPException(
             status_code=404,
@@ -71,7 +73,7 @@ def get_bird_info(label: str):
 
     # Fetch Xeno-canto recording using the resolved common name
     recording: RecordingInfo | None = None
-    xc = get_reference_audio(species["common_name"])
+    xc = get_reference_audio(species["scientific_name"])
     if xc:
         recording = RecordingInfo(**xc)
 

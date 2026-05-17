@@ -17,10 +17,10 @@ from pydantic import BaseModel
 
 from app.model import predict_top_k, load_model
 from app.bird_gate import passes_bird_gate, BIRD_CONFIDENCE_THRESHOLD
-from app.sg_filter import is_singapore_species
+from app.species_mapping import get_species, is_singapore_species
 from app.database import save_sighting
 from app.ebird import get_species_info
-from app.imagenet_to_ebird import get_ebird_code
+from app.species_mapping import get_species
 from app.xeno_canto import get_reference_audio
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ router = APIRouter()
 # ─────────────────────────────────────────────────────────────
 # CONFIG
 # ─────────────────────────────────────────────────────────────
-MODE = os.getenv("MODE", "resnet_test")  # resnet_test | gate_test | production
+MODE = os.getenv("MODE", "production")  # resnet_test | gate_test | production
 
 ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp"}
 MAX_FILE_SIZE_MB = 10
@@ -130,7 +130,10 @@ async def predict(
                 },
             )
 
-        sg_matches = [r for r in raw_results if is_singapore_species(r.label)]
+        sg_matches = [
+        r for r in raw_results
+        if is_singapore_species(r.label)
+        ]
         predictions = sg_matches[:TOP_K_RETURN] if sg_matches else raw_results[:1]
 
     else:
@@ -153,11 +156,17 @@ async def predict(
     if MODE == "production":
         try:
             top_label = predictions_out[0].label
-            ebird_code = get_ebird_code(top_label)
-            species_info = get_species_info(ebird_code) if ebird_code else None
-            species_name = species_info.get("common_name") if species_info else top_label
+
+            species = get_species(top_label)
+
+            species_name = (
+                species["common_name"]
+                if species
+                else top_label
+            )
 
             xc = get_reference_audio(species_name)
+
             if xc:
                 recording = RecordingInfo(**xc)
         except Exception as exc:
