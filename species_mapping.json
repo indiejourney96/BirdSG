@@ -1,6 +1,4 @@
-# species_mapping.py
-
-SPECIES_MAP = {
+{
   "abbott's_babbler": {
     "common_name": "Abbott's Babbler",
     "ebird_code": "abbbab1",
@@ -2077,14 +2075,3 @@ SPECIES_MAP = {
     "match_score": 100.0
   }
 }
-def get_species(label: str):
-    return SPECIES_MAP.get(label.lower().strip())
-
-
-def get_ebird_code(label: str):
-    species = get_species(label)
-    return species["ebird_code"] if species else None
-
-def is_singapore_species(label: str) -> bool:
-    species = get_species(label)
-    return species and "SG" in species.get("regions", [])
