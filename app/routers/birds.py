@@ -73,7 +73,7 @@ def get_bird_info(label: str):
 
     # Fetch Xeno-canto recording using the resolved common name
     recording: RecordingInfo | None = None
-    xc = get_reference_audio(species["scientific_name"])
+    xc = get_reference_audio(species["common_name"])
     if xc:
         recording = RecordingInfo(**xc)
 
