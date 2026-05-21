@@ -21,7 +21,6 @@ from app.species_mapping import get_species, is_singapore_species
 from app.database import save_sighting
 from app.ebird import get_species_info
 from app.species_mapping import get_species
-from app.xeno_canto import get_reference_audio
 
 logger = logging.getLogger(__name__)
 
@@ -48,12 +47,6 @@ class PredictionItem(BaseModel):
     singapore_match: bool
 
 
-class RecordingInfo(BaseModel):
-    audio_url: str | None
-    recording_id: str | None
-    recordist: str | None
-    location: str | None
-
 
 class PredictResponse(BaseModel):
     filename: str
@@ -61,7 +54,6 @@ class PredictResponse(BaseModel):
     predictions: list[PredictionItem]
     singapore_filtered: bool
     sighting_id: str | None = None
-    recording: RecordingInfo | None = None
 
 
 # ─────────────────────────────────────────────────────────────
@@ -108,9 +100,6 @@ async def predict(
                 status_code=422,
                 detail={
                     "error": "No bird detected",
-                    "top_prediction": top.label,
-                    "confidence": top.confidence,
-                    "threshold": BIRD_CONFIDENCE_THRESHOLD,
                 },
             )
         predictions = raw_results[:TOP_K_RETURN]
@@ -124,9 +113,6 @@ async def predict(
                 status_code=422,
                 detail={
                     "error": "No bird detected",
-                    "top_prediction": top.label,
-                    "confidence": top.confidence,
-                    "threshold": BIRD_CONFIDENCE_THRESHOLD,
                 },
             )
 
@@ -134,7 +120,7 @@ async def predict(
         r for r in raw_results
         if is_singapore_species(r.label)
         ]
-        predictions = sg_matches[:TOP_K_RETURN] if sg_matches else raw_results[:1]
+        predictions = sg_matches[:TOP_K_RETURN] if sg_matches else raw_results[:TOP_K_RETURN]
 
     else:
         raise HTTPException(status_code=500, detail=f"Invalid MODE: {MODE}")
@@ -149,41 +135,19 @@ async def predict(
         for p in predictions
     ]
 
-    # 4. Optional: enrichment (only for production)
-    recording = None
-    sighting_id = None
 
-    if MODE == "production":
-        try:
-            top_label = predictions_out[0].label
-
-            species = get_species(top_label)
-
-            species_name = (
-                species["common_name"]
-                if species
-                else top_label
-            )
-
-            xc = get_reference_audio(species_name)
-
-            if xc:
-                recording = RecordingInfo(**xc)
-        except Exception as exc:
-            logger.error("Xeno-canto fetch failed: %s", exc)
-
-        try:
-            record = save_sighting(
-                filename=file.filename,
-                predictions=[p.model_dump() for p in predictions_out],
-                singapore_filtered=bool(
-                    any(p.singapore_match for p in predictions_out)
-                ),
-                lat=lat,
-                lng=lng,
-            )
-            sighting_id = record.get("id")
-        except Exception as exc:
+    try:
+        record = save_sighting(
+            filename=file.filename,
+            predictions=[p.model_dump() for p in predictions_out],
+            singapore_filtered=bool(
+                any(p.singapore_match for p in predictions_out)
+            ),
+            lat=lat,
+            lng=lng,
+        )
+        sighting_id = record.get("id")
+    except Exception as exc:
             logger.error("Supabase write failed: %s", exc)
 
     # 5. Response
@@ -193,5 +157,4 @@ async def predict(
         predictions=predictions_out,
         singapore_filtered=any(p.singapore_match for p in predictions_out),
         sighting_id=sighting_id,
-        recording=recording,
     )
