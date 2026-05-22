@@ -7,14 +7,27 @@ interface Prediction {
   singapore_match: boolean;
 }
 
+interface BirdInfo {
+  label: string;
+  ebird_code: string;
+  species: {
+    common_name: string;
+    scientific_name: string;
+    family: string;
+    order: string;
+  };
+}
+
 interface PredictionResultsProps {
   data: {
-    filename: string;
-    mode: string;
-    predictions: Prediction[];
-    singapore_filtered: boolean;
-    sighting_id: string | null;
-    recording: string | null;
+    prediction: {
+      filename: string;
+      mode: string;
+      predictions: Prediction[];
+      singapore_filtered: boolean;
+      sighting_id: string | null;
+    };
+    bird: BirdInfo | null;
   };
   onReset: () => void;
 }
@@ -51,7 +64,7 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
             Source File
           </p>
           <p className="font-body text-body-lg font-semibold text-on-surface">
-            {data.filename}
+            {data.prediction.filename}
           </p>
         </div>
 
@@ -61,7 +74,7 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
             Top Matches
           </p>
 
-          {data.predictions.map((pred, index) => {
+          {data.prediction.predictions.map((pred, index) => {
             const percentage = (pred.confidence * 100).toFixed(2);
             
             return (

@@ -15,3 +15,13 @@ export async function predictBird(file: File) {
 
   return response.json();
 }
+
+export async function getBirdInfo(label: string) {
+  const response = await fetch(`${API_BASE_URL}/birds/${label}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch bird info");
+  }
+
+  return response.json();
+}
