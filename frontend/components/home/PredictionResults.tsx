@@ -76,25 +76,23 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
 
           {data.prediction.predictions.map((pred, index) => {
             const percentage = (pred.confidence * 100).toFixed(2);
-            
+
             return (
-              <div 
-                key={pred.label} 
-                className={`p-md rounded-lg border transition-all ${
-                  index === 0 
-                    ? "bg-primary-container/20 border-primary/20 shadow-xs" 
+              <div
+                key={pred.label}
+                className={`p-md rounded-lg border transition-all ${index === 0
+                    ? "bg-primary-container/20 border-primary/20 shadow-xs"
                     : "bg-surface border-outline-variant/30"
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-start mb-sm">
                   <div>
                     <div className="flex items-center gap-xs">
-                      <span className={`font-body text-body-lg font-bold ${
-                        index === 0 ? "text-primary" : "text-on-surface"
-                      }`}>
+                      <span className={`font-body text-body-lg font-bold ${index === 0 ? "text-primary" : "text-on-surface"
+                        }`}>
                         {formatLabel(pred.label)}
                       </span>
-                      
+
                       {/* Singapore Native / Resident Stamp badge */}
                       {pred.singapore_match && (
                         <span className="inline-flex items-center gap-0.5 bg-secondary-container text-on-secondary-container text-[11px] font-semibold px-2 py-0.5 rounded-full">
@@ -107,11 +105,10 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                       Rank #{index + 1} Match
                     </p>
                   </div>
-                  
+
                   {/* Percentage Metric */}
-                  <span className={`font-headline text-body-lg font-bold ${
-                    index === 0 ? "text-primary" : "text-on-surface-variant"
-                  }`}>
+                  <span className={`font-headline text-body-lg font-bold ${index === 0 ? "text-primary" : "text-on-surface-variant"
+                    }`}>
                     {percentage}%
                   </span>
                 </div>
@@ -119,15 +116,63 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                 {/* Accuracy Progress Bar */}
                 <div className="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
                   <div
-                    className={`h-full rounded-full transition-all duration-500 ${
-                      index === 0 ? "bg-primary" : "bg-secondary"
-                    }`}
+                    className={`h-full rounded-full transition-all duration-500 ${index === 0 ? "bg-primary" : "bg-secondary"
+                      }`}
                     style={{ width: `${percentage}%` }}
                   />
                 </div>
               </div>
             );
           })}
+
+          {/* Bird Details Panel */}
+          {data.bird && (
+            <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md mt-lg">
+
+              {/* Header */}
+              <div className="flex items-center gap-sm">
+                <span className="material-symbols-outlined text-primary">
+                  flutter_dash
+                </span>
+                <h4 className="font-headline text-headline-md text-on-surface">
+                  Bird Details
+                </h4>
+              </div>
+
+              {/* Species Info Card */}
+              <div className="grid md:grid-cols-2 gap-md">
+
+                <div className="p-md rounded-lg bg-surface border border-surface-variant">
+                  <p className="font-label-sm text-on-surface-variant">Common Name</p>
+                  <p className="font-body-lg font-semibold text-on-surface">
+                    {data.bird.species.common_name}
+                  </p>
+                </div>
+
+                <div className="p-md rounded-lg bg-surface border border-surface-variant">
+                  <p className="font-label-sm text-on-surface-variant">Scientific Name</p>
+                  <p className="font-body-lg font-semibold italic text-on-surface">
+                    {data.bird.species.scientific_name}
+                  </p>
+                </div>
+
+                <div className="p-md rounded-lg bg-surface border border-surface-variant">
+                  <p className="font-label-sm text-on-surface-variant">Family</p>
+                  <p className="font-body-lg text-on-surface">
+                    {data.bird.species.family}
+                  </p>
+                </div>
+
+                <div className="p-md rounded-lg bg-surface border border-surface-variant">
+                  <p className="font-label-sm text-on-surface-variant">Order</p>
+                  <p className="font-body-lg text-on-surface">
+                    {data.bird.species.order}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
