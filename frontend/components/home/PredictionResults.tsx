@@ -81,8 +81,8 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
               <div
                 key={pred.label}
                 className={`p-md rounded-lg border transition-all ${index === 0
-                    ? "bg-primary-container/20 border-primary/20 shadow-xs"
-                    : "bg-surface border-outline-variant/30"
+                  ? "bg-primary-container/20 border-primary/20 shadow-xs"
+                  : "bg-surface border-outline-variant/30"
                   }`}
               >
                 <div className="flex justify-between items-start mb-sm">
@@ -170,6 +170,38 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                   </p>
                 </div>
 
+              </div>
+            </div>
+          )}
+
+
+          {(data as any).bird?.recent_sightings_sg?.length > 0 && (
+            <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md">
+
+              <h4 className="font-headline text-headline-md text-on-surface">
+                Recent Sightings (Singapore)
+              </h4>
+
+              <div className="flex flex-col gap-sm">
+                {(data as any).bird.recent_sightings_sg.map((sighting, idx) => (
+                  <div
+                    key={idx}
+                    className="p-md rounded-lg bg-surface border border-surface-variant flex justify-between"
+                  >
+                    <div>
+                      <p className="font-body font-semibold text-on-surface">
+                        {sighting.location}
+                      </p>
+                      <p className="font-label-sm text-on-surface-variant">
+                        {sighting.date}
+                      </p>
+                    </div>
+
+                    {/* <div className="text-primary font-bold">
+                      {sighting.count}
+                    </div> */}
+                  </div>
+                ))}
               </div>
             </div>
           )}
