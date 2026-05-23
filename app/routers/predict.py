@@ -108,20 +108,16 @@ async def predict(
     # MODE 3: PRODUCTION PIPELINE
     # ─────────────────────────────────────────────
     elif MODE == "production":
-        if not passes_bird_gate(top.label, top.confidence):
-            raise HTTPException(
-                status_code=422,
-                detail={
-                    "error": "No bird detected",
-                },
-            )
+        try:
+             # predict_top_k now does: EfficientNet gate + ResNet classification
+            raw_results = predict_top_k(image_bytes, k=TOP_K_MODEL)
+        except ValueError as exc:
+             # Bird gate rejected it
+            raise HTTPException(status_code=422, detail={"error": str(exc)})
+        except Exception as exc:
+            raise HTTPException(status_code=422, detail=str(exc))
 
-        sg_matches = [
-        r for r in raw_results
-        if is_singapore_species(r.label)
-        ]
-        predictions = sg_matches[:TOP_K_RETURN] if sg_matches else raw_results[:TOP_K_RETURN]
-
+        predictions = raw_results[:TOP_K_RETURN]
     else:
         raise HTTPException(status_code=500, detail=f"Invalid MODE: {MODE}")
 

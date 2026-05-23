@@ -150,33 +150,40 @@ def preprocess(image_bytes: bytes) -> torch.Tensor:
 # ── Inference ──────────────────────────────────────────────────────────────
 @torch.inference_mode()
 def predict_top_k(image_bytes: bytes, k: int = 5) -> list[Prediction]:
+    """
+    Hybrid pipeline:
+    1. EfficientNet-B0 → bird gate check
+    2. ResNet50 → species classification (if passes gate)
+    """
     efficientnet, imagenet_labels, resnet, class_names = load_model()
     tensor = preprocess(image_bytes)
 
-    # 🚀 Direct ResNet Mode (recommended for your use case)
-    if RESNET_TEST_MODE and resnet is not None:
-        logits = resnet(tensor)
-        probs = F.softmax(logits, dim=1).squeeze(0)
-
-        k = min(k, probs.shape[0])
-        top_probs, top_indices = torch.topk(probs, k)
-
-        return [
-            Prediction(
-                label=class_names[idx.item()],
-                confidence=round(prob.item(), 4),
-            )
-            for prob, idx in zip(top_probs, top_indices)
-        ]
-
-    # 🧪 Hybrid Mode (EfficientNet → bird filtering)
-    logits = efficientnet(tensor)
+    # STEP 1: EfficientNet for bird detection (gating only)
+    logits_eff = efficientnet(tensor)
+    probs_eff = F.softmax(logits_eff, dim=1).squeeze(0)
+    top_prob_eff, top_idx_eff = torch.max(probs_eff, dim=0)
+    top_label_eff = imagenet_labels[top_idx_eff.item()]
+    
+    logger.info(f"EfficientNet gate: '{top_label_eff}' ({top_prob_eff.item():.4f})")
+    
+    # STEP 2: Check bird gate
+    from app.bird_gate import passes_bird_gate
+    if not passes_bird_gate(top_label_eff, top_prob_eff.item()):
+        raise ValueError(f"Not a bird: {top_label_eff}")
+    
+    # STEP 3: ResNet50 for species classification
+    if resnet is None:
+        raise RuntimeError("ResNet50 not loaded")
+    
+    logits = resnet(tensor)
     probs = F.softmax(logits, dim=1).squeeze(0)
+    
+    k = min(k, probs.shape[0])
     top_probs, top_indices = torch.topk(probs, k)
-
+    
     return [
         Prediction(
-            label=imagenet_labels[idx.item()],
+            label=class_names[idx.item()],
             confidence=round(prob.item(), 4),
         )
         for prob, idx in zip(top_probs, top_indices)
