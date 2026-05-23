@@ -1,0 +1,62 @@
+[
+  {
+    "ebird_code": "tufduc",
+    "common_name": "Tufted Duck",
+    "general_knowledge": "The Tufted Duck is a diving duck found throughout the Northern Hemisphere. It is a regular winter visitor to Singapore, arriving from September to April.",
+    "identification_tips": "Males distinctive with glossy black head featuring drooping crest, white sides, and black back. Females brown with smaller crest. Both sexes have orange feet and yellow eyes.",
+    "habitat": "Freshwater and brackish lakes, reservoirs, and coastal waters. Prefers deeper water bodies where they can dive for food.",
+    "behaviour": "Highly gregarious, often seen in flocks of 10-100+ birds. Dives to feed, sometimes staying underwater for 30+ seconds. Males perform elaborate courtship displays in spring before migration.",
+    "diet": "Aquatic invertebrates, mollusks, seeds, and plant matter. Omnivorous with preference for animal matter.",
+    "feeding_habits": "Dives 2-8 meters deep to forage on lake bottoms for snails, mussels, and aquatic insects. Most active feeding at dawn and dusk."
+  },
+  {
+    "ebird_code": "yevbul1",
+    "common_name": "Yellow-vented Bulbul",
+    "general_knowledge": "The Yellow-vented Bulbul is a common and widespread resident throughout Singapore. It is one of the most abundant bird species in urban and suburban areas.",
+    "identification_tips": "Medium-sized brownish bulbul with distinctive yellow undertail coverts (vent). Lacks crest. Thin pointed bill. Often seen in small flocks.",
+    "habitat": "Urban and suburban gardens, parks, scrubland, secondary forest edges, and cultivation. Highly adaptable to human-modified landscapes.",
+    "behaviour": "Active, noisy and gregarious. Often seen in small groups of 3-8 birds. Constantly on the move in low to mid-story vegetation. Vocal with varied calls including harsh scolding notes.",
+    "diet": "Omnivorous. Fruits and berries form bulk of diet, especially figs. Also feeds on insects, spiders, and occasionally flowers.",
+    "feeding_habits": "Forages in trees and bushes, actively gleaning insects from foliage. Visits flowering and fruiting trees. Will come to fruit feeders in gardens."
+  },
+  {
+    "ebird_code": "comkin1",
+    "common_name": "Common Kingfisher",
+    "general_knowledge": "The Common Kingfisher is a small, brilliantly coloured kingfisher found throughout Singapore. It is resident year-round and frequents freshwater habitats.",
+    "identification_tips": "Unmistakable bright turquoise-blue upperparts contrasting with rufous-buff underparts. Compact body with large head and long pointed bill. Orange-red feet.",
+    "habitat": "Freshwater and brackish water bodies including streams, rivers, reservoirs, and coastal mangrove areas. Prefers shallow water with overhanging vegetation or perches.",
+    "behaviour": "Solitary or in pairs. Perches on low branches or cables overhanging water. Hunts by waiting and diving into water for small fish. Territorial and returns to favourite perches.",
+    "diet": "Primarily small fish (2-5 cm) caught by diving. Also takes small crustaceans, aquatic insects, and tadpoles.",
+    "feeding_habits": "Sits on low perch 0.5-2m above water, scans for fish movement, and dives with a splash. Successful catch rate high. Swallows fish head-first."
+  },
+  {
+    "ebird_code": "blabul1",
+    "common_name": "Black Bulbul",
+    "general_knowledge": "The Black Bulbul is a resident fruit-eating bird found in forest and wooded areas throughout Singapore. It is particularly common in nature reserves.",
+    "identification_tips": "Entirely black or blackish-slate plumage with slight gloss. Relatively large bulbul with rounded body shape. Slight crest when alert. Bright red or orange undertail coverts distinctive when fanned.",
+    "habitat": "Primary and secondary forests, wooded areas, and well-vegetated parks. Prefers higher canopy levels. More forest-dependent than other local bulbuls.",
+    "behaviour": "Usually in pairs or small flocks of 3-5 birds. Movements jerky and erratic. Often perches at mid to high level in trees. Males may display with tail fanned to show red undertail coverts.",
+    "diet": "Predominantly frugivorous. Feeds on figs, mistletoes, and other small fruits and berries. Occasionally supplements with insects.",
+    "feeding_habits": "Forages in fruiting trees, often visiting same tree repeatedly during fruiting season. Will hang upside-down to reach fruit. Particularly active at dawn and dusk."
+  },
+  {
+    "ebird_code": "barswa",
+    "common_name": "Barn Swallow",
+    "general_knowledge": "The Barn Swallow is a common winter visitor to Singapore, arriving from September to April. Large numbers pass through during migration.",
+    "identification_tips": "Sleek build with steel-blue upperparts and rufous-buff underparts. Deeply forked tail with elongated outer feathers. Rufous patch on forehead and face.",
+    "habitat": "Open habitats including gardens, parks, coastal areas, and open water. Often seen perching on wires and cables. Hunts in open skies.",
+    "behaviour": "Highly gregarious, especially on migration, roosting in hundreds or thousands. Graceful fliers, constantly hawking for insects in flight. Acrobatic manoeuvres.",
+    "diet": "Exclusively insectivorous. Feeds on small flying insects caught in flight including flies, mosquitoes, small beetles, and flying ants.",
+    "feeding_habits": "Forages entirely on the wing, often at height. Swallows prey while flying. Very active feeder, covering large distances daily. Follows water edges hunting insects."
+  },
+  {
+    "ebird_code": "hilmyn",
+    "common_name": "Common Hill Myna",
+    "general_knowledge": "The Common Hill Myna is a resident species found in wooded areas, parks, and gardens throughout Singapore. It is a highly vocal and conspicuous bird.",
+    "identification_tips": "Black overall with distinctive yellow wattles behind eyes and yellow bill. Large yellow patches on wings visible in flight. Stocky build with upright posture.",
+    "habitat": "Wooded areas, secondary forest, well-vegetated parks and gardens, and urban areas with large trees. Highly adaptable.",
+    "behaviour": "Usually in pairs or small groups of 3-5 birds. Vocal with loud, clear whistling calls and mimicry of other species. Hops along branches and on ground.",
+    "diet": "Omnivorous. Feeds on fruits (figs, insects, seeds, and occasionally small reptiles). Often visits fruiting trees in mixed foraging flocks.",
+    "feeding_habits": "Forages in trees and on ground. Visits fruiting trees and will come to feeders. Often seen moving about in early morning and late afternoon."
+  }
+]
