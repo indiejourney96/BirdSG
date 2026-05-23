@@ -179,7 +179,7 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
             <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md">
 
               <h4 className="font-headline text-headline-md text-on-surface">
-                Recent Sightings (Singapore)
+                Recent Sightings in Singapore
               </h4>
 
               <div className="flex flex-col gap-sm">
