@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 # ── Configuration ──────────────────────────────────────────────────────────
 USE_HYBRID_MODE = os.environ.get("USE_HYBRID_MODE", "true").lower() == "true"
 CUSTOM_MODEL_PATH = "best_bird_model.pth"
-RESNET_TEST_MODE = True  # direct ResNet inference (skip bird gate)
+RESNET_TEST_MODE = False  #True-direct ResNet inference (skip bird gate), False-use EfficientNet for bird gate
 
 # ── EfficientNet (bird gate) ───────────────────────────────────────────────
 _EFFICIENTNET_WEIGHTS = EfficientNet_B0_Weights.DEFAULT
