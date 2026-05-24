@@ -1,5 +1,6 @@
 // frontend/components/home/PredictionResults.tsx
 "use client";
+import { useMemo, useState } from "react";
 
 interface Prediction {
   label: string;
@@ -88,12 +89,24 @@ function normalizeImageUrl(url: string): string {
 }
 
 export default function PredictionResults({ data, onReset }: PredictionResultsProps) {
-  const birdDetails = data.bird?.details;
-  const recording = data.bird?.recording ?? null;
+  const topPredictions = data.prediction.predictions.slice(0, 3);
+  const [selectedLabel, setSelectedLabel] = useState<string>(
+    topPredictions[0]?.label ?? data.bird?.label ?? "",
+  );
+  const selectedBird = useMemo(() => {
+    if (!selectedLabel) {
+      return data.bird;
+    }
+    return data.birdsByLabel?.[selectedLabel] ?? (
+      selectedLabel === data.bird?.label ? data.bird : null
+    );
+  }, [data.bird, data.birdsByLabel, selectedLabel]);
+  const birdDetails = selectedBird?.details;
+  const recording = selectedBird?.recording ?? null;
   const recordingAudioUrl = hasText(recording?.audio_url)
     ? normalizeAudioUrl(recording.audio_url)
     : null;
-  const recentSightings = data.bird?.recent_sightings_sg ?? [];
+  const recentSightings = selectedBird?.recent_sightings_sg ?? [];
   const knowledgeItems = birdDetails
     ? [
       {
@@ -166,14 +179,17 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
               ? normalizeImageUrl(birdInfo.photo.url)
               : null;
             const photoAlt = birdInfo?.species.common_name ?? formatLabel(pred.label);
+            const isSelected = selectedLabel === pred.label;
 
             return (
-              <div
+              <button
+                type="button"
                 key={pred.label}
-                className={`p-md rounded-lg border transition-all flex flex-col gap-md md:flex-row ${index === 0
+                onClick={() => setSelectedLabel(pred.label)}
+                className={`w-full text-left p-md rounded-lg border transition-all flex flex-col gap-md md:flex-row ${index === 0
                   ? "bg-primary-container/20 border-primary/20 shadow-xs"
                   : "bg-surface border-outline-variant/30"
-                  }`}
+                  } ${isSelected ? "ring-5 ring-primary/50" : ""}`}
               >
                 <div className="h-28 w-full overflow-hidden rounded-lg bg-surface-variant md:h-24 md:w-32 md:shrink-0">
                   {photoUrl ? (
@@ -229,12 +245,12 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                     />
                   </div>
                 </div>
-              </div>
+              </button>
             );
           })}
 
           {/* Bird Details Panel */}
-          {data.bird && (
+          {selectedBird && (
             <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md mt-lg">
 
               {/* Header */}
@@ -248,7 +264,7 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                   </h4>
                 </div>
                 <span className="font-label-sm text-label-sm text-on-surface-variant">
-                  eBird code: {data.bird.ebird_code}
+                  eBird code: {selectedBird.ebird_code}
                 </span>
               </div>
 
@@ -258,28 +274,28 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Common Name</p>
                   <p className="font-body-lg font-semibold text-on-surface">
-                    {data.bird.species.common_name ?? "Unknown"}
+                    {selectedBird.species.common_name ?? "Unknown"}
                   </p>
                 </div>
 
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Scientific Name</p>
                   <p className="font-body-lg font-semibold italic text-on-surface">
-                    {data.bird.species.scientific_name ?? "Unknown"}
+                    {selectedBird.species.scientific_name ?? "Unknown"}
                   </p>
                 </div>
 
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Family</p>
                   <p className="font-body-lg text-on-surface">
-                    {data.bird.species.family ?? "Unknown"}
+                    {selectedBird.species.family ?? "Unknown"}
                   </p>
                 </div>
 
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Order</p>
                   <p className="font-body-lg text-on-surface">
-                    {data.bird.species.order ?? "Unknown"}
+                    {selectedBird.species.order ?? "Unknown"}
                   </p>
                 </div>
 
