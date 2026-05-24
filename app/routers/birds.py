@@ -84,12 +84,13 @@ class BirdInfoResponse(BaseModel):
 
 def get_bird_details_from_db(ebird_code: str) -> dict | None:
     """
-    Fetch species details from bird_species_details table.
-    Returns None if not found or on DB error (graceful failure).
+    Fetch species details from bird_species_details table including photo urls.
+    Returns None if not found or on DB error.
     """
     try:
+        # ADDED photo_url AND photo_source TO THE SELECT STATEMENT
         response = supabase.table("bird_species_details").select(
-            "general_knowledge, identification_tips, habitat, behaviour, diet, feeding_habits"
+            "general_knowledge, identification_tips, habitat, behaviour, diet, feeding_habits, photo_url, photo_source"
         ).eq("ebird_code", ebird_code).execute()
 
         if response.data and len(response.data) > 0:
@@ -99,7 +100,6 @@ def get_bird_details_from_db(ebird_code: str) -> dict | None:
     except Exception as exc:
         logger.error("Failed to fetch bird details for %s: %s", ebird_code, exc)
         return None
-
 
 # ─────────────────────────────────────────────────────────────
 # ENDPOINT
@@ -127,11 +127,28 @@ def get_bird_info(label: str):
             detail=f"Could not retrieve species info from eBird for '{label}'.",
         )
 
-    # Fetch photo (graceful: returns None if no photo found)
+    # 1. Fetch rich species details from Supabase first
+    details: SpeciesDetails | None = None
     photo: PhotoInfo | None = None
-    photo_data = get_bird_photo(ebird_code, ebird_species["common_name"])
-    if photo_data:
-        photo = PhotoInfo(**photo_data)
+
+    bird_details = get_bird_details_from_db(ebird_code)
+    if bird_details:
+        details = SpeciesDetails(**bird_details)
+        
+        # Check if the database record already holds a pre-saved photo URL
+        if bird_details.get("photo_url"):
+            photo = PhotoInfo(
+                url=bird_details["photo_url"],
+                source=bird_details.get("photo_source") or "Supabase Database",
+                caption=f"An amazing {ebird_species['common_name']}"
+            )
+
+    # 2. Fallback: If DB table had no photo, use your hybrid storage/Wikimedia asset strategy
+    if not photo:
+        logger.info("Photo not found in DB table metadata. Running asset fallback strategy for %s", ebird_code)
+        photo_data = get_bird_photo(ebird_code, ebird_species["common_name"])
+        if photo_data:
+            photo = PhotoInfo(**photo_data)
 
     # Fetch recent sightings (graceful: returns empty list)
     sightings = get_recent_sightings(ebird_code)
@@ -141,12 +158,6 @@ def get_bird_info(label: str):
     xc = get_reference_audio(ebird_species["common_name"])
     if xc:
         recording = RecordingInfo(**xc)
-
-    # Fetch rich species details from Supabase (graceful: returns None)
-    details: SpeciesDetails | None = None
-    bird_details = get_bird_details_from_db(ebird_code)
-    if bird_details:
-        details = SpeciesDetails(**bird_details)
 
     return BirdInfoResponse(
         label=label,
