@@ -9,6 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
     "axios": "^1.16.0",
     "clsx": "^2.1.1",
     "lucide-react": "^1.14.0",
