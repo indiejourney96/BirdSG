@@ -1,11 +1,12 @@
 """
-birds.py — GET /birds/{label} endpoint with rich species details.
+birds.py — GET /birds/{label} endpoint with photos, species details, and recordings.
 
 Returns:
   - eBird taxonomy (common name, scientific name, family, order)
+  - Bird photo (from eBird or Wikimedia)
   - Recent Singapore sightings from eBird
   - Xeno-canto reference recording
-  - Rich species details from Supabase (knowledge, ID tips, habitat, behaviour, diet)
+  - Rich species details from Supabase
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from pydantic import BaseModel
 from app.ebird import get_recent_sightings, get_species_info
 from app.species_mapping import get_species
 from app.xeno_canto import get_reference_audio
+from app.bird_photos import get_bird_photo
 from app.database import supabase
 
 logger = logging.getLogger(__name__)
@@ -34,6 +36,14 @@ class SpeciesInfo(BaseModel):
     scientific_name: str | None
     family: str | None
     order: str | None
+
+
+class PhotoInfo(BaseModel):
+    url: str
+    caption: str | None = None
+    photographer: str | None = None
+    license: str | None = None
+    source: str
 
 
 class RecentSighting(BaseModel):
@@ -62,6 +72,7 @@ class BirdInfoResponse(BaseModel):
     label: str
     ebird_code: str
     species: SpeciesInfo
+    photo: PhotoInfo | None = None
     recent_sightings_sg: list[RecentSighting]
     recording: RecordingInfo | None = None
     details: SpeciesDetails | None = None
@@ -97,8 +108,7 @@ def get_bird_details_from_db(ebird_code: str) -> dict | None:
 @router.get("/{label}", response_model=BirdInfoResponse)
 def get_bird_info(label: str):
     """
-    Look up species info, recent Singapore sightings, reference recording,
-    and rich details for an ImageNet label.
+    Look up comprehensive bird info: taxonomy, photo, sightings, recording, and details.
     """
     species = get_species(label)
 
@@ -117,16 +127,22 @@ def get_bird_info(label: str):
             detail=f"Could not retrieve species info from eBird for '{label}'.",
         )
 
-    # Fetch recent sightings (graceful failure: returns empty list)
+    # Fetch photo (graceful: returns None if no photo found)
+    photo: PhotoInfo | None = None
+    photo_data = get_bird_photo(ebird_code, ebird_species["common_name"])
+    if photo_data:
+        photo = PhotoInfo(**photo_data)
+
+    # Fetch recent sightings (graceful: returns empty list)
     sightings = get_recent_sightings(ebird_code)
 
-    # Fetch reference recording (graceful failure: returns None)
+    # Fetch reference recording (graceful: returns None)
     recording: RecordingInfo | None = None
     xc = get_reference_audio(ebird_species["common_name"])
     if xc:
         recording = RecordingInfo(**xc)
 
-    # Fetch rich species details from Supabase (graceful failure: returns None)
+    # Fetch rich species details from Supabase (graceful: returns None)
     details: SpeciesDetails | None = None
     bird_details = get_bird_details_from_db(ebird_code)
     if bird_details:
@@ -136,6 +152,7 @@ def get_bird_info(label: str):
         label=label,
         ebird_code=ebird_code,
         species=SpeciesInfo(**ebird_species),
+        photo=photo,
         recent_sightings_sg=[RecentSighting(**s) for s in sightings],
         recording=recording,
         details=details,
