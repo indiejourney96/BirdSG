@@ -69,8 +69,16 @@ function hasText(value: string | null | undefined): value is string {
   return Boolean(value?.trim());
 }
 
+function normalizeAudioUrl(url: string): string {
+  return url.startsWith("//") ? `https:${url}` : url;
+}
+
 export default function PredictionResults({ data, onReset }: PredictionResultsProps) {
   const birdDetails = data.bird?.details;
+  const recording = data.bird?.recording ?? null;
+  const recordingAudioUrl = hasText(recording?.audio_url)
+    ? normalizeAudioUrl(recording.audio_url)
+    : null;
   const recentSightings = data.bird?.recent_sightings_sg ?? [];
   const knowledgeItems = birdDetails
     ? [
@@ -311,6 +319,74 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                     </div> */}
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {recordingAudioUrl && (
+            <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md">
+              <div className="flex flex-col gap-xs md:flex-row md:items-start md:justify-between">
+                <div className="flex items-center gap-sm">
+                  <span className="material-symbols-outlined text-primary">
+                    volume_up
+                  </span>
+                  <h4 className="font-headline text-headline-md text-on-surface">
+                    Bird Recording
+                  </h4>
+                </div>
+
+                {hasText(recording?.recording_id) && (
+                  <a
+                    href={`https://xeno-canto.org/${recording.recording_id.replace(/^XC/i, "")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-xs font-label-sm text-label-sm text-primary hover:underline"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">
+                      open_in_new
+                    </span>
+                    {recording.recording_id}
+                  </a>
+                )}
+              </div>
+
+              <div className="p-md rounded-lg bg-surface border border-surface-variant flex flex-col gap-sm">
+                <audio
+                  controls
+                  preload="metadata"
+                  src={recordingAudioUrl}
+                  className="w-full"
+                >
+                  Your browser does not support audio playback.
+                </audio>
+
+                <div className="grid md:grid-cols-2 gap-sm">
+                  {hasText(recording?.recordist) && (
+                    <div>
+                      <p className="font-label-sm text-on-surface-variant">
+                        Recordist
+                      </p>
+                      <p className="font-body text-body-md text-on-surface">
+                        {recording.recordist}
+                      </p>
+                    </div>
+                  )}
+
+                  {hasText(recording?.location) && (
+                    <div>
+                      <p className="font-label-sm text-on-surface-variant">
+                        Recording Location
+                      </p>
+                      <p className="font-body text-body-md text-on-surface">
+                        {recording.location}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <p className="font-label-sm text-label-sm text-on-surface-variant">
+                  Audio reference from Xeno-canto
+                </p>
               </div>
             </div>
           )}
