@@ -1,44 +1,71 @@
 // frontend/components/home/IdentifyCard.tsx
 "use client";
 import { useState } from "react";
-import { predictBird, getBirdInfo } from "@/lib/api";
+import { ApiError, predictBird, getBirdInfo } from "@/lib/api";
+
+interface PredictionItem {
+  label: string;
+  confidence: number;
+  singapore_match: boolean;
+}
+
+interface PredictionResponse {
+  filename: string;
+  mode: string;
+  predictions: PredictionItem[];
+  singapore_filtered: boolean;
+  sighting_id: string | null;
+}
+
+interface AnalysisResult {
+  prediction: PredictionResponse;
+  bird: unknown | null;
+}
 
 interface IdentifyCardProps {
-  onPredictionSuccess: (data: any) => void;
+  onPredictionSuccess: (data: AnalysisResult) => void;
 }
 
 export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps) {
   const [loading, setLoading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   async function handleUpload(file: File) {
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
+      setUploadError(null);
 
-    // Step 1 — Predict species
-    const predictionData = await predictBird(file);
+      const predictionData = await predictBird(file);
+      const topPrediction = predictionData.predictions?.[0];
 
-    const topPrediction = predictionData.predictions?.[0];
+      let birdInfo = null;
 
-    // Step 2 — Fetch bird enrichment data
-    let birdInfo = null;
+      if (topPrediction) {
+        birdInfo = await getBirdInfo(topPrediction.label);
+      }
 
-    if (topPrediction) {
-      birdInfo = await getBirdInfo(topPrediction.label);
+      onPredictionSuccess({
+        prediction: predictionData,
+        bird: birdInfo,
+      });
+    } catch (error) {
+      console.error(error);
+
+      if (error instanceof ApiError) {
+        if (error.status === 422) {
+          setUploadError("No bird detected. Please upload a clearer photo where the bird is visible.");
+        } else if (error.status === 415) {
+          setUploadError("Unsupported media type. Please upload a JPEG, PNG, or WebP image.");
+        } else {
+          setUploadError(error.message);
+        }
+      } else {
+        setUploadError("Prediction failed. Please try again with another image.");
+      }
+    } finally {
+      setLoading(false);
     }
-
-    // Step 3 — Merge into single frontend state
-    onPredictionSuccess({
-      prediction: predictionData,
-      bird: birdInfo,
-    });
-
-  } catch (error) {
-    console.error(error);
-    alert("Prediction failed");
-  } finally {
-    setLoading(false);
   }
-}
 
   return (
     <section className="mb-xl">
@@ -75,6 +102,7 @@ export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps)
               className="hidden"
               onChange={(e) => {
                 const file = e.target.files?.[0];
+                e.target.value = "";
 
                 if (file) {
                   handleUpload(file);
@@ -83,6 +111,20 @@ export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps)
             />
 
           </label>
+
+          {uploadError && (
+            <div
+              role="alert"
+              className="mt-md inline-flex max-w-full items-start gap-sm rounded-lg border border-error/30 bg-error-container px-md py-sm text-left text-on-error-container shadow-sm"
+            >
+              <span className="material-symbols-outlined text-[20px]">
+                error
+              </span>
+              <p className="font-body text-body-sm">
+                {uploadError}
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="relative w-full md:w-1/3 aspect-square md:aspect-video rounded-lg overflow-hidden shadow-xl border-4 border-white/10">
