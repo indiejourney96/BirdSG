@@ -16,6 +16,7 @@ interface BirdInfo {
     family: string | null;
     order: string | null;
   };
+  photo: PhotoInfo | null;
   recent_sightings_sg: RecentSighting[];
   recording: RecordingInfo | null;
   details: SpeciesDetails | null;
@@ -31,8 +32,17 @@ interface PredictionResultsProps {
       sighting_id: string | null;
     };
     bird: BirdInfo | null;
+    birdsByLabel?: Record<string, BirdInfo>;
   };
   onReset: () => void;
+}
+
+interface PhotoInfo {
+  url: string;
+  caption: string | null;
+  photographer: string | null;
+  license: string | null;
+  source: string;
 }
 
 interface RecentSighting {
@@ -70,6 +80,10 @@ function hasText(value: string | null | undefined): value is string {
 }
 
 function normalizeAudioUrl(url: string): string {
+  return url.startsWith("//") ? `https:${url}` : url;
+}
+
+function normalizeImageUrl(url: string): string {
   return url.startsWith("//") ? `https:${url}` : url;
 }
 
@@ -145,50 +159,75 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
 
           {data.prediction.predictions.map((pred, index) => {
             const percentage = (pred.confidence * 100).toFixed(2);
+            const birdInfo = data.birdsByLabel?.[pred.label] ?? (
+              pred.label === data.bird?.label ? data.bird : null
+            );
+            const photoUrl = hasText(birdInfo?.photo?.url)
+              ? normalizeImageUrl(birdInfo.photo.url)
+              : null;
+            const photoAlt = birdInfo?.species.common_name ?? formatLabel(pred.label);
 
             return (
               <div
                 key={pred.label}
-                className={`p-md rounded-lg border transition-all ${index === 0
+                className={`p-md rounded-lg border transition-all flex flex-col gap-md md:flex-row ${index === 0
                   ? "bg-primary-container/20 border-primary/20 shadow-xs"
                   : "bg-surface border-outline-variant/30"
                   }`}
               >
-                <div className="flex justify-between items-start mb-sm">
-                  <div>
-                    <div className="flex items-center gap-xs">
-                      <span className={`font-body text-body-lg font-bold ${index === 0 ? "text-primary" : "text-on-surface"
-                        }`}>
-                        {formatLabel(pred.label)}
+                <div className="h-28 w-full overflow-hidden rounded-lg bg-surface-variant md:h-24 md:w-32 md:shrink-0">
+                  {photoUrl ? (
+                    <img
+                      src={photoUrl}
+                      alt={photoAlt}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center text-on-surface-variant">
+                      <span className="material-symbols-outlined text-[32px]">
+                        image_not_supported
                       </span>
-
-                      {/* Singapore Native / Resident Stamp badge */}
-                      {pred.singapore_match && (
-                        <span className="inline-flex items-center gap-0.5 bg-secondary-container text-on-secondary-container text-[11px] font-semibold px-2 py-0.5 rounded-full">
-                          <span className="material-symbols-outlined text-[12px]">location_on</span>
-                          SG Native
-                        </span>
-                      )}
                     </div>
-                    <p className="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
-                      Rank #{index + 1} Match
-                    </p>
-                  </div>
-
-                  {/* Percentage Metric */}
-                  <span className={`font-headline text-body-lg font-bold ${index === 0 ? "text-primary" : "text-on-surface-variant"
-                    }`}>
-                    {percentage}%
-                  </span>
+                  )}
                 </div>
 
-                {/* Accuracy Progress Bar */}
-                <div className="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full rounded-full transition-all duration-500 ${index === 0 ? "bg-primary" : "bg-secondary"
-                      }`}
-                    style={{ width: `${percentage}%` }}
-                  />
+                <div className="flex-1">
+                  <div className="flex justify-between items-start mb-sm">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-xs">
+                        <span className={`font-body text-body-lg font-bold ${index === 0 ? "text-primary" : "text-on-surface"
+                          }`}>
+                          {birdInfo?.species.common_name ?? formatLabel(pred.label)}
+                        </span>
+
+                        {/* Singapore Native / Resident Stamp badge */}
+                        {pred.singapore_match && (
+                          <span className="inline-flex items-center gap-0.5 bg-secondary-container text-on-secondary-container text-[11px] font-semibold px-2 py-0.5 rounded-full">
+                            <span className="material-symbols-outlined text-[12px]">location_on</span>
+                            SG Native
+                          </span>
+                        )}
+                      </div>
+                      <p className="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
+                        Rank #{index + 1} Match
+                      </p>
+                    </div>
+
+                    {/* Percentage Metric */}
+                    <span className={`font-headline text-body-lg font-bold ${index === 0 ? "text-primary" : "text-on-surface-variant"
+                      }`}>
+                      {percentage}%
+                    </span>
+                  </div>
+
+                  {/* Accuracy Progress Bar */}
+                  <div className="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all duration-500 ${index === 0 ? "bg-primary" : "bg-secondary"
+                        }`}
+                      style={{ width: `${percentage}%` }}
+                    />
+                  </div>
                 </div>
               </div>
             );

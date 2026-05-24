@@ -20,6 +20,7 @@ interface PredictionResponse {
 interface AnalysisResult {
   prediction: PredictionResponse;
   bird: unknown | null;
+  birdsByLabel: Record<string, unknown>;
 }
 
 interface IdentifyCardProps {
@@ -35,18 +36,30 @@ export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps)
       setLoading(true);
       setUploadError(null);
 
-      const predictionData = await predictBird(file);
+      const predictionData = await predictBird(file) as PredictionResponse;
       const topPrediction = predictionData.predictions?.[0];
+      const topPredictions = predictionData.predictions?.slice(0, 3) ?? [];
 
-      let birdInfo = null;
+      const birdInfoResults = await Promise.all(
+        topPredictions.map(async (prediction) => {
+          try {
+            return [prediction.label, await getBirdInfo(prediction.label)] as const;
+          } catch (error) {
+            console.error(`Failed to fetch bird info for ${prediction.label}`, error);
+            return [prediction.label, null] as const;
+          }
+        }),
+      );
 
-      if (topPrediction) {
-        birdInfo = await getBirdInfo(topPrediction.label);
-      }
+      const birdsByLabel = Object.fromEntries(
+        birdInfoResults.filter((entry): entry is readonly [string, unknown] => entry[1] !== null),
+      );
+      const birdInfo = topPrediction ? birdsByLabel[topPrediction.label] ?? null : null;
 
       onPredictionSuccess({
         prediction: predictionData,
         bird: birdInfo,
+        birdsByLabel,
       });
     } catch (error) {
       console.error(error);
