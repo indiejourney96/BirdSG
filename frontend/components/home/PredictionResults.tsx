@@ -11,11 +11,14 @@ interface BirdInfo {
   label: string;
   ebird_code: string;
   species: {
-    common_name: string;
-    scientific_name: string;
-    family: string;
-    order: string;
+    common_name: string | null;
+    scientific_name: string | null;
+    family: string | null;
+    order: string | null;
   };
+  recent_sightings_sg: RecentSighting[];
+  recording: RecordingInfo | null;
+  details: SpeciesDetails | null;
 }
 
 interface PredictionResultsProps {
@@ -32,6 +35,28 @@ interface PredictionResultsProps {
   onReset: () => void;
 }
 
+interface RecentSighting {
+  location: string | null;
+  date: string | null;
+  count: number | null;
+}
+
+interface RecordingInfo {
+  audio_url: string | null;
+  recording_id: string | null;
+  recordist: string | null;
+  location: string | null;
+}
+
+interface SpeciesDetails {
+  general_knowledge: string | null;
+  identification_tips: string | null;
+  habitat: string | null;
+  behaviour: string | null;
+  diet: string | null;
+  feeding_habits: string | null;
+}
+
 // Helper to turn snake_case labels into clean display titles
 function formatLabel(label: string): string {
   return label
@@ -40,7 +65,43 @@ function formatLabel(label: string): string {
     .join(" ");
 }
 
+function hasText(value: string | null | undefined): value is string {
+  return Boolean(value?.trim());
+}
+
 export default function PredictionResults({ data, onReset }: PredictionResultsProps) {
+  const birdDetails = data.bird?.details;
+  const recentSightings = data.bird?.recent_sightings_sg ?? [];
+  const knowledgeItems = birdDetails
+    ? [
+      {
+        title: "Identification Tips",
+        icon: "visibility",
+        body: birdDetails.identification_tips,
+      },
+      {
+        title: "Habitat",
+        icon: "park",
+        body: birdDetails.habitat,
+      },
+      {
+        title: "Behaviour",
+        icon: "flutter_dash",
+        body: birdDetails.behaviour,
+      },
+      {
+        title: "Diet",
+        icon: "restaurant",
+        body: birdDetails.diet,
+      },
+      {
+        title: "Feeding Habits",
+        icon: "grass",
+        body: birdDetails.feeding_habits,
+      },
+    ].filter((item) => hasText(item.body))
+    : [];
+
   return (
     <section className="mb-xl animate-fade-in">
       {/* Header Area */}
@@ -130,13 +191,18 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
             <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md mt-lg">
 
               {/* Header */}
-              <div className="flex items-center gap-sm">
-                <span className="material-symbols-outlined text-primary">
-                  flutter_dash
+              <div className="flex flex-col gap-xs md:flex-row md:items-start md:justify-between">
+                <div className="flex items-center gap-sm">
+                  <span className="material-symbols-outlined text-primary">
+                    flutter_dash
+                  </span>
+                  <h4 className="font-headline text-headline-md text-on-surface">
+                    Bird Details
+                  </h4>
+                </div>
+                <span className="font-label-sm text-label-sm text-on-surface-variant">
+                  eBird code: {data.bird.ebird_code}
                 </span>
-                <h4 className="font-headline text-headline-md text-on-surface">
-                  Bird Details
-                </h4>
               </div>
 
               {/* Species Info Card */}
@@ -145,37 +211,80 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Common Name</p>
                   <p className="font-body-lg font-semibold text-on-surface">
-                    {data.bird.species.common_name}
+                    {data.bird.species.common_name ?? "Unknown"}
                   </p>
                 </div>
 
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Scientific Name</p>
                   <p className="font-body-lg font-semibold italic text-on-surface">
-                    {data.bird.species.scientific_name}
+                    {data.bird.species.scientific_name ?? "Unknown"}
                   </p>
                 </div>
 
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Family</p>
                   <p className="font-body-lg text-on-surface">
-                    {data.bird.species.family}
+                    {data.bird.species.family ?? "Unknown"}
                   </p>
                 </div>
 
                 <div className="p-md rounded-lg bg-surface border border-surface-variant">
                   <p className="font-label-sm text-on-surface-variant">Order</p>
                   <p className="font-body-lg text-on-surface">
-                    {data.bird.species.order}
+                    {data.bird.species.order ?? "Unknown"}
                   </p>
                 </div>
 
               </div>
+
+              {(hasText(birdDetails?.general_knowledge) || knowledgeItems.length > 0) && (
+                <div className="flex flex-col gap-md">
+                  {hasText(birdDetails?.general_knowledge) && (
+                    <div className="p-md rounded-lg bg-surface border border-surface-variant">
+                      <div className="flex items-center gap-xs mb-xs">
+                        <span className="material-symbols-outlined text-primary text-[18px]">
+                          auto_stories
+                        </span>
+                        <p className="font-label-sm text-on-surface-variant uppercase tracking-wider">
+                          General Knowledge
+                        </p>
+                      </div>
+                      <p className="font-body text-body-md text-on-surface leading-relaxed">
+                        {birdDetails.general_knowledge}
+                      </p>
+                    </div>
+                  )}
+
+                  {knowledgeItems.length > 0 && (
+                    <div className="grid md:grid-cols-2 gap-md">
+                      {knowledgeItems.map((item) => (
+                        <div
+                          key={item.title}
+                          className="p-md rounded-lg bg-surface border border-surface-variant"
+                        >
+                          <div className="flex items-center gap-xs mb-xs">
+                            <span className="material-symbols-outlined text-secondary text-[18px]">
+                              {item.icon}
+                            </span>
+                            <p className="font-label-sm text-on-surface-variant uppercase tracking-wider">
+                              {item.title}
+                            </p>
+                          </div>
+                          <p className="font-body text-body-md text-on-surface leading-relaxed">
+                            {item.body}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
 
 
-          {(data as any).bird?.recent_sightings_sg?.length > 0 && (
+          {recentSightings.length > 0 && (
             <div className="bg-surface-container-low rounded-xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md">
 
               <h4 className="font-headline text-headline-md text-on-surface">
@@ -183,17 +292,17 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
               </h4>
 
               <div className="flex flex-col gap-sm">
-                {(data as any).bird.recent_sightings_sg.map((sighting, idx) => (
+                {recentSightings.map((sighting, idx) => (
                   <div
                     key={idx}
                     className="p-md rounded-lg bg-surface border border-surface-variant flex justify-between"
                   >
                     <div>
                       <p className="font-body font-semibold text-on-surface">
-                        {sighting.location}
+                        {sighting.location ?? "Unknown location"}
                       </p>
                       <p className="font-label-sm text-on-surface-variant">
-                        {sighting.date}
+                        {sighting.date ?? "Date unavailable"}
                       </p>
                     </div>
 
