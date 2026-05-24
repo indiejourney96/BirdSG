@@ -24,6 +24,8 @@ import sys
 import time
 from pathlib import Path
 from typing import Optional
+import io
+from PIL import Image as PILImage
 
 import httpx
 
@@ -85,7 +87,7 @@ def download_photo_from_wikimedia(
     ebird_code: str,
 ) -> Optional[tuple[bytes, str]]:
     """
-    Download photo from Wikimedia Commons.
+    Download photo from Wikimedia Commons and optimize its size.
 
     Returns:
         (photo_bytes, filename) or None if not found/failed.
@@ -106,10 +108,33 @@ def download_photo_from_wikimedia(
         resp = httpx.get(photo_url, headers=headers, timeout=10)
         resp.raise_for_status()
 
-        # Generate filename
-        filename = f"{ebird_code}.jpg"
+        # --- OPTIMIZATION BLOCK START ---
+        # Load the raw bytes into Pillow
+        img = PILImage.open(io.BytesIO(resp.content))
+        
+        # Convert to RGB mode if it's RGBA/PNG to ensure it saves cleanly as a JPEG
+        if img.mode in ("RGBA", "P"):
+            img = img.convert("RGB")
 
-        return resp.content, filename
+        # Resize the image so its maximum dimension is 800 pixels (perfect for mobile apps/web)
+        max_size = 800
+        if max(img.width, img.height) > max_size:
+            img.thumbnail((max_size, max_size), PILImage.Resampling.LANCZOS)
+            logger.debug("Resized image to %dx%d", img.width, img.height)
+
+        # Compress and save back into memory as optimized JPEG bytes
+        output_buffer = io.BytesIO()
+        img.save(output_buffer, format="JPEG", quality=80, optimize=True)
+        optimized_bytes = output_buffer.getvalue()
+        
+        # Log the savings
+        old_size_mb = len(resp.content) / (1024 * 1024)
+        new_size_kb = len(optimized_bytes) / 1024
+        logger.info("Optimized %s: %.2fMB -> %.1fKB", ebird_code, old_size_mb, new_size_kb)
+        # --- OPTIMIZATION BLOCK END ---
+
+        filename = f"{ebird_code}.jpg"
+        return optimized_bytes, filename
 
     except Exception as e:
         logger.warning("Failed to download photo for %s: %s", species_name, e)
