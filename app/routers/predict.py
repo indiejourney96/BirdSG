@@ -18,7 +18,7 @@ from pydantic import BaseModel
 from app.model import predict_top_k, load_model
 from app.bird_gate import passes_bird_gate, BIRD_CONFIDENCE_THRESHOLD
 from app.species_mapping import get_species, is_singapore_species
-from app.database import save_sighting
+from app.database import build_sighting_storage_path, save_sighting, upload_sighting_image
 from app.ebird import get_species_info
 from app.species_mapping import get_species
 
@@ -133,8 +133,15 @@ async def predict(
 
 
     try:
+        storage_path, stored_filename, object_path = build_sighting_storage_path(
+            file.filename or "bird.jpg",
+            file.content_type,
+        )
+        upload_sighting_image(object_path, image_bytes, file.content_type)
+
         record = save_sighting(
-            filename=file.filename,
+            filename=stored_filename,
+            storage_path=storage_path,
             predictions=[p.model_dump() for p in predictions_out],
             singapore_filtered=bool(
                 any(p.singapore_match for p in predictions_out)
@@ -144,7 +151,8 @@ async def predict(
         )
         sighting_id = record.get("id")
     except Exception as exc:
-            logger.error("Supabase write failed: %s", exc)
+            logger.error("Supabase sighting save failed: %s", exc)
+            raise HTTPException(status_code=500, detail="Failed to save sighting image")
 
     # 5. Response
     return PredictResponse(
