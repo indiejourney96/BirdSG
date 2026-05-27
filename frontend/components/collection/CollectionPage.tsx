@@ -97,7 +97,7 @@ export default function CollectionPage() {
   const [loading, setLoading] = useState(() => sightingIds.length > 0);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [onlyWithLocation, setOnlyWithLocation] = useState(false);
+  // const [onlyWithLocation, setOnlyWithLocation] = useState(false);
 
   useEffect(() => {
     if (sightingIds.length === 0) {
@@ -179,13 +179,13 @@ export default function CollectionPage() {
         return false;
       }
 
-      if (onlyWithLocation && (typeof sighting.lat !== "number" || typeof sighting.lng !== "number")) {
-        return false;
-      }
+      // if (onlyWithLocation && (typeof sighting.lat !== "number" || typeof sighting.lng !== "number")) {
+      //   return false;
+      // }
 
       return true;
     });
-  }, [onlyWithLocation, searchTerm, sightings]);
+  }, [searchTerm, sightings]);
 
   const totalSightings = sightings.length;
   const speciesCount = new Set(
@@ -240,12 +240,12 @@ export default function CollectionPage() {
                   </p>
                   <p className="mt-2 text-3xl font-bold">{geotaggedCount}</p>
                 </div>
-                <div className="rounded-2xl border border-on-primary/10 bg-on-primary/10 p-4 backdrop-blur">
+                {/* <div className="rounded-2xl border border-on-primary/10 bg-on-primary/10 p-4 backdrop-blur">
                   <p className="text-label-sm uppercase tracking-[0.18em] text-on-primary/70">
                     Singapore matches
                   </p>
                   <p className="mt-2 text-3xl font-bold">{singaporeMatchCount}</p>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -306,7 +306,7 @@ export default function CollectionPage() {
               />
             </div>
 
-            <button
+            {/* <button
               type="button"
               onClick={() => setOnlyWithLocation((current) => !current)}
               className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-label-md font-semibold transition ${
@@ -319,10 +319,10 @@ export default function CollectionPage() {
                 {onlyWithLocation ? "location_on" : "public"}
               </span>
               {onlyWithLocation ? "Showing geotagged only" : "Show geotagged only"}
-            </button>
+            </button> */}
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          {/* <div className="mt-4 flex flex-wrap gap-2">
             {["All photos", "Top species", "Map ready"].map((chip) => (
               <span
                 key={chip}
@@ -331,7 +331,7 @@ export default function CollectionPage() {
                 {chip}
               </span>
             ))}
-          </div>
+          </div> */}
         </section>
 
         {loading ? (
