@@ -199,7 +199,7 @@ export default function CollectionPage() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <main className="mx-auto min-h-screen max-w-screen-xl px-margin-mobile pb-32 pt-24">
         <section className="mb-lg overflow-hidden rounded-[2rem] border border-primary/10 bg-gradient-to-br from-primary-container via-primary to-tertiary-container p-lg text-on-primary shadow-[0_20px_80px_rgba(21,66,18,0.18)]">
