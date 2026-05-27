@@ -73,7 +73,7 @@ export default function Home() {
 
   return (
     <>
-    <Header />
+    {/* <Header /> */}
       <main className="pt-24 px-margin-mobile max-w-screen-xl mx-auto pb-32">
         <Hero />
         
@@ -88,7 +88,7 @@ export default function Home() {
         )}
 
         <RecentSightings />
-        <Hotspots />
+        {/* <Hotspots /> */}
       </main>
       
       <BottomNav />
