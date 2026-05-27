@@ -74,3 +74,18 @@ export async function getBirdInfo(label: string) {
 
   return response.json();
 }
+
+export async function getSighting(sightingId: string) {
+  const response = await fetch(`${API_BASE_URL}/sightings/${sightingId}`);
+
+  if (!response.ok) {
+    const detail = await getErrorDetail(response);
+    throw new ApiError(
+      response.status,
+      detail,
+      formatApiErrorMessage(response.status, detail, "Failed to fetch sighting"),
+    );
+  }
+
+  return response.json();
+}
