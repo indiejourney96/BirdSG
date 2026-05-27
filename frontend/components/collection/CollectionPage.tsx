@@ -502,12 +502,12 @@ export default function CollectionPage() {
                     Start a new scan
                   </p>
                   <p className="mt-2 text-body-md text-on-surface-variant">
-                    Upload a bird photo from the Identify tab and the result will be added to your collection automatically.
+                    Upload a bird photo from the Home and the result will be added to your collection automatically.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <Link
+                  {/* <Link
                     href="/identify"
                     className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-label-md font-semibold text-on-primary shadow-md transition hover:opacity-90"
                   >
@@ -515,7 +515,7 @@ export default function CollectionPage() {
                       photo_camera
                     </span>
                     Open Identify
-                  </Link>
+                  </Link> */}
                   <Link
                     href="/"
                     className="inline-flex items-center gap-2 rounded-full bg-surface-container px-5 py-3 text-label-md font-semibold text-on-surface transition hover:bg-surface-container-high"
