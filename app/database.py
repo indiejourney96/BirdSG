@@ -101,7 +101,11 @@ def create_sighting_image_url(object_path: str, expires_in: int = SIGNED_URL_EXP
     data = getattr(response, "data", response)
 
     if isinstance(data, dict):
-        return data.get("signedUrl") or data.get("signed_url")
+        return (
+            data.get("signedURL")
+            # or data.get("signedUrl")
+            # or data.get("signed_url")
+        )
 
     return None
 
