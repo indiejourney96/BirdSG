@@ -301,7 +301,7 @@ export default function CollectionPage() {
                 type="search"
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
-                placeholder="Search by bird name, filename, or coordinates..."
+                placeholder="Search by bird name..."
                 className="w-full rounded-2xl border border-outline-variant bg-surface-container-lowest py-4 pl-12 pr-4 text-on-surface shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
               />
             </div>
