@@ -2,13 +2,12 @@
 "use client";
 
 import { useState } from "react";
+import SessionToolbar from "@/components/auth/SessionToolbar";
 import Hero from "@/components/home/Hero";
 import IdentifyCard from "@/components/home/IdentifyCard";
 import PredictionResults from "@/components/home/PredictionResults";
-import Hotspots from "@/components/home/Hotspots";
 import RecentSightings from "@/components/home/RecentSightings";
 import BottomNav from "@/components/home/BottomNav";
-import Header from "@/components/home/Header";
 
 interface PredictionItem {
   label: string;
@@ -74,6 +73,9 @@ export default function Home() {
   return (
     <>
     {/* <Header /> */}
+      <div className="fixed left-4 right-4 top-4 z-50 sm:left-6 sm:right-6 lg:left-8 lg:right-8">
+        <SessionToolbar />
+      </div>
       <main className="pt-24 px-margin-mobile max-w-screen-xl mx-auto pb-32">
         <Hero />
         
