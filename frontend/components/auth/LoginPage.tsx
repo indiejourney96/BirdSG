@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 
 type FieldErrors = Partial<{
   email: string;
@@ -176,67 +177,18 @@ export default function LoginPage() {
       <div className="absolute left-[-6rem] top-[-5rem] h-72 w-72 rounded-full bg-[#9ae1ff]/25 blur-3xl" />
       <div className="absolute bottom-[-5rem] right-[-4rem] h-80 w-80 rounded-full bg-[#bcf0ae]/25 blur-3xl" />
 
-      <div className="relative mx-auto grid min-h-screen w-full max-w-7xl items-center gap-8 px-4 py-6 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
-        <section className="hidden overflow-hidden rounded-[2rem] border border-white/60 bg-[#14331f] text-white shadow-[0_30px_80px_rgba(18,33,18,0.2)] lg:flex lg:min-h-[760px] lg:flex-col lg:justify-between">
-          <div className="relative p-10">
-            <div className="mb-10 flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
-                <Feather className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/60">
-                  SG BirdSpotter
-                </p>
-                <p className="text-sm text-white/70">Secure login for field observers</p>
-              </div>
-            </div>
-
-            <div className="max-w-xl space-y-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/80 backdrop-blur-sm">
-                <Sparkles className="h-4 w-4" />
-                Protected by Supabase, bcrypt, and httpOnly sessions
-              </span>
-              <h1 className="font-serif text-5xl leading-tight text-white">
-                Welcome back to the
-                <span className="block text-[#b7efad]">BirdSG observation hub</span>
-              </h1>
-              <p className="max-w-lg text-base leading-7 text-white/75">
-                Sign in with email and password to access your bird identification tools,
-                sightings, and analysis workbench. Sessions persist securely across refreshes,
-                and login attempts are rate limited to keep the platform protected.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 border-t border-white/10 bg-black/10 p-6">
-            {[
-              { title: "Secure", text: "httpOnly session cookie" },
-              { title: "Fast", text: "Remember me support" },
-              { title: "Safe", text: "CSRF + rate limiting" },
-            ].map((item) => (
-              <article key={item.title} className="rounded-2xl border border-white/10 bg-white/8 p-4">
-                <CheckCircle2 className="mb-3 h-5 w-5 text-[#b7efad]" />
-                <h2 className="mb-1 text-sm font-semibold uppercase tracking-[0.16em] text-white/85">
-                  {item.title}
-                </h2>
-                <p className="text-sm leading-6 text-white/70">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
+      <div className="relative mx-auto grid min-h-screen w-full max-w-7xl items-center gap-8 px-4 py-4 sm:px-6 sm:py-6 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
         <section className="mx-auto w-full max-w-[560px] rounded-[2rem] border border-white/70 bg-white/85 p-5 shadow-[0_24px_80px_rgba(21,44,20,0.15)] backdrop-blur-xl sm:p-8">
           <div className="mb-6 flex items-start justify-between gap-4">
             <div>
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#154212]/6 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-[#154212]">
-                <ShieldCheck className="h-4 w-4" />
-                Verified access only
+              <div className="mb-4 flex justify-center sm:justify-start">
+                <img
+                src="/images/logo.png"
+                alt="BirdSG"
+                className="h-16 w-16 object-contain sm:h-20 sm:w-20"
+                />
               </div>
-              <h2 className="font-serif text-3xl text-[#163117] sm:text-4xl">Sign in</h2>
-              <p className="mt-2 max-w-md text-sm leading-6 text-[#4a5547] sm:text-base">
-                Use your BirdSG credentials to continue. New accounts are provisioned with email
-                verification before activation.
-              </p>
+              <h2 className="font-serif text-3xl text-[#163117] sm:text-4xl">Welcome Bird Watchers</h2>
             </div>
           </div>
 
@@ -351,7 +303,7 @@ export default function LoginPage() {
                   onChange={(event) => setRememberMe(event.target.checked)}
                   className="h-4 w-4 rounded border-[#c9d2c3] text-[#154212] focus:ring-[#154212]"
                 />
-                Remember me on this device
+                Remember me
               </label>
 
               <Link
@@ -379,19 +331,11 @@ export default function LoginPage() {
                 </>
               )}
             </button>
-
-            <div className="rounded-2xl border border-dashed border-[#d8dfd0] bg-[#fbfcf8] px-4 py-4 text-sm leading-6 text-[#5a6657]">
-              <p className="font-medium text-[#364233]">Email verification flow</p>
-              <p className="mt-1">
-                Signup is intentionally separated from login. New accounts should be created with
-                an email-verification step before activation.
-              </p>
-            </div>
           </form>
 
           <div className="mt-6 flex items-center gap-4 text-sm text-[#6a7568]">
             <div className="h-px flex-1 bg-[#e1e7db]" />
-            <Link href="/signup" className="whitespace-nowrap text-[#0c6780] hover:text-[#084253]">Need an account? Sign up</Link>
+            <Link href="/signup" className="whitespace-nowrap text-[#0c6780] hover:text-[#084253]">New here? Sign up</Link>
             <div className="h-px flex-1 bg-[#e1e7db]" />
           </div>
         </section>
