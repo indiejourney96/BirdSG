@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CSRF_COOKIE_NAME } from "@/backend/auth/config";
 import { hashPassword, hashToken } from "@/backend/auth/crypto";
+import { describeSupabaseError } from "@/backend/auth/errors";
 import { logSecurityEvent } from "@/backend/auth/logging";
 import { getSupabaseAdminClient } from "@/backend/auth/supabase";
 import { passwordResetConfirmSchema } from "@/backend/auth/validation";
@@ -69,7 +70,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ message: "Password updated successfully." });
   } catch (error) {
-    console.error("Password reset confirmation failed:", error);
-    return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+    console.error("Password reset confirmation failed:", describeSupabaseError(error));
+    return NextResponse.json({ error: "Authentication service temporarily unavailable." }, { status: 500 });
   }
 }

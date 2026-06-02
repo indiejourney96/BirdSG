@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AUTH_COOKIE_NAME } from "@/backend/auth/config";
 
-const PUBLIC_PATHS = new Set(["/login", "/forgot-password", "/reset-password"]);
+const PUBLIC_PATHS = new Set([
+  "/login",
+  "/signup",
+  "/forgot-password",
+  "/reset-password",
+  "/verify-email",
+]);
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

@@ -3,6 +3,7 @@ export const CSRF_COOKIE_NAME = "birdsg_csrf";
 export const LOGIN_ATTEMPT_WINDOW_MS = 15 * 60 * 1000;
 export const LOGIN_ATTEMPT_LIMIT = 5;
 export const PASSWORD_RESET_TOKEN_TTL_MS = 30 * 60 * 1000;
+export const EMAIL_VERIFICATION_TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
 export const BCRYPT_ROUNDS = 12;
 export const SESSION_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
 export const REMEMBER_ME_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 30;

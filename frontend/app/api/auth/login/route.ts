@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { CSRF_COOKIE_NAME } from "@/backend/auth/config";
 import { getRequestIp, normalizeEmail, verifyPassword } from "@/backend/auth/crypto";
+import { describeSupabaseError } from "@/backend/auth/errors";
 import { logSecurityEvent } from "@/backend/auth/logging";
 import { isLoginRateLimited, recordLoginAttempt } from "@/backend/auth/rate-limit";
 import { attachSessionCookie, issueSessionToken } from "@/backend/auth/session";
@@ -53,6 +54,7 @@ export async function POST(request: NextRequest) {
       .maybeSingle();
 
     if (error) {
+      console.error("User lookup failed:", describeSupabaseError(error));
       throw error;
     }
 
@@ -110,7 +112,10 @@ export async function POST(request: NextRequest) {
 
     return response;
   } catch (error) {
-    console.error("Login failed:", error);
-    return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+    console.error("Login failed:", describeSupabaseError(error));
+    return NextResponse.json(
+      { error: "Authentication service temporarily unavailable." },
+      { status: 500 },
+    );
   }
 }

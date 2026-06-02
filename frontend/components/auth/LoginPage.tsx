@@ -391,7 +391,7 @@ export default function LoginPage() {
 
           <div className="mt-6 flex items-center gap-4 text-sm text-[#6a7568]">
             <div className="h-px flex-1 bg-[#e1e7db]" />
-            <span className="whitespace-nowrap">Need an account? Contact your administrator.</span>
+            <Link href="/signup" className="whitespace-nowrap text-[#0c6780] hover:text-[#084253]">Need an account? Sign up</Link>
             <div className="h-px flex-1 bg-[#e1e7db]" />
           </div>
         </section>

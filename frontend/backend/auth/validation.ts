@@ -16,6 +16,30 @@ export const loginSchema = z.object({
   csrfToken: z.string().min(16, "Missing CSRF token."),
 });
 
+export const signupSchema = z
+  .object({
+    email: emailSchema,
+    password: z
+      .string()
+      .min(8, "Use at least 8 characters.")
+      .max(128, "Password is too long.")
+      .refine((value) => /[A-Z]/.test(value), "Add at least one uppercase letter.")
+      .refine((value) => /[a-z]/.test(value), "Add at least one lowercase letter.")
+      .refine((value) => /\d/.test(value), "Add at least one number.")
+      .refine((value) => /[^A-Za-z0-9]/.test(value), "Add at least one symbol."),
+    confirmPassword: z.string(),
+    csrfToken: z.string().min(16, "Missing CSRF token."),
+  })
+  .refine((values) => values.password === values.confirmPassword, {
+    message: "Passwords do not match.",
+    path: ["confirmPassword"],
+  });
+
+export const emailVerificationSchema = z.object({
+  token: z.string().min(32, "Verification token is required."),
+  csrfToken: z.string().min(16, "Missing CSRF token."),
+});
+
 export const passwordResetRequestSchema = z.object({
   email: emailSchema,
 });
@@ -39,5 +63,7 @@ export const passwordResetConfirmSchema = z
   });
 
 export type LoginInput = z.infer<typeof loginSchema>;
+export type SignupInput = z.infer<typeof signupSchema>;
+export type EmailVerificationInput = z.infer<typeof emailVerificationSchema>;
 export type PasswordResetRequestInput = z.infer<typeof passwordResetRequestSchema>;
 export type PasswordResetConfirmInput = z.infer<typeof passwordResetConfirmSchema>;

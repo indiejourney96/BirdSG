@@ -20,6 +20,15 @@ create table if not exists public.password_reset_tokens (
   created_at timestamptz not null default now()
 );
 
+create table if not exists public.email_verification_tokens (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.users (id) on delete cascade,
+  token_hash text not null unique,
+  expires_at timestamptz not null,
+  used_at timestamptz null,
+  created_at timestamptz not null default now()
+);
+
 create table if not exists public.auth_login_attempts (
   id uuid primary key default gen_random_uuid(),
   rate_limit_key text not null,
@@ -51,3 +60,9 @@ create index if not exists password_reset_tokens_user_id_idx
 
 create index if not exists password_reset_tokens_token_hash_idx
   on public.password_reset_tokens (token_hash);
+
+create index if not exists email_verification_tokens_user_id_idx
+  on public.email_verification_tokens (user_id, created_at desc);
+
+create index if not exists email_verification_tokens_token_hash_idx
+  on public.email_verification_tokens (token_hash);

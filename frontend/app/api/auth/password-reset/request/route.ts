@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CSRF_COOKIE_NAME, PASSWORD_RESET_TOKEN_TTL_MS } from "@/backend/auth/config";
 import { generatePasswordResetToken, hashToken } from "@/backend/auth/crypto";
+import { describeSupabaseError } from "@/backend/auth/errors";
 import { logSecurityEvent } from "@/backend/auth/logging";
 import { getSupabaseAdminClient } from "@/backend/auth/supabase";
 import { passwordResetRequestSchema } from "@/backend/auth/validation";
@@ -60,7 +61,7 @@ export async function POST(request: NextRequest) {
       message: "If an account exists, a reset link has been generated.",
     });
   } catch (error) {
-    console.error("Password reset request failed:", error);
-    return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+    console.error("Password reset request failed:", describeSupabaseError(error));
+    return NextResponse.json({ error: "Authentication service temporarily unavailable." }, { status: 500 });
   }
 }
