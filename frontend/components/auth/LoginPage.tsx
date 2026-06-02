@@ -5,16 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ArrowRight,
-  CheckCircle2,
   Eye,
   EyeOff,
-  Feather,
   Lock,
   Mail,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
-import Image from "next/image";
 
 type FieldErrors = Partial<{
   email: string;
@@ -172,47 +167,56 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f4f7ef] text-[#1a231a]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(45,90,39,0.18),_transparent_32%),radial-gradient(circle_at_top_right,_rgba(12,103,128,0.14),_transparent_28%),linear-gradient(180deg,_#f8faf4_0%,_#eef3e8_100%)]" />
-      <div className="absolute left-[-6rem] top-[-5rem] h-72 w-72 rounded-full bg-[#9ae1ff]/25 blur-3xl" />
-      <div className="absolute bottom-[-5rem] right-[-4rem] h-80 w-80 rounded-full bg-[#bcf0ae]/25 blur-3xl" />
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-[#f8faf4] to-[#eef3e8] px-4 py-12 text-[#1a231a] sm:px-6 lg:px-8">
+      {/* Structural Minimal Background Orbs */}
+      <div className="pointer-events-none absolute left-[-4rem] top-[-4rem] h-80 w-80 rounded-full bg-[#9ae1ff]/15 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-[-4rem] right-[-4rem] h-96 w-96 rounded-full bg-[#bcf0ae]/20 blur-3xl" />
 
-      <div className="relative mx-auto grid min-h-screen w-full max-w-7xl items-center gap-8 px-4 py-4 sm:px-6 sm:py-6 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
-        <section className="mx-auto w-full max-w-[560px] rounded-[2rem] border border-white/70 bg-white/85 p-5 shadow-[0_24px_80px_rgba(21,44,20,0.15)] backdrop-blur-xl sm:p-8">
-          <div className="mb-6 flex items-start justify-between gap-4">
-            <div>
-              <div className="mb-4 flex justify-center sm:justify-start">
-                <img
+      <div className="relative w-full max-w-[460px]">
+        <section className="w-full rounded-3xl border border-white/80 bg-white/90 p-6 shadow-[0_20px_60px_rgba(21,44,20,0.06)] backdrop-blur-xl sm:p-8">
+          
+          {/* Aligned Header Elements */}
+          <div className="mb-8 flex flex-col items-center text-center">
+            <div className="relative mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-b from-white to-[#f4f7ef] p-1 shadow-sm ring-1 ring-[#e4eadf]">
+              <img
                 src="/images/logo.png"
-                alt="BirdSG"
-                className="h-16 w-16 object-contain sm:h-20 sm:w-20"
-                />
-              </div>
-              <h2 className="font-serif text-3xl text-[#163117] sm:text-4xl">Welcome Bird Watchers</h2>
+                alt="BirdSG Logo"
+                className="h-full w-full object-contain"
+              />
             </div>
+            <h2 className="font-serif text-3xl font-medium tracking-tight text-[#163117]">
+              Welcome Bird Watchers
+            </h2>
+            <p className="mt-1.5 text-sm text-[#667160]">
+              Sign in to map your local Singapore avian encounters.
+            </p>
           </div>
 
           <form className="space-y-5" onSubmit={handleSubmit} noValidate>
-            {fieldErrors.general ? (
+            {fieldErrors.general && (
               <div
                 role="alert"
-                className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800"
+                className="rounded-xl border border-rose-100 bg-rose-50/80 px-4 py-3 text-xs font-medium text-rose-800"
               >
                 {fieldErrors.general}
               </div>
-            ) : null}
+            )}
 
-            {successMessage ? (
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+            {successMessage && (
+              <div className="rounded-xl border border-emerald-100 bg-emerald-50/80 px-4 py-3 text-xs font-medium text-emerald-800">
                 {successMessage}
               </div>
-            ) : null}
+            )}
 
-            <label className="block">
-              <span className="mb-2 block text-sm font-medium text-[#364233]">Email address</span>
+            {/* Email Field Block */}
+            <div className="space-y-1.5">
+              <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#364233]">
+                Email address
+              </label>
               <div className="relative">
                 <Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8b9688]" />
                 <input
+                  id="email"
                   type="email"
                   autoComplete="email"
                   inputMode="email"
@@ -226,24 +230,28 @@ export default function LoginPage() {
                       }));
                     }
                   }}
-                  className="w-full rounded-2xl border border-[#d8dfd0] bg-white px-11 py-3.5 text-sm text-[#172016] outline-none transition placeholder:text-[#98a596] focus:border-[#154212] focus:ring-4 focus:ring-[#154212]/10"
+                  className="w-full rounded-xl border border-[#d8dfd0] bg-white px-11 py-3 text-sm text-[#172016] outline-none transition placeholder:text-[#98a596] focus:border-[#154212] focus:ring-4 focus:ring-[#154212]/5"
                   placeholder="name@example.com"
                   aria-invalid={Boolean(fieldErrors.email)}
                   aria-describedby={fieldErrors.email ? "email-error" : undefined}
                 />
               </div>
-              {fieldErrors.email ? (
-                <span id="email-error" className="mt-2 block text-sm text-rose-700">
+              {fieldErrors.email && (
+                <span id="email-error" className="block text-xs font-medium text-rose-600 mt-1">
                   {fieldErrors.email}
                 </span>
-              ) : null}
-            </label>
+              )}
+            </div>
 
-            <label className="block">
-              <span className="mb-2 block text-sm font-medium text-[#364233]">Password</span>
+            {/* Password Field Block */}
+            <div className="space-y-1.5">
+              <label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-[#364233]">
+                Password
+              </label>
               <div className="relative">
                 <Lock className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8b9688]" />
                 <input
+                  id="password"
                   type={showPassword ? "text" : "password"}
                   autoComplete="current-password"
                   value={password}
@@ -256,7 +264,7 @@ export default function LoginPage() {
                       }));
                     }
                   }}
-                  className="w-full rounded-2xl border border-[#d8dfd0] bg-white px-11 py-3.5 pr-14 text-sm text-[#172016] outline-none transition placeholder:text-[#98a596] focus:border-[#154212] focus:ring-4 focus:ring-[#154212]/10"
+                  className="w-full rounded-xl border border-[#d8dfd0] bg-white px-11 py-3 pr-12 text-sm text-[#172016] outline-none transition placeholder:text-[#98a596] focus:border-[#154212] focus:ring-4 focus:ring-[#154212]/5"
                   placeholder="Enter your password"
                   aria-invalid={Boolean(fieldErrors.password)}
                   aria-describedby={fieldErrors.password ? "password-error" : "password-help"}
@@ -264,60 +272,63 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword((current) => !current)}
-                  className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl text-[#6b7568] transition hover:bg-[#eef3e8] hover:text-[#154212]"
+                  className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-[#6b7568] transition hover:bg-[#eef3e8] hover:text-[#154212]"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
+              
               {fieldErrors.password ? (
-                <span id="password-error" className="mt-2 block text-sm text-rose-700">
+                <span id="password-error" className="block text-xs font-medium text-rose-600 mt-1">
                   {fieldErrors.password}
                 </span>
               ) : (
-                <span id="password-help" className="mt-2 block text-sm text-[#667160]">
-                  Password guidance: use at least 8 characters with upper and lower case, numbers,
-                  and symbols for stronger protection.
+                <span id="password-help" className="block text-[11px] leading-normal text-[#667160] mt-1">
+                  Must contain 8+ characters, mixed cases, numbers, and symbols.
                 </span>
               )}
 
-              <div className="mt-3 rounded-2xl border border-[#e4eadf] bg-[#f7faf4] p-3">
-                <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.18em] text-[#667160]">
+              {/* Strength Progress Tracker */}
+              <div className="mt-3 rounded-xl border border-[#e4eadf] bg-[#f7faf4] p-3">
+                <div className="mb-1.5 flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#667160]">
                   <span>Password strength</span>
-                  <span>{strength.label}</span>
+                  <span className="font-semibold">{strength.label}</span>
                 </div>
-                <div className="h-2 rounded-full bg-[#dee6d7]">
+                <div className="h-1.5 w-full rounded-full bg-[#dee6d7] overflow-hidden">
                   <div
-                    className={`h-2 rounded-full transition-all ${strength.colorClass}`}
-                    style={{ width: `${Math.max(18, (strength.score / 4) * 100)}%` }}
+                    className={`h-full rounded-full transition-all duration-300 ${strength.colorClass}`}
+                    style={{ width: `${Math.max(12, (strength.score / 4) * 100)}%` }}
                   />
                 </div>
               </div>
-            </label>
+            </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <label className="inline-flex items-center gap-3 text-sm text-[#425043]">
+            {/* Checkbox and Sub-actions row */}
+            <div className="flex items-center justify-between pt-1">
+              <label className="inline-flex cursor-pointer select-none items-center gap-2">
                 <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(event) => setRememberMe(event.target.checked)}
-                  className="h-4 w-4 rounded border-[#c9d2c3] text-[#154212] focus:ring-[#154212]"
+                  className="h-4 w-4 rounded border-[#c9d2c3] text-[#154212] focus:ring-[#154212] focus:ring-offset-0"
                 />
-                Remember me
+                <span className="text-xs font-medium text-[#425043]">Remember me</span>
               </label>
 
               <Link
                 href="/forgot-password"
-                className="text-sm font-medium text-[#0c6780] transition hover:text-[#084253]"
+                className="text-xs font-semibold text-[#154212] hover:underline"
               >
                 Forgot password?
               </Link>
             </div>
 
+            {/* Form Execution Handler */}
             <button
               type="submit"
               disabled={submitting || loadingCsrf}
-              className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-[#154212] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_18px_30px_rgba(21,66,18,0.22)] transition hover:bg-[#1f5b1b] disabled:cursor-not-allowed disabled:opacity-70"
+              className="group flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#154212] py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-[#0f300d] focus:outline-none focus:ring-4 focus:ring-[#154212]/20 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
             >
               {submitting || loadingCsrf ? (
                 <>
@@ -326,18 +337,25 @@ export default function LoginPage() {
                 </>
               ) : (
                 <>
-                  Sign in
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  Sign In
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </>
               )}
             </button>
           </form>
 
-          <div className="mt-6 flex items-center gap-4 text-sm text-[#6a7568]">
+          {/* Clean Segment Divider Footer */}
+          <div className="mt-8 flex items-center gap-4 text-xs text-[#6a7568]">
             <div className="h-px flex-1 bg-[#e1e7db]" />
-            <Link href="/signup" className="whitespace-nowrap text-[#0c6780] hover:text-[#084253]">New here? Sign up</Link>
+            <span className="whitespace-nowrap text-[#667160]">
+              New here?{" "}
+              <Link href="/signup" className="font-semibold text-[#154212] hover:underline">
+                Create an account
+              </Link>
+            </span>
             <div className="h-px flex-1 bg-[#e1e7db]" />
           </div>
+
         </section>
       </div>
     </main>
