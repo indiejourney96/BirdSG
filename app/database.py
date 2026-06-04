@@ -111,6 +111,7 @@ def create_sighting_image_url(object_path: str, expires_in: int = SIGNED_URL_EXP
 
 
 def save_sighting(
+    user_id: str,
     filename: str,
     storage_path: str,
     predictions: list[dict],
@@ -120,6 +121,7 @@ def save_sighting(
 ) -> dict:
     """Insert a sighting and return the created row (includes id and created_at)."""
     row = {
+        "user_id":           user_id,
         "filename":           filename,
         "storage_path":       storage_path,
         "predictions":        predictions,

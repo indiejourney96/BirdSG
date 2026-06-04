@@ -4,6 +4,7 @@ import { CSRF_COOKIE_NAME } from "@/backend/auth/config";
 import { describeSupabaseError } from "@/backend/auth/errors";
 import { hashToken } from "@/backend/auth/crypto";
 import { logSecurityEvent } from "@/backend/auth/logging";
+import { attachSessionCookie, issueSessionToken } from "@/backend/auth/session";
 import { getSupabaseAdminClient } from "@/backend/auth/supabase";
 import { emailVerificationSchema } from "@/backend/auth/validation";
 
@@ -64,6 +65,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Authentication service temporarily unavailable." }, { status: 500 });
     }
 
+    const { data: verifiedUser, error: userLookupError } = await client
+      .from("users")
+      .select("id,email,is_active")
+      .eq("id", verification.user_id)
+      .maybeSingle();
+
+    if (userLookupError || !verifiedUser || !verifiedUser.is_active) {
+      console.error("Verified user lookup failed:", describeSupabaseError(userLookupError));
+      return NextResponse.json({ error: "Authentication service temporarily unavailable." }, { status: 500 });
+    }
+
     try {
       await logSecurityEvent(client, "email_verified", {
         userId: verification.user_id,
@@ -72,7 +84,18 @@ export async function POST(request: NextRequest) {
       console.warn("Unable to log verification event:", loggingError);
     }
 
-    return NextResponse.json({ message: "Email verified. You can now log in." });
+    const sessionToken = issueSessionToken({
+      id: verifiedUser.id,
+      email: verifiedUser.email,
+      remember: false,
+    });
+
+    const response = NextResponse.json({
+      message: "Email verified. You are now signed in.",
+    });
+
+    attachSessionCookie(response, sessionToken, false);
+    return response;
   } catch (error) {
     console.error("Email verification failed:", describeSupabaseError(error));
     return NextResponse.json({ error: "Authentication service temporarily unavailable." }, { status: 500 });

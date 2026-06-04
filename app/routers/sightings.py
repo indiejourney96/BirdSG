@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
 from app.database import (
@@ -18,6 +18,7 @@ from app.database import (
     create_sighting_image_url,
     supabase,
 )
+from app.session_auth import get_authenticated_user_id
 
 router = APIRouter(prefix="/sightings", tags=["sightings"])
 
@@ -35,12 +36,17 @@ class SightingResponse(BaseModel):
 
 
 @router.get("/{sighting_id}", response_model=SightingResponse)
-def get_sighting(sighting_id: UUID):
+def get_sighting(request: Request, sighting_id: UUID):
     """Retrieve a single sighting by its UUID."""
+    user_id = get_authenticated_user_id(request)
+    if not user_id:
+        raise HTTPException(status_code=401, detail="Authentication required.")
+
     response = (
         supabase.table(TABLE)
         .select("id, filename, storage_path, predictions, singapore_filtered, created_at, lat, lng")
         .eq("id", str(sighting_id))
+        .eq("user_id", user_id)
         .single()
         .execute()
     )

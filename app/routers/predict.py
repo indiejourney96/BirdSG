@@ -12,7 +12,7 @@ from __future__ import annotations
 import logging
 import os
 
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from pydantic import BaseModel
 
 from app.model import predict_top_k, load_model
@@ -21,6 +21,7 @@ from app.species_mapping import get_species, is_singapore_species
 from app.database import build_sighting_storage_path, save_sighting, upload_sighting_image
 from app.ebird import get_species_info
 from app.species_mapping import get_species
+from app.session_auth import get_authenticated_user_id
 
 logger = logging.getLogger(__name__)
 
@@ -61,10 +62,15 @@ class PredictResponse(BaseModel):
 # ─────────────────────────────────────────────────────────────
 @router.post("/predict", response_model=PredictResponse)
 async def predict(
+    request: Request,
     file: UploadFile = File(...),
     lat: float | None = Form(default=None),
     lng: float | None = Form(default=None),
 ):
+    user_id = get_authenticated_user_id(request)
+    if not user_id:
+        raise HTTPException(status_code=401, detail="Authentication required.")
+
     # 1. Validate input
     if file.content_type not in ALLOWED_TYPES:
         raise HTTPException(
@@ -131,7 +137,6 @@ async def predict(
         for p in predictions
     ]
 
-
     try:
         storage_path, stored_filename, object_path = build_sighting_storage_path(
             file.filename or "bird.jpg",
@@ -140,6 +145,7 @@ async def predict(
         upload_sighting_image(object_path, image_bytes, file.content_type)
 
         record = save_sighting(
+            user_id=user_id,
             filename=stored_filename,
             storage_path=storage_path,
             predictions=[p.model_dump() for p in predictions_out],

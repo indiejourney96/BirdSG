@@ -2,11 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import Header from "@/components/home/Header";
 import BottomNav from "@/components/home/BottomNav";
 import { ApiError, getSighting } from "@/lib/api";
 
-const COLLECTION_STORAGE_KEY = "birdsg:sightingIds";
+const COLLECTION_STORAGE_KEY_PREFIX = "birdsg:sightingIds";
 
 type Prediction = {
   label: string;
@@ -63,12 +62,12 @@ function formatCoordinates(lat: number | null, lng: number | null): string {
   return `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
 }
 
-function readStoredSightings(): string[] {
+function readStoredSightings(storageKey: string): string[] {
   if (typeof window === "undefined") {
     return [];
   }
 
-  const raw = window.localStorage.getItem(COLLECTION_STORAGE_KEY);
+  const raw = window.localStorage.getItem(storageKey);
 
   if (!raw) {
     return [];
@@ -87,19 +86,82 @@ function readStoredSightings(): string[] {
   }
 }
 
-function persistSightings(ids: string[]) {
-  window.localStorage.setItem(COLLECTION_STORAGE_KEY, JSON.stringify(ids));
+function persistSightings(storageKey: string, ids: string[]) {
+  window.localStorage.setItem(storageKey, JSON.stringify(ids));
+}
+
+function getCollectionStorageKey(userId: string | null): string {
+  return userId ? `${COLLECTION_STORAGE_KEY_PREFIX}:${userId}` : COLLECTION_STORAGE_KEY_PREFIX;
 }
 
 export default function CollectionPage() {
-  const [sightingIds, setSightingIds] = useState<string[]>(() => readStoredSightings());
+  const [storageKey, setStorageKey] = useState<string | null>(null);
+  const [sightingIds, setSightingIds] = useState<string[]>([]);
   const [sightings, setSightings] = useState<Sighting[]>([]);
-  const [loading, setLoading] = useState(() => sightingIds.length > 0);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   // const [onlyWithLocation, setOnlyWithLocation] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+
+    async function loadCurrentUser() {
+      try {
+        const response = await fetch("/api/auth/me", {
+          credentials: "include",
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          if (!cancelled) {
+            setStorageKey(getCollectionStorageKey(null));
+          }
+          return;
+        }
+
+        const data = await response.json() as {
+          authenticated: boolean;
+          user?: { id: string };
+        };
+
+        if (!cancelled && data.authenticated && data.user?.id) {
+          setStorageKey(getCollectionStorageKey(data.user.id));
+        }
+      } catch {
+        if (!cancelled) {
+          setStorageKey(getCollectionStorageKey(null));
+        }
+      }
+    }
+
+    void loadCurrentUser();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!storageKey) {
+      return;
+    }
+
+    const savedIds = readStoredSightings(storageKey);
+
+    queueMicrotask(() => {
+      setSightingIds(savedIds);
+      setLoading(savedIds.length > 0);
+    });
+  }, [storageKey]);
+
+  useEffect(() => {
+    if (!storageKey) {
+      return;
+    }
+
+    const activeStorageKey: string = storageKey;
+
     if (sightingIds.length === 0) {
       return;
     }
@@ -134,7 +196,7 @@ export default function CollectionPage() {
       );
 
       if (validIds.length !== sightingIds.length) {
-        persistSightings(validIds);
+        persistSightings(activeStorageKey, validIds);
         setSightingIds(validIds);
       }
 
@@ -158,7 +220,7 @@ export default function CollectionPage() {
     return () => {
       cancelled = true;
     };
-  }, [sightingIds]);
+  }, [sightingIds, storageKey]);
 
   const visibleSightings = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
@@ -194,7 +256,6 @@ export default function CollectionPage() {
   const geotaggedCount = sightings.filter(
     (sighting) => typeof sighting.lat === "number" && typeof sighting.lng === "number",
   ).length;
-  const singaporeMatchCount = sightings.filter((sighting) => sighting.singapore_filtered).length;
   const latestSightings = sightings.slice(0, 2);
 
   return (

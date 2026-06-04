@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ApiError, predictBird, getBirdInfo } from "@/lib/api";
 
-const COLLECTION_STORAGE_KEY = "birdsg:sightingIds";
+const COLLECTION_STORAGE_KEY_PREFIX = "birdsg:sightingIds";
 
 interface PredictionItem {
   label: string;
@@ -66,6 +66,10 @@ interface IdentifyCardProps {
   onPredictionSuccess: (data: AnalysisResult) => void;
 }
 
+function getCollectionStorageKey(userId: string | null): string {
+  return userId ? `${COLLECTION_STORAGE_KEY_PREFIX}:${userId}` : COLLECTION_STORAGE_KEY_PREFIX;
+}
+
 export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps) {
   const [loading, setLoading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -96,24 +100,39 @@ export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps)
       const birdInfo = topPrediction ? birdsByLabel[topPrediction.label] ?? null : null;
 
       if (predictionData.sighting_id) {
-        const currentIds = window.localStorage.getItem(COLLECTION_STORAGE_KEY);
-        let parsedIds: unknown = [];
+        try {
+          const meResponse = await fetch("/api/auth/me", {
+            credentials: "include",
+            cache: "no-store",
+          });
+          const meData = meResponse.ok
+            ? (await meResponse.json()) as { authenticated: boolean; user?: { id: string } }
+            : { authenticated: false };
+          const storageKey = getCollectionStorageKey(
+            meData.authenticated ? meData.user?.id ?? null : null,
+          );
 
-        if (currentIds) {
-          try {
-            parsedIds = JSON.parse(currentIds);
-          } catch {
-            parsedIds = [];
+          const currentIds = window.localStorage.getItem(storageKey);
+          let parsedIds: unknown = [];
+
+          if (currentIds) {
+            try {
+              parsedIds = JSON.parse(currentIds);
+            } catch {
+              parsedIds = [];
+            }
           }
+
+          const nextIds = Array.isArray(parsedIds) ? parsedIds : [];
+
+          if (!nextIds.includes(predictionData.sighting_id)) {
+            nextIds.unshift(predictionData.sighting_id);
+          }
+
+          window.localStorage.setItem(storageKey, JSON.stringify(nextIds));
+        } catch {
+          // Collection storage is best-effort; prediction results still render even if auth lookup fails.
         }
-
-        const nextIds = Array.isArray(parsedIds) ? parsedIds : [];
-
-        if (!nextIds.includes(predictionData.sighting_id)) {
-          nextIds.unshift(predictionData.sighting_id);
-        }
-
-        window.localStorage.setItem(COLLECTION_STORAGE_KEY, JSON.stringify(nextIds));
       }
 
       onPredictionSuccess({

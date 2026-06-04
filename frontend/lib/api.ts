@@ -43,8 +43,9 @@ export async function predictBird(file: File) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await fetch(`${API_BASE_URL}/predict`, {
+  const response = await fetch("/api/predict", {
     method: "POST",
+    credentials: "include",
     body: formData,
   });
 
@@ -76,7 +77,10 @@ export async function getBirdInfo(label: string) {
 }
 
 export async function getSighting(sightingId: string) {
-  const response = await fetch(`${API_BASE_URL}/sightings/${sightingId}`);
+  const response = await fetch(`/api/sightings/${sightingId}`, {
+    credentials: "include",
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     const detail = await getErrorDetail(response);
