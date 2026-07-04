@@ -1,15 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import type { ChangeEvent } from "react";
 import api from "@/services/api";
+
+interface UploadResponse {
+  [key: string]: unknown;
+}
 
 export default function UploadBox() {
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<UploadResponse | null>(null);
   const [error, setError] = useState("");
 
   async function handleUpload(
-    e: React.ChangeEvent<HTMLInputElement>
+    e: ChangeEvent<HTMLInputElement>
   ) {
     const file = e.target.files?.[0];
 
@@ -34,11 +39,16 @@ export default function UploadBox() {
 
       setResult(response.data);
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
 
+      const detail =
+        err && typeof err === "object" && "response" in err
+          ? (err as { response?: { data?: { detail?: string } } }).response?.data?.detail
+          : undefined;
+
       setError(
-        err?.response?.data?.detail ||
+        detail ||
         "Prediction failed"
       );
 

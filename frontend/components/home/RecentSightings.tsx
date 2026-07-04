@@ -1,10 +1,4 @@
 export default function RecentSightings() {
-  const sightings = [
-    { name: "Crimson Sunbird", tag: "Endemic", tagBg: "bg-secondary-container text-on-secondary-container", loc: "Sungei Buloh", img: "1" },
-    { name: "Oriental Pied Hornbill", tag: "Resident", tagBg: "bg-tertiary-fixed text-on-tertiary-fixed", loc: "Pasir Ris Park", img: "2" },
-    { name: "Blue-throated Bee-eater", tag: "Migratory", tagBg: "bg-secondary-container text-on-secondary-container", loc: "Jurong Lake Gardens", img: "3" },
-  ];
-
   return (
     <section className="mb-xl">
       <div className="flex justify-between items-center mb-md">

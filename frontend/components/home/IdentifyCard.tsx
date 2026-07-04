@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ApiError, predictBird, getBirdInfo } from "@/lib/api";
 
+const COLLECTION_STORAGE_KEY_PREFIX = "birdsg:sightingIds";
+
 interface PredictionItem {
   label: string;
   confidence: number;
@@ -17,14 +19,55 @@ interface PredictionResponse {
   sighting_id: string | null;
 }
 
+interface BirdInfo {
+  label: string;
+  ebird_code: string;
+  species: {
+    common_name: string | null;
+    scientific_name: string | null;
+    family: string | null;
+    order: string | null;
+  };
+  photo: {
+    url: string;
+    caption: string | null;
+    photographer: string | null;
+    license: string | null;
+    source: string;
+  } | null;
+  recent_sightings_sg: Array<{
+    location: string | null;
+    date: string | null;
+    count: number | null;
+  }>;
+  recording: {
+    audio_url: string | null;
+    recording_id: string | null;
+    recordist: string | null;
+    location: string | null;
+  } | null;
+  details: {
+    general_knowledge: string | null;
+    identification_tips: string | null;
+    habitat: string | null;
+    behaviour: string | null;
+    diet: string | null;
+    feeding_habits: string | null;
+  } | null;
+}
+
 interface AnalysisResult {
   prediction: PredictionResponse;
-  bird: unknown | null;
-  birdsByLabel: Record<string, unknown>;
+  bird: BirdInfo | null;
+  birdsByLabel: Record<string, BirdInfo>;
 }
 
 interface IdentifyCardProps {
   onPredictionSuccess: (data: AnalysisResult) => void;
+}
+
+function getCollectionStorageKey(userId: string | null): string {
+  return userId ? `${COLLECTION_STORAGE_KEY_PREFIX}:${userId}` : COLLECTION_STORAGE_KEY_PREFIX;
 }
 
 export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps) {
@@ -52,9 +95,45 @@ export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps)
       );
 
       const birdsByLabel = Object.fromEntries(
-        birdInfoResults.filter((entry): entry is readonly [string, unknown] => entry[1] !== null),
-      );
+        birdInfoResults.filter((entry): entry is readonly [string, BirdInfo] => entry[1] !== null),
+      ) as Record<string, BirdInfo>;
       const birdInfo = topPrediction ? birdsByLabel[topPrediction.label] ?? null : null;
+
+      if (predictionData.sighting_id) {
+        try {
+          const meResponse = await fetch("/api/auth/me", {
+            credentials: "include",
+            cache: "no-store",
+          });
+          const meData = meResponse.ok
+            ? (await meResponse.json()) as { authenticated: boolean; user?: { id: string } }
+            : { authenticated: false };
+          const storageKey = getCollectionStorageKey(
+            meData.authenticated ? meData.user?.id ?? null : null,
+          );
+
+          const currentIds = window.localStorage.getItem(storageKey);
+          let parsedIds: unknown = [];
+
+          if (currentIds) {
+            try {
+              parsedIds = JSON.parse(currentIds);
+            } catch {
+              parsedIds = [];
+            }
+          }
+
+          const nextIds = Array.isArray(parsedIds) ? parsedIds : [];
+
+          if (!nextIds.includes(predictionData.sighting_id)) {
+            nextIds.unshift(predictionData.sighting_id);
+          }
+
+          window.localStorage.setItem(storageKey, JSON.stringify(nextIds));
+        } catch {
+          // Collection storage is best-effort; prediction results still render even if auth lookup fails.
+        }
+      }
 
       onPredictionSuccess({
         prediction: predictionData,

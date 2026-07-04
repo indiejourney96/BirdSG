@@ -43,8 +43,8 @@
   --spacing-margin-desktop: 64px;
 
   /* Typography Families (Maps to Next.js font variables in layout.tsx) */
-  --font-headline: var(--font-playfair), serif;
-  --font-body: var(--font-inter), sans-serif;
+  --font-headline: Georgia, Cambria, "Times New Roman", serif;
+  --font-body: "Segoe UI", Arial, sans-serif;
 
   /* Typography Text Sizes & Layout Directives */
   --text-headline-lg: 32px;

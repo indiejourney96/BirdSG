@@ -9,10 +9,16 @@ from __future__ import annotations
 
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
-from app.database import supabase, TABLE
+from app.database import (
+    SIGNED_URL_EXPIRES_IN,
+    TABLE,
+    create_sighting_image_url,
+    supabase,
+)
+from app.session_auth import get_authenticated_user_id
 
 router = APIRouter(prefix="/sightings", tags=["sightings"])
 
@@ -20,6 +26,7 @@ router = APIRouter(prefix="/sightings", tags=["sightings"])
 class SightingResponse(BaseModel):
     id: str
     filename: str
+    storage_path: str
     image_url: str | None
     predictions: list[dict]
     singapore_filtered: bool
@@ -29,12 +36,17 @@ class SightingResponse(BaseModel):
 
 
 @router.get("/{sighting_id}", response_model=SightingResponse)
-def get_sighting(sighting_id: UUID):
+def get_sighting(request: Request, sighting_id: UUID):
     """Retrieve a single sighting by its UUID."""
+    user_id = get_authenticated_user_id(request)
+    if not user_id:
+        raise HTTPException(status_code=401, detail="Authentication required.")
+
     response = (
         supabase.table(TABLE)
-        .select("id, filename, image_url, predictions, singapore_filtered, created_at, lat, lng")
+        .select("id, filename, storage_path, predictions, singapore_filtered, created_at, lat, lng")
         .eq("id", str(sighting_id))
+        .eq("user_id", user_id)
         .single()
         .execute()
     )
@@ -42,4 +54,14 @@ def get_sighting(sighting_id: UUID):
     if not response.data:
         raise HTTPException(status_code=404, detail=f"Sighting {sighting_id} not found.")
 
-    return response.data
+    data = dict(response.data)
+    storage_path = data.get("storage_path")
+    filename = data.get("filename")
+
+    if storage_path and filename:
+        object_path = f"{storage_path}/{filename}"
+        data["image_url"] = create_sighting_image_url(object_path, SIGNED_URL_EXPIRES_IN)
+    else:
+        data["image_url"] = None
+
+    return data
