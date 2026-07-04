@@ -23,6 +23,10 @@ from app.ebird import get_species_info
 from app.species_mapping import get_species
 from app.session_auth import get_authenticated_user_id
 
+from collections import defaultdict
+from time import time
+from fastapi import Request
+
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
@@ -37,6 +41,14 @@ MAX_FILE_SIZE_MB = 10
 
 TOP_K_MODEL = 10
 TOP_K_RETURN = 3
+
+# ─────────────────────────────────────────────────────────────
+# SIMPLE IN-MEMORY RATE LIMITER
+# ─────────────────────────────────────────────────────────────
+MAX_REQUESTS = 8
+WINDOW_SECONDS = 60
+
+request_history = defaultdict(list)
 
 
 # ─────────────────────────────────────────────────────────────
@@ -71,6 +83,27 @@ async def predict(
     if not user_id:
         raise HTTPException(status_code=401, detail="Authentication required.")
 
+        # ─────────────────────────────────────────────
+    # Simple IP-based rate limiter
+    # 8 requests per 60 seconds
+    # ─────────────────────────────────────────────
+    client_ip = request.client.host if request.client else "unknown"
+    now = time()
+
+    # Remove requests older than the time window
+    request_history[client_ip] = [
+        t for t in request_history[client_ip]
+        if now - t < WINDOW_SECONDS
+    ]
+
+    if len(request_history[client_ip]) >= MAX_REQUESTS:
+        raise HTTPException(
+            status_code=429,
+            detail="Rate limit exceeded. Please wait a minute before trying again."
+        )
+
+    request_history[client_ip].append(now)
+    
     # 1. Validate input
     if file.content_type not in ALLOWED_TYPES:
         raise HTTPException(
