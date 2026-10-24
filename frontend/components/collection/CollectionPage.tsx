@@ -121,6 +121,9 @@ export default function CollectionPage() {
           persistSightings(storageKey, updatedIds);
         }
         setSightingIds(updatedIds);
+        
+        // Also immediately remove from sightings state to avoid refetch race condition
+        setSightings((prev) => prev.filter((s) => s.id !== sightingId));
       } else {
         setError("Failed to delete sighting. Please try again.");
       }
@@ -147,11 +150,12 @@ export default function CollectionPage() {
     // Try to delete all from backend (but continue regardless)
     await Promise.allSettled(sightingIds.map((id) => deleteSighting(id)));
 
-    // Clear localStorage
+    // Clear localStorage and state
     if (storageKey) {
       persistSightings(storageKey, []);
     }
     setSightingIds([]);
+    setSightings([]);
   }
 
   useEffect(() => {
