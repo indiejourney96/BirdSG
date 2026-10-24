@@ -65,3 +65,24 @@ def get_sighting(request: Request, sighting_id: UUID):
         data["image_url"] = None
 
     return data
+
+
+@router.delete("/{sighting_id}")
+def delete_sighting(request: Request, sighting_id: UUID):
+    """Delete a sighting by its UUID."""
+    user_id = get_authenticated_user_id(request)
+    if not user_id:
+        raise HTTPException(status_code=401, detail="Authentication required.")
+
+    response = (
+        supabase.table(TABLE)
+        .delete()
+        .eq("id", str(sighting_id))
+        .eq("user_id", user_id)
+        .execute()
+    )
+
+    if not response.data:
+        raise HTTPException(status_code=404, detail=f"Sighting {sighting_id} not found.")
+
+    return {"detail": "Sighting deleted successfully."}

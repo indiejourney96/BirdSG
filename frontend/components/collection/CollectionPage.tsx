@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import BottomNav from "@/components/home/BottomNav";
-import { ApiError, getSighting } from "@/lib/api";
+import { ApiError, getSighting, deleteSighting } from "@/lib/api";
 
 const COLLECTION_STORAGE_KEY_PREFIX = "birdsg:sightingIds";
 
@@ -101,7 +101,58 @@ export default function CollectionPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
   // const [onlyWithLocation, setOnlyWithLocation] = useState(false);
+
+  async function handleDelete(sightingId: string) {
+    if (!window.confirm("Delete this sighting?")) {
+      return;
+    }
+
+    setDeletingIds((prev) => new Set(prev).add(sightingId));
+
+    try {
+      const success = await deleteSighting(sightingId);
+
+      if (success) {
+        // Remove from localStorage
+        const updatedIds = sightingIds.filter((id) => id !== sightingId);
+        if (storageKey) {
+          persistSightings(storageKey, updatedIds);
+        }
+        setSightingIds(updatedIds);
+      } else {
+        setError("Failed to delete sighting. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setDeletingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(sightingId);
+        return next;
+      });
+    }
+  }
+
+  async function handleClearAll() {
+    if (sightingIds.length === 0) {
+      return;
+    }
+
+    if (!window.confirm(`Clear all ${sightingIds.length} sightings?`)) {
+      return;
+    }
+
+    // Try to delete all from backend (but continue regardless)
+    await Promise.allSettled(sightingIds.map((id) => deleteSighting(id)));
+
+    // Clear localStorage
+    if (storageKey) {
+      persistSightings(storageKey, []);
+    }
+    setSightingIds([]);
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -367,20 +418,19 @@ export default function CollectionPage() {
               />
             </div>
 
-            {/* <button
-              type="button"
-              onClick={() => setOnlyWithLocation((current) => !current)}
-              className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-label-md font-semibold transition ${
-                onlyWithLocation
-                  ? "bg-primary text-on-primary shadow-md"
-                  : "bg-surface-container text-on-surface hover:bg-surface-container-high"
-              }`}
-            >
-              <span className="material-symbols-outlined text-[18px]">
-                {onlyWithLocation ? "location_on" : "public"}
-              </span>
-              {onlyWithLocation ? "Showing geotagged only" : "Show geotagged only"}
-            </button> */}
+            <div className="flex items-center gap-4">
+              {sightingIds.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleClearAll}
+                  disabled={loading || deletingIds.size > 0}
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-label-sm font-semibold text-error hover:bg-error/10 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="material-symbols-outlined text-[18px]">clear_all</span>
+                  Clear All
+                </button>
+              )}
+            </div>
           </div>
 
           {/* <div className="mt-4 flex flex-wrap gap-2">
@@ -464,11 +514,27 @@ export default function CollectionPage() {
                         {formatDateTime(sighting.created_at)}
                       </span>
 
-                      {sighting.singapore_filtered && (
-                        <span className="rounded-full bg-secondary-container px-3 py-1 text-label-sm font-semibold text-on-secondary-container shadow-sm">
-                          Singapore match
-                        </span>
-                      )}
+                      <div className="flex items-center gap-2">
+                        {sighting.singapore_filtered && (
+                          <span className="rounded-full bg-secondary-container px-3 py-1 text-label-sm font-semibold text-on-secondary-container shadow-sm">
+                            Singapore match
+                          </span>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={() => handleDelete(sighting.id)}
+                          disabled={deletingIds.has(sighting.id)}
+                          className="opacity-0 group-hover:opacity-100 transition p-2 rounded-full bg-error/90 text-on-error hover:bg-error shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                          aria-label="Delete sighting"
+                        >
+                          {deletingIds.has(sighting.id) ? (
+                            <span className="material-symbols-outlined animate-spin text-[18px]">sync</span>
+                          ) : (
+                            <span className="material-symbols-outlined text-[18px]">delete</span>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   </div>
 

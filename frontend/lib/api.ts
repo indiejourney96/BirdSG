@@ -93,3 +93,25 @@ export async function getSighting(sightingId: string) {
 
   return response.json();
 }
+
+export async function deleteSighting(sightingId: string): Promise<boolean> {
+  const response = await fetch(`/api/sightings/${sightingId}/delete`, {
+    method: "POST",
+    credentials: "include",
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    const detail = await getErrorDetail(response);
+    const message = formatApiErrorMessage(
+      response.status,
+      detail,
+      "Failed to delete sighting",
+    );
+    // Log the error but return false - the UI will handle the delete locally
+    console.error(message, detail);
+    return false;
+  }
+
+  return true;
+}
