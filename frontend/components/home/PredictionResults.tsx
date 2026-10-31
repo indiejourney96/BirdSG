@@ -191,12 +191,12 @@ export default function PredictionResults({ data, onReset }: PredictionResultsPr
                   : "bg-surface border-outline-variant/30"
                   } ${isSelected ? "ring-5 ring-primary/50" : ""}`}
               >
-                <div className="h-28 w-full overflow-hidden rounded-lg bg-surface-variant md:h-24 md:w-32 md:shrink-0">
+                <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-surface-variant md:aspect-auto md:h-24 md:w-32 md:shrink-0">
                   {photoUrl ? (
                     <img
                       src={photoUrl}
                       alt={photoAlt}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain md:object-cover"
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center text-on-surface-variant">
