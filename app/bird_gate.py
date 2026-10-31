@@ -86,7 +86,7 @@ IMAGENET_BIRD_CLASSES: frozenset[str] = frozenset({
 })
 
 # Minimum confidence required before trusting prediction
-BIRD_CONFIDENCE_THRESHOLD = 0.10
+BIRD_CONFIDENCE_THRESHOLD = 0.03
 
 
 def passes_bird_gate(label: str, confidence: float) -> bool:
