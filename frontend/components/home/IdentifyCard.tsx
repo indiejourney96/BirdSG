@@ -2,6 +2,8 @@
 "use client";
 import { useState } from "react";
 import { ApiError, predictBird, getBirdInfo } from "@/lib/api";
+import { usePendingImage } from "@/lib/usePendingImage";
+import ImageCropDialog from "@/components/shared/ImageCropDialog";
 
 const COLLECTION_STORAGE_KEY_PREFIX = "birdsg:sightingIds";
 
@@ -73,6 +75,17 @@ function getCollectionStorageKey(userId: string | null): string {
 export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps) {
   const [loading, setLoading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const { pendingImage, selectImage, clearPendingImage } = usePendingImage();
+
+  function handleFileSelected(file: File) {
+    setUploadError(null);
+    selectImage(file);
+  }
+
+  function handleCropComplete(file: File) {
+    clearPendingImage();
+    void handleUpload(file);
+  }
 
   async function handleUpload(file: File) {
     try {
@@ -190,14 +203,15 @@ export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps)
 
             <input
               type="file"
-              accept="image/*"
+              accept="image/jpeg,image/png,image/webp"
               className="hidden"
+              disabled={loading}
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 e.target.value = "";
 
                 if (file) {
-                  handleUpload(file);
+                  handleFileSelected(file);
                 }
               }}
             />
@@ -232,6 +246,15 @@ export default function IdentifyCard({ onPredictionSuccess }: IdentifyCardProps)
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
 
       </div>
+
+      {pendingImage && (
+        <ImageCropDialog
+          file={pendingImage.file}
+          previewUrl={pendingImage.previewUrl}
+          onCancel={clearPendingImage}
+          onComplete={handleCropComplete}
+        />
+      )}
     </section>
   );
 }

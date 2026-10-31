@@ -3,6 +3,8 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 import api from "@/services/api";
+import { usePendingImage } from "@/lib/usePendingImage";
+import ImageCropDialog from "@/components/shared/ImageCropDialog";
 
 interface UploadResponse {
   [key: string]: unknown;
@@ -12,14 +14,24 @@ export default function UploadBox() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<UploadResponse | null>(null);
   const [error, setError] = useState("");
+  const { pendingImage, selectImage, clearPendingImage } = usePendingImage();
 
-  async function handleUpload(
-    e: ChangeEvent<HTMLInputElement>
-  ) {
+  function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
+    e.target.value = "";
 
     if (!file) return;
 
+    setError("");
+    selectImage(file);
+  }
+
+  function handleCropComplete(file: File) {
+    clearPendingImage();
+    void handleUpload(file);
+  }
+
+  async function handleUpload(file: File) {
     const formData = new FormData();
     formData.append("file", file);
 
@@ -62,10 +74,20 @@ export default function UploadBox() {
 
       <input
         type="file"
-        accept="image/*"
-        onChange={handleUpload}
+        accept="image/jpeg,image/png,image/webp"
+        onChange={handleFileChange}
+        disabled={loading}
         className="block w-full"
       />
+
+      {pendingImage && (
+        <ImageCropDialog
+          file={pendingImage.file}
+          previewUrl={pendingImage.previewUrl}
+          onCancel={clearPendingImage}
+          onComplete={handleCropComplete}
+        />
+      )}
 
       {loading && (
         <div className="text-green-700 font-medium">
